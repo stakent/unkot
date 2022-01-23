@@ -1,0 +1,34 @@
+{% extends 'unkot/base.html' %}
+
+{% block title %}{{ deed.address }}{% endblock %}
+
+
+{% block content %}
+    <div class="container">
+
+        Deed details
+
+        <p><h2>Tytuł: {{ deed.title }}</h2></p>
+
+        <ul class="list-unstyled">
+            <li>Adres: {{ deed.address }}</li>
+            <li>Publikacja: {{ deed.publisher }}</li>
+            <li>Rok: {{ deed.year }}</li>
+            {% if deed.volume %}
+            <li>Tom: {{ deed.volume }}</li>
+            {% endif %}
+            <li>Nr: {{ deed.pos }}</li>
+            <li>Typ: {{ deed.deed_type }}</li>
+            <li>Status: {{ deed.status }}</li>
+            <li>{{ deed.display_address }}</li>
+            <li>{{ deed.promulgation }}</li>
+            <li>{{ deed.announcement_date }}</li>
+            <li>{{ deed.change_date }}</li>
+            <li>{{ deed.eli }}</li>
+        </ul>
+        {{ deed_text }}
+    </div>
+
+{% include 'isap/attribution_isap.html' %}
+
+{% endblock %}

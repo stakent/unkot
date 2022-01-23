@@ -16,6 +16,7 @@ urlpatterns = [
     path("users/", include("unkot.users.urls", namespace="users")),
     path("accounts/", include("allauth.urls")),
     # Your stuff: custom urls includes go here
+    path("isap/", include("unkot.isap.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 

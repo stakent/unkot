@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block title %}Wykaz aktów{% endblock %}
+
+
+{% block content %}
+
+<div class="deeds-list" up-target=".deeds-list">
+<form action="?page=1" method="get">
+    <div class="input-group">
+        <input id="query" class="form-control" type="text" name="query" value="{{ query|default:"" }}">
+        <input type="submit" value="Szukaj">
+    </div>
+</form>
+
+<p>
+    <b>{{ deeds_count_all }}</b> aktów w bazie{% if query %},
+    <b>{{ deeds_count_query }}</b> aktów spełniających warunki wyszukiwania
+    {% endif %}
+</p>
+
+
+{% if page_obj %}
+
+{% include 'isap/pagination.html' %}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Adres</th>
+            <th scope="col">Tytuł</th>
+            <th scope="col">Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for deed in deeds %}
+        <tr>
+            <td>{{ deed.address }}</td>
+            <td>
+                <a href="{% url 'deed_detail' deed.address %}">{{ deed.title }}</a>
+            </td>
+            <td>{{ deed.status }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>Brak aktów do wyświetlenia.</p>
+{% endif %}
+</div>
+
+{% include 'isap/attribution_isap.html' %}
+
+{% endblock %}
