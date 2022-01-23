@@ -14,6 +14,7 @@ import os
 import sys
 import django
 
+sys.path.append(os.path.abspath("../"))
 if os.getenv("READTHEDOCS", default=False) == "True":
     sys.path.insert(0, os.path.abspath(".."))
     os.environ["DJANGO_READ_DOT_ENV_FILE"] = "True"
