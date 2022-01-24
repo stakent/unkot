@@ -2,7 +2,7 @@
 
 from django.db import migrations
 
-SQL_CREATE_POLISH_CONFIG = '''
+SQL_CREATE_POLISH_CONFIG = """
 /* source: https://skilldepository.com/entries/postgres-polish-dictionary */
 
 BEGIN;
@@ -19,9 +19,9 @@ BEGIN;
         ALTER MAPPING FOR asciiword, asciihword, hword_asciipart, word, hword, hword_part
         WITH polish_ispell;
 COMMIT;
-'''
+"""
 
-SQL_DROP_POLISH_CONFIG = '''
+SQL_DROP_POLISH_CONFIG = """
 /* source: https://skilldepository.com/entries/postgres-polish-dictionary */
 
 BEGIN;
@@ -29,18 +29,17 @@ BEGIN;
       DROP TEXT SEARCH CONFIGURATION IF EXISTS polish;
       DROP TEXT SEARCH DICTIONARY         IF EXISTS polish_ispell;
 COMMIT;
-'''
+"""
 
 
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('isap', '0002_auto_20220116_1043'),
+        ("isap", "0002_auto_20220116_1043"),
     ]
 
     operations = [
         migrations.RunSQL(
-            sql=SQL_CREATE_POLISH_CONFIG,
-            reverse_sql=SQL_DROP_POLISH_CONFIG
+            sql=SQL_CREATE_POLISH_CONFIG, reverse_sql=SQL_DROP_POLISH_CONFIG
         )
     ]

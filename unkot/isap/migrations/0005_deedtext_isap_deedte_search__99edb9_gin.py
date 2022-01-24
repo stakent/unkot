@@ -7,12 +7,14 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('isap', '0004_add_index_search_vector'),
+        ("isap", "0004_add_index_search_vector"),
     ]
 
     operations = [
         migrations.AddIndex(
-            model_name='deedtext',
-            index=django.contrib.postgres.indexes.GinIndex(fields=['search_vector'], name='isap_deedte_search__99edb9_gin'),
+            model_name="deedtext",
+            index=django.contrib.postgres.indexes.GinIndex(
+                fields=["search_vector"], name="isap_deedte_search__99edb9_gin"
+            ),
         ),
     ]

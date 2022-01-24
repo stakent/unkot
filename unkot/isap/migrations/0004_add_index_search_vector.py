@@ -6,13 +6,12 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('isap', '0003_add_polish_fts_config'),
+        ("isap", "0003_add_polish_fts_config"),
     ]
 
     operations = [
         migrations.RunSQL(
             sql="create index isap_deedtext_search_vector_index on isap_deedtext using gin (search_vector);",
-            reverse_sql="drop index isap_deedtext_search_vector_index;"
+            reverse_sql="drop index isap_deedtext_search_vector_index;",
         )
-
     ]

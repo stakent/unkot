@@ -9,36 +9,56 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Deed',
+            name="Deed",
             fields=[
-                ('address', models.CharField(default='', max_length=200, primary_key=True, serialize=False)),
-                ('publisher', models.CharField(default='', max_length=200)),
-                ('year', models.IntegerField(default=0)),
-                ('volume', models.IntegerField(default=0)),
-                ('pos', models.IntegerField(default=0)),
-                ('deed_type', models.CharField(default='', max_length=200)),
-                ('title', models.CharField(default='', max_length=2000)),
-                ('status', models.CharField(default='', max_length=200)),
-                ('display_address', models.CharField(default='', max_length=200)),
-                ('promulgation', models.DateField(default='0001-01-01 UTC')),
-                ('announcement_date', models.DateField(default='0001-01-01 UTC')),
-                ('change_date', models.DateTimeField(default='0001-01-01 UTC')),
-                ('eli', models.CharField(default='', max_length=200)),
+                (
+                    "address",
+                    models.CharField(
+                        default="", max_length=200, primary_key=True, serialize=False
+                    ),
+                ),
+                ("publisher", models.CharField(default="", max_length=200)),
+                ("year", models.IntegerField(default=0)),
+                ("volume", models.IntegerField(default=0)),
+                ("pos", models.IntegerField(default=0)),
+                ("deed_type", models.CharField(default="", max_length=200)),
+                ("title", models.CharField(default="", max_length=2000)),
+                ("status", models.CharField(default="", max_length=200)),
+                ("display_address", models.CharField(default="", max_length=200)),
+                ("promulgation", models.DateField(default="0001-01-01 UTC")),
+                ("announcement_date", models.DateField(default="0001-01-01 UTC")),
+                ("change_date", models.DateTimeField(default="0001-01-01 UTC")),
+                ("eli", models.CharField(default="", max_length=200)),
             ],
         ),
         migrations.CreateModel(
-            name='DeedText',
+            name="DeedText",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('seq', models.IntegerField(default=0)),
-                ('text', models.TextField(default='')),
-                ('search_vector', django.contrib.postgres.search.SearchVectorField(null=True)),
-                ('deed', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='isap.deed')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("seq", models.IntegerField(default=0)),
+                ("text", models.TextField(default="")),
+                (
+                    "search_vector",
+                    django.contrib.postgres.search.SearchVectorField(null=True),
+                ),
+                (
+                    "deed",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE, to="isap.deed"
+                    ),
+                ),
             ],
         ),
     ]
