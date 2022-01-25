@@ -32,6 +32,7 @@ class Deed(models.Model):
 
 class DeedText(models.Model):
     deed = models.ForeignKey(Deed, on_delete=models.CASCADE)
+    change_date = models.DateTimeField(blank=True, default=NO_DATETIME_PROVIDED)
     seq = models.IntegerField(default=0)
     text = models.TextField(default="")
     search_vector = SearchVectorField(null=True)
