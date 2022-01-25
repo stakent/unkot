@@ -14,7 +14,7 @@ from unkot.isap.models import (
 )
 
 
-def extract_text_from_deed(address, log):
+def extract_text_from_deed(address, change_date, log):
     in_pdf_path = os.path.join(get_deed_pdf_dir(address), address + ".pdf")
     out_txt_path = os.path.join(get_deed_text_dir(address), address + ".txt")
     try:
@@ -33,7 +33,7 @@ def extract_text_from_deed(address, log):
     except FileNotFoundError as e:
         log.error(f"extract_text_from_deed error reading text from file { e }")
         return
-    save_deed_text(address, text)
+    save_deed_text(address, change_date, text)
 
 
 def extract_text_from_deeds(log):
@@ -46,7 +46,7 @@ def extract_text_from_deeds(log):
         address = deed["address"]
         count = DeedText.objects.filter(deed_id=address).count()
         if count == 0:
-            extract_text_from_deed(address, log)
+            extract_text_from_deed(address, deed.change_date, log)
         if n % debug_step == 0:
             t2 = datetime.datetime.now()
             dt = t2 - t1

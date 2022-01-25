@@ -41,7 +41,7 @@ class DeedText(models.Model):
         indexes = (GinIndex(fields=["search_vector"]),)
 
 
-def save_deed_text(address, text):
+def save_deed_text(address, change_date, text):
     """Save deed text in chunks and update search vectors."""
     max_size = 500_000  # approx. size of the deed text part in db
     lines = text.splitlines(keepends=True)
@@ -53,6 +53,7 @@ def save_deed_text(address, text):
         curr_size = curr_size + len(line)
         if curr_size > max_size:
             dt, _ = DeedText.objects.get_or_create(deed_id=address, seq=seq)
+            dt.change_date = change_date
             dt.text = part.getvalue()
             dt.save()
             dt.search_vector = SearchVector("text", config="polish")
