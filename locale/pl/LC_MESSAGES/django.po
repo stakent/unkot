@@ -1,0 +1,343 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-01-27 07:00+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n"
+"%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n"
+"%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
+
+#: unkot/templates/account/account_inactive.html:5
+#: unkot/templates/account/account_inactive.html:8
+msgid "Account Inactive"
+msgstr "Konto nieaktywne"
+
+#: unkot/templates/account/account_inactive.html:10
+msgid "This account is inactive."
+msgstr "To konto nie jest aktywne."
+
+#: unkot/templates/account/email.html:7
+msgid "Account"
+msgstr "Konto"
+
+#: unkot/templates/account/email.html:10
+msgid "E-mail Addresses"
+msgstr "Adresy e-mail"
+
+#: unkot/templates/account/email.html:13
+msgid "The following e-mail addresses are associated with your account:"
+msgstr "Adresy e-mail powiązane z Państwa kontem:"
+
+#: unkot/templates/account/email.html:27
+msgid "Verified"
+msgstr "Zweryfikowane"
+
+#: unkot/templates/account/email.html:29
+msgid "Unverified"
+msgstr "Niezweryfikowane"
+
+#: unkot/templates/account/email.html:31
+msgid "Primary"
+msgstr "Główne"
+
+#: unkot/templates/account/email.html:37
+msgid "Make Primary"
+msgstr "Ustaw jako podstawowe"
+
+#: unkot/templates/account/email.html:38
+msgid "Re-send Verification"
+msgstr "Prześlij ponownie wiadomość weryfikacyjną"
+
+#: unkot/templates/account/email.html:39
+msgid "Remove"
+msgstr "Usuń"
+
+#: unkot/templates/account/email.html:46
+msgid "Warning:"
+msgstr "Otrzeżenie:"
+
+#: unkot/templates/account/email.html:46
+msgid ""
+"You currently do not have any e-mail address set up. You should really add "
+"an e-mail address so you can receive notifications, reset your password, etc."
+msgstr ""
+"Żaden adres e-mail nie jest skojarzony z tym kontem.Pożądane jest podanie "
+"adresu e-mail w celu otrzymywania powiadomień, odzyskiwania hasła, itp."
+
+#: unkot/templates/account/email.html:51
+msgid "Add E-mail Address"
+msgstr "Dodaj adres e-mail"
+
+#: unkot/templates/account/email.html:56
+msgid "Add E-mail"
+msgstr "Dodaj e-mail"
+
+#: unkot/templates/account/email.html:66
+msgid "Do you really want to remove the selected e-mail address?"
+msgstr "Czy rzeczywiście chcesz usunąć wybrany adres e-mail?"
+
+#: unkot/templates/account/email_confirm.html:6
+#: unkot/templates/account/email_confirm.html:10
+msgid "Confirm E-mail Address"
+msgstr "Potwierdź adres e-mail"
+
+#: unkot/templates/account/email_confirm.html:16
+#, python-format
+msgid ""
+"Please confirm that <a href=\"mailto:%(email)s\">%(email)s</a> is an e-mail "
+"address for user %(user_display)s."
+msgstr ""
+"Proszę potwierdzić, że adres e-mail <a href=\"mailto:%(email)s\">%(email)s</"
+"a> należy do użytkownika %(user_display)s."
+
+#: unkot/templates/account/email_confirm.html:20
+msgid "Confirm"
+msgstr "Potwierdź"
+
+#: unkot/templates/account/email_confirm.html:27
+#, python-format
+msgid ""
+"This e-mail confirmation link expired or is invalid. Please <a href="
+"\"%(email_url)s\">issue a new e-mail confirmation request</a>."
+msgstr ""
+"Łącze powierdzające z tej widomości e-mail wygasło lub jest nieprawidłowe. "
+"Proszę <a href=\"%(email_url)s\">wysłać nową wiadomość potwierdzającą adres "
+"e-mail</a>."
+
+#: unkot/templates/account/login.html:7 unkot/templates/account/login.html:11
+#: unkot/templates/account/login.html:56 unkot/templates/base.html:73
+msgid "Sign In"
+msgstr "Zaloguj"
+
+#: unkot/templates/account/login.html:17
+msgid "Please sign in with one of your existing third party accounts:"
+msgstr "Zaloguj używając jednego z tych kont zewnętrznych:"
+
+#: unkot/templates/account/login.html:19
+#, python-format
+msgid ""
+"Or, <a href=\"%(signup_url)s\">sign up</a> for a %(site_name)s account and "
+"sign in below:"
+msgstr ""
+"Albo, <a href=\"%(signup_url)s\">załóż konto</a> na %(site_name)si zaloguj "
+"poniżej"
+
+#: unkot/templates/account/login.html:32
+msgid "or"
+msgstr "albo"
+
+#: unkot/templates/account/login.html:41
+#, python-format
+msgid ""
+"If you have not created an account yet, then please <a href=\"%(signup_url)s"
+"\">sign up</a> first."
+msgstr ""
+"Jeśli nie założyli jeszcze Państwo konta, proszę <a href=\"%(signup_url)s"
+"\">założyć konto</a> najpierw."
+
+#: unkot/templates/account/login.html:55
+msgid "Forgot Password?"
+msgstr "Ustaw nowe hasło"
+
+#: unkot/templates/account/logout.html:5 unkot/templates/account/logout.html:8
+#: unkot/templates/account/logout.html:17 unkot/templates/base.html:62
+msgid "Sign Out"
+msgstr "Wyloguj"
+
+#: unkot/templates/account/logout.html:10
+msgid "Are you sure you want to sign out?"
+msgstr "Czy na pewno wylogować?"
+
+#: unkot/templates/account/password_change.html:6
+#: unkot/templates/account/password_change.html:9
+#: unkot/templates/account/password_change.html:14
+#: unkot/templates/account/password_reset_from_key.html:5
+#: unkot/templates/account/password_reset_from_key.html:8
+#: unkot/templates/account/password_reset_from_key_done.html:4
+#: unkot/templates/account/password_reset_from_key_done.html:7
+msgid "Change Password"
+msgstr "Zmień hasło"
+
+#: unkot/templates/account/password_reset.html:7
+#: unkot/templates/account/password_reset.html:11
+#: unkot/templates/account/password_reset_done.html:6
+#: unkot/templates/account/password_reset_done.html:9
+msgid "Password Reset"
+msgstr "Ustawienie nowego hasła"
+
+#: unkot/templates/account/password_reset.html:16
+msgid ""
+"Forgotten your password? Enter your e-mail address below, and we'll send you "
+"an e-mail allowing you to reset it."
+msgstr ""
+"Proszę podać adres e-mail. Wyślemy na niego wiadomość umożliwiającą "
+"ustawienie nowego hasła."
+
+#: unkot/templates/account/password_reset.html:21
+msgid "Reset My Password"
+msgstr "Ustaw nowe hasło"
+
+#: unkot/templates/account/password_reset.html:24
+msgid "Please contact us if you have any trouble resetting your password."
+msgstr "Prosimy o kontakt z nami w razie problemów z ustawieniem nowego hasła."
+
+#: unkot/templates/account/password_reset_done.html:15
+msgid ""
+"We have sent you an e-mail. Please contact us if you do not receive it "
+"within a few minutes."
+msgstr ""
+"Wysłaliśmy Państwu wiadomość e-mail. Proismy o kontakt, jeśli w ciągu kilku "
+"minut nie dotrze ona do Państwa."
+
+#: unkot/templates/account/password_reset_from_key.html:8
+msgid "Bad Token"
+msgstr "Token nieprawidłowy"
+
+#: unkot/templates/account/password_reset_from_key.html:12
+#, python-format
+msgid ""
+"The password reset link was invalid, possibly because it has already been "
+"used.  Please request a <a href=\"%(passwd_reset_url)s\">new password reset</"
+"a>."
+msgstr ""
+"Nieprawidłowe łącze do ustawienia nowego hasła, być może było już użyte. "
+"Proszę o <a href=\"%(passwd_reset_url)s\">ustawienie nowego hasła</a>."
+
+#: unkot/templates/account/password_reset_from_key.html:18
+msgid "change password"
+msgstr "zmień hasło"
+
+#: unkot/templates/account/password_reset_from_key.html:21
+#: unkot/templates/account/password_reset_from_key_done.html:8
+msgid "Your password is now changed."
+msgstr "Hasło zostało zmienione."
+
+#: unkot/templates/account/password_set.html:6
+#: unkot/templates/account/password_set.html:9
+#: unkot/templates/account/password_set.html:14
+msgid "Set Password"
+msgstr "Ustaw hasło"
+
+#: unkot/templates/account/signup.html:6
+msgid "Signup"
+msgstr "Zaloguj"
+
+#: unkot/templates/account/signup.html:9 unkot/templates/account/signup.html:19
+#: unkot/templates/base.html:68
+msgid "Sign Up"
+msgstr "Załóż nowe konto"
+
+#: unkot/templates/account/signup.html:11
+#, python-format
+msgid ""
+"Already have an account? Then please <a href=\"%(login_url)s\">sign in</a>."
+msgstr ""
+"Proszę się <a href=\"%(login_url)s\">zalogować</a>, jeśli macie Państo już "
+"konto."
+
+#: unkot/templates/account/signup_closed.html:5
+#: unkot/templates/account/signup_closed.html:8
+msgid "Sign Up Closed"
+msgstr "Zakładanie nowych kont wyłączone"
+
+#: unkot/templates/account/signup_closed.html:10
+msgid "We are sorry, but the sign up is currently closed."
+msgstr "Niestety, zakładanie nowych kont jest obecnie wyłączone."
+
+#: unkot/templates/account/verification_sent.html:5
+#: unkot/templates/account/verification_sent.html:8
+#: unkot/templates/account/verified_email_required.html:5
+#: unkot/templates/account/verified_email_required.html:8
+msgid "Verify Your E-mail Address"
+msgstr "Proszę zweryfikować Państwa adres e-mail"
+
+#: unkot/templates/account/verification_sent.html:10
+msgid ""
+"We have sent an e-mail to you for verification. Follow the link provided to "
+"finalize the signup process. Please contact us if you do not receive it "
+"within a few minutes."
+msgstr ""
+"Wysłaliśmy Państwu wiadomość e-mail w celu weryfikacji podanego adresu e-"
+"mail. Prosimy użyć zawartego w wiadomości łącza w celu dokończenia "
+"zakładania konta. Prosimy o skontaktowanie się z nami, jeśli wiadomość nie "
+"dotrze do Państwa w ciągu kilku minut."
+
+#: unkot/templates/account/verified_email_required.html:12
+msgid ""
+"This part of the site requires us to verify that\n"
+"you are who you claim to be. For this purpose, we require that you\n"
+"verify ownership of your e-mail address. "
+msgstr ""
+"W tej części serwisu zobowiązani jesteśmy do werfikacji państwa tożsamości. "
+"W tym celu prosimy o potwierdzenie Państwa adresu e-mail."
+
+#: unkot/templates/account/verified_email_required.html:16
+msgid ""
+"We have sent an e-mail to you for\n"
+"verification. Please click on the link inside this e-mail. Please\n"
+"contact us if you do not receive it within a few minutes."
+msgstr ""
+
+#: unkot/templates/account/verified_email_required.html:20
+#, python-format
+msgid ""
+"<strong>Note:</strong> you can still <a href=\"%(email_url)s\">change your e-"
+"mail address</a>."
+msgstr ""
+
+#: unkot/templates/base.html:50
+msgid "Home"
+msgstr "Start"
+
+#: unkot/templates/base.html:53
+msgid "About"
+msgstr "O serwisie"
+
+#: unkot/templates/base.html:58
+msgid "My Profile"
+msgstr "Moje konto"
+
+#: unkot/templates/users/user_form.html:14
+msgid "Update"
+msgstr "Uaktualnij"
+
+#: unkot/users/admin.py:18
+msgid "Personal info"
+msgstr "Informacje osobiste"
+
+#: unkot/users/admin.py:20
+msgid "Permissions"
+msgstr "Uprawnienia"
+
+#: unkot/users/admin.py:31
+msgid "Important dates"
+msgstr "Ważne daty"
+
+#: unkot/users/apps.py:7
+msgid "Users"
+msgstr "Użytkownicy"
+
+#: unkot/users/forms.py:25 unkot/users/tests/test_forms.py:39
+msgid "This username has already been taken."
+msgstr "Ta nazwa użytkownika została już zajęta."
+
+#: unkot/users/models.py:15
+msgid "Name of User"
+msgstr "Nazwa użytkownika"
+
+#: unkot/users/views.py:25
+msgid "Information successfully updated"
+msgstr "Informacje uaktualnione"
