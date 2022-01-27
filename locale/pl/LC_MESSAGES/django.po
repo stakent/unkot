@@ -290,6 +290,10 @@ msgid ""
 "verification. Please click on the link inside this e-mail. Please\n"
 "contact us if you do not receive it within a few minutes."
 msgstr ""
+"W celu sprawdzenia adresu e-mail wysłaliśmy Państwu wiadomość. "
+"Proszę kliknąć na łączu w przesłanej wiadomości. "
+"Prosimy o kontakt z nami, jeśli w ciągu kilku minut widomość "
+"nie dotrze do Państwa."
 
 #: unkot/templates/account/verified_email_required.html:20
 #, python-format
@@ -297,6 +301,8 @@ msgid ""
 "<strong>Note:</strong> you can still <a href=\"%(email_url)s\">change your e-"
 "mail address</a>."
 msgstr ""
+"<strong>Uwaga:</strong> wciąż  możecie Państwo <a href=\"%(email_url)s\">"
+"zmienić adres e-mail</a>."
 
 #: unkot/templates/base.html:50
 msgid "Home"
