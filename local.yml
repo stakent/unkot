@@ -24,6 +24,19 @@ services:
       - "8001:8001"
     command: /start
 
+  nginx-proxy:
+    image: jwilder/nginx-proxy:alpine
+    container_name: nginx-proxy
+    ports:
+        - "80:80"
+        - "443:443"
+    volumes:
+        - /var/run/docker.sock:/tmp/docker.sock:ro
+        - ./certs:/etc/nginx/certs
+    restart: always
+    depends_on:
+        - django
+
   postgres:
     build:
       context: .

@@ -5,6 +5,8 @@
 unkot/templates/pages/polityka-prywatnosci.html
 unkot/templates/pages/regulamin.html
 
+certs/*
+
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
