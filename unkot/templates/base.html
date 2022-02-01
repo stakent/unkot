@@ -95,6 +95,20 @@
         <p>Use this document as a way to quick start any new project.</p>
       {% endblock content %}
 
+        <div class="footer">
+          <ul class="list-inline">
+            <li class="list-inline-item">
+              <a href="{% url 'home' %}">unkot</a>
+            </li>
+            <li class="list-inline-item">
+              <a href="{% url 'regulamin' %}">Regulamin</a>
+            </li>
+            <li class="list-inline-item">
+              <a href="{% url 'polityka-prywatnosci' %}">Polityka prywatności</a>
+            </li>
+          </ul>
+        </div>
+
     </div> <!-- /container -->
 
     {% block modal %}{% endblock modal %}
