@@ -1,1 +1,41 @@
 {% extends "base.html" %}
+
+
+{% block content %}
+
+<h2>Oferujemy</h2>
+
+<p>
+    <a href="{% url 'deeds_list' %}">Monitoring zmian</a> w polskim prawie.
+</p>
+
+<ul class="list-unstyled">
+<li>
+    Wyszukaj interesujące akty prawne.
+</li><li>
+    Zapisz wyszukiwanie wraz z wykazem aktów prawnych
+    pasujących do wyszukiwania w&nbsp;danej chwili.
+</li><li>
+    Jeśli prawodawca opublikuje nowe akty prawne pasujące do wyszukiwania,
+    to&nbsp;otrzymuj powiadomienia przez e-mail.
+</li>
+</ul>
+
+<p>
+    Zmiany prawa wciąż mogą zaskakiwać, ale Państwa firma będzie miała<br>
+    <b>więcej czasu</b> na reakcję na zmiany.
+</p>
+
+<p>
+    Pracujemy nad rozwinięciem oferty zmierzając do&nbsp;ułatwienia
+    firmom poruszania po obecnej, niełatwej, rzeczywistości gospodarczej.
+</p>
+<p>
+    Zainteresowanych naszymi produktami zapraszamy
+    doi&nbsp;<a href="/newsletter/">zapisania się</a> na nasz newsletter.
+</p>
+<p>
+    Planujemy wysyłanie do kilku e-maili miesięcznie.
+</p>
+
+{% endblock %}
