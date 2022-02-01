@@ -1,1 +1,31 @@
 {% extends "base.html" %}
+
+{% block title %}O serwisie{% endblock %}
+
+{% block content %}
+
+<h2>O serwisie</h2>
+
+<p>
+    Jedyną stałą rzeczą jest zmiana.
+</p>
+<p>
+    Działając w otaczającej nas rzeczywistości prawnej i gospodarczej
+    musimy reagować na zmiany w niej zachodzące.
+</p>
+<p>
+    Te podmioty, które wcześniej otrzymują informacje o zachodzących
+    zmianach zyskują przewagę na rynku.
+</p>
+<p>
+    Naszą misją jest dostarczanie odbiorcom naszych usług aktualnych
+    informacji o zachodzących zmianach, o nowych możliwościach
+    pojawiających się na rynku.
+</p>
+<p>
+    Jeśli potrzebujecie Państwo rozwiązania na miarę, dostosowanego
+    do Państwa potrzeb lub macie Państwo sugestie dotyczące tego co już oferujemy,
+    to zapraszamy do <a href={% url 'kontakt' %}>kontaktu</a>.
+</p>
+
+{% endblock %}

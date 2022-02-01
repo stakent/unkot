@@ -11,6 +11,11 @@ urlpatterns = [
         "about/", TemplateView.as_view(template_name="pages/about.html"), name="about"
     ),
     path(
+        "kontakt/",
+        TemplateView.as_view(template_name="pages/contact.html"),
+        name="kontakt",
+    ),
+    path(
         "polityka-prywatnosci/",
         TemplateView.as_view(template_name="pages/polityka-prywatnosci.html"),
         name="polityka-prywatnosci",
