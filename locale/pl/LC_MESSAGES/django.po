@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-27 07:00+0100\n"
+"POT-Creation-Date: 2022-01-27 09:29+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -290,10 +290,9 @@ msgid ""
 "verification. Please click on the link inside this e-mail. Please\n"
 "contact us if you do not receive it within a few minutes."
 msgstr ""
-"W celu sprawdzenia adresu e-mail wysłaliśmy Państwu wiadomość. "
-"Proszę kliknąć na łączu w przesłanej wiadomości. "
-"Prosimy o kontakt z nami, jeśli w ciągu kilku minut widomość "
-"nie dotrze do Państwa."
+"W celu sprawdzenia adresu e-mail wysłaliśmy Państwu wiadomość. Proszę "
+"kliknąć na łączu w przesłanej wiadomości. Prosimy o kontakt z nami, jeśli w "
+"ciągu kilku minut widomość nie dotrze do Państwa."
 
 #: unkot/templates/account/verified_email_required.html:20
 #, python-format
@@ -301,8 +300,8 @@ msgid ""
 "<strong>Note:</strong> you can still <a href=\"%(email_url)s\">change your e-"
 "mail address</a>."
 msgstr ""
-"<strong>Uwaga:</strong> wciąż  możecie Państwo <a href=\"%(email_url)s\">"
-"zmienić adres e-mail</a>."
+"<strong>Uwaga:</strong> wciąż  możecie Państwo <a href=\"%(email_url)s"
+"\">zmienić adres e-mail</a>."
 
 #: unkot/templates/base.html:50
 msgid "Home"
@@ -315,6 +314,20 @@ msgstr "O serwisie"
 #: unkot/templates/base.html:58
 msgid "My Profile"
 msgstr "Moje konto"
+
+#: unkot/templates/users/user_detail.html:4
+msgid "User:"
+msgstr "Użytkownik:"
+
+#: unkot/templates/users/user_detail.html:24
+msgid "About me"
+msgstr "O mnie"
+
+#: unkot/templates/users/user_detail.html:25
+#, fuzzy
+#| msgid "E-mail addresses"
+msgid "E-mail address"
+msgstr "Adresy e-mail"
 
 #: unkot/templates/users/user_form.html:14
 msgid "Update"
