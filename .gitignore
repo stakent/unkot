@@ -7,6 +7,9 @@ unkot/templates/pages/regulamin.html
 
 certs/*
 
+bin/MailHog
+bin/mhsendmail_linux_amd64
+
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
