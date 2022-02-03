@@ -15,6 +15,8 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='deedtext',
             name='change_date',
-            field=models.DateTimeField(blank=True, default=datetime.datetime(1, 1, 1, 0, 0, tzinfo=utc)),
+            field=models.DateTimeField(
+                blank=True, default=datetime.datetime(1, 1, 1, 0, 0, tzinfo=utc)
+            ),
         ),
     ]
