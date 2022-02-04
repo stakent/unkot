@@ -51,6 +51,9 @@
                 <a class="nav-link" href="{% url 'home' %}">{% translate "Home" %} <span class="visually-hidden">(current)</span></a>
               </li>
               <li class="nav-item">
+                <a class="nav-link" href="{% url 'deeds_list' %}">{% translate "ISAP" %}</a>
+              </li>
+              <li class="nav-item">
                 <a class="nav-link" href="{% url 'about' %}">{% translate "About" %}</a>
               </li>
               {% if request.user.is_authenticated %}
