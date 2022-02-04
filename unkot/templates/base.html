@@ -17,6 +17,7 @@
 
     <!-- Your stuff: Third-party CSS libraries go here -->
     <!-- This file stores project-specific CSS -->
+    <link href="{% static 'css/unpoly.min.css' %}" rel="stylesheet">
     <link href="{% static 'css/project.css' %}" rel="stylesheet">
     <link href="{% static 'css/site.css' %}" rel="stylesheet">
     {% endblock %}
@@ -29,6 +30,7 @@
       <!-- Your stuff: Third-party javascript libraries go here -->
 
       <!-- place project specific Javascript in this file -->
+      <script defer src="{% static 'js/unpoly.min.js' %}"></script>
       <script defer src="{% static 'js/project.js' %}"></script>
 
       {% endblock javascript %}
