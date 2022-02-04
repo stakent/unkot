@@ -3,7 +3,7 @@ import tempfile
 
 from django.test import SimpleTestCase
 
-from .pdf_to_text import pdf_to_text
+from ..pdf_to_text import pdf_to_text
 
 
 class DeedTextTestCase(SimpleTestCase):
@@ -12,7 +12,7 @@ class DeedTextTestCase(SimpleTestCase):
 
     def test_pdf_to_text(self):
         address = "WMP20220000006"
-        test_pdf_fn = f"unkot/isap/test_data/{ address }.pdf"
+        test_pdf_fn = f"unkot/isap/tests/test_data/{ address }.pdf"
         out_txt_name = f"{ address }.txt"
 
         with tempfile.TemporaryDirectory() as tmp_dir:
