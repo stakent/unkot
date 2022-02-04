@@ -7,10 +7,12 @@
 
 <div class="deeds-list" up-target=".deeds-list">
 <form action="?page=1" method="get">
+  <div class="mb-3">
     <div class="input-group">
-        <input id="query" class="form-control" type="text" name="query" value="{{ query|default:"" }}">
-        <input type="submit" value="Szukaj">
+      <input id="query" class="form-control" type="text" name="query" value="{{ query|default:"" }}">
+      <input class="btn btn-primary" type="submit" value="Szukaj">
     </div>
+  </div>
 </form>
 
 <p>
