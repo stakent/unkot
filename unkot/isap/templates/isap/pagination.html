@@ -8,7 +8,7 @@
         <span>{{ n }}</span>
       </a>
       {% else %}
-      <a class="page-link" href="?page={{ n }}{% if query%}&query={{ query }}{% endif %}">
+      <a class="page-link" href="?page={{ n }}{% if query%}&query={{ query }}{% endif %}" up-target="#deeds-list" >
         <span>{{ n }}</span>
       </a>
       {% endif %}

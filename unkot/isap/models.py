@@ -2,9 +2,13 @@ import io
 from datetime import date, datetime, timezone
 
 from django.conf import settings
+from django.contrib.postgres.fields import ArrayField
 from django.contrib.postgres.indexes import GinIndex
 from django.contrib.postgres.search import SearchVector, SearchVectorField
 from django.db import models
+from django.utils import timezone as dj_timezone
+
+from unkot.users.models import User
 
 NO_DATE_PROVIDED = date(1, 1, 1)
 NO_DATETIME_PROVIDED = datetime(1, 1, 1, 0, 0, tzinfo=timezone.utc)
@@ -84,3 +88,15 @@ def get_deed_pdf_dir(address):
 
 def get_deed_text_dir(address):
     return f"{ settings.ISAP_TEXT_DIR }{ address[-3:] }/"
+
+
+class SearchIsap(models.Model):
+    "SearchIsap stores an ISAP search: query, results, first_run_ts, last_run_ts"
+    query = models.CharField(primary_key=True, max_length=2000, default="")
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    first_run_ts = models.DateTimeField(default=lambda: dj_timezone.now())
+    last_run_ts = models.DateTimeField(default=lambda: dj_timezone.now())
+    result = ArrayField(models.CharField(max_length=200), blank=True, default=list)
+
+    def __str__(self):
+        return self.query

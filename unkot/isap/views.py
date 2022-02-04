@@ -1,18 +1,26 @@
 from django.core.paginator import Paginator
 from django.http import Http404
 from django.shortcuts import render
+from django.utils import timezone
 
 from .filter_deeds import filter_deeds
-from .models import Deed, load_deed_text
+from .models import Deed, SearchIsap, load_deed_text
 
 
 def deeds_list(request):
     "deeds_list"
-    query = request.GET.get("query")
-    # print(f'===== query "{ query }"')
+    page_number = request.GET.get('page', request.POST.get('page', 1))
 
+    if 'search button' in request.POST:
+        query = request.POST.get('query')
+    elif 'save search button' in request.POST:
+        query = request.POST.get('query')
+    elif 'query' in request.GET:
+        query = request.GET['query']
+    else:
+        query = ''
+    query = query.strip()
     deeds_count_query = None
-    page_number = request.GET.get("page")
     if query:
         addresses = filter_deeds(query)
         deeds_count_query = len(addresses)
@@ -28,6 +36,23 @@ def deeds_list(request):
     pages_range = paginator.get_elided_page_range(
         page_obj.number, on_each_side=2, on_ends=1
     )
+
+    if request.user.is_authenticated and 'save search button' in request.POST:
+        ss, created = SearchIsap.objects.get_or_create(
+            query=query,
+            user=request.user,
+        )
+        if created:
+            ss.first_run_ts = timezone.now()
+        ss.last_run_ts = timezone.now()
+        ss.result = addresses
+        ss.save()
+
+    if request.user.is_authenticated:
+        saved_searches_count = SearchIsap.objects.filter(user=request.user).count()
+    else:
+        saved_searches_count = 0
+
     context = {
         "deeds_count_all": deeds_count_all,
         "deeds_count_query": deeds_count_query,
@@ -35,6 +60,7 @@ def deeds_list(request):
         "page_obj": page_obj,
         "pages_range": pages_range,
         "query": query,
+        "saved_searches_count": saved_searches_count,
     }
     return render(request, "isap/deeds_list.html", context)
 

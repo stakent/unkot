@@ -5,21 +5,44 @@
 
 {% block content %}
 
-<div class="deeds-list" up-target=".deeds-list">
-<form action="?page=1" method="get">
-  <div class="mb-3">
-    <div class="input-group">
-      <input id="query" class="form-control" type="text" name="query" value="{{ query|default:"" }}">
-      <input class="btn btn-primary" type="submit" value="Szukaj">
-    </div>
-  </div>
-</form>
+<div class="mb-3" id="deeds-list">
+  <form action="?page=1" method="post" up-submit>
+    {% csrf_token %}
 
-<p>
-    <b>{{ deeds_count_all }}</b> aktów w bazie{% if query %},
-    <b>{{ deeds_count_query }}</b> aktów spełniających warunki wyszukiwania
-    {% endif %}
-</p>
+    <div class="row">
+      <div class="col">
+        <input id="query" class="form-control" type="search" name="query" value="{{ query|default:"" }}">
+      </div>
+    </div> 
+    <div class="row">
+      <div class="col">
+        <input class="btn btn-primary form-control" type="submit" value="Szukaj" name="search button">
+      </div>
+      {% if request.user.is_authenticated %}
+      <div class="col">
+        <input class="btn btn-primary form-control" type="submit" value="Zapisz wyszukiwanie" name="save search button">
+      </div>
+  {% endif %}
+    </div>
+  </form>
+
+  {% if request.user.is_authenticated %}
+  {% if saved_searches_count %}
+  <p>Masz {{ saved_searches_count }} zapisanych wyszukiwań.</p>
+  {% else %}
+  <p>Nie masz zapisanych żadnych wyszukiwań.</p>
+  {% endif %}
+  {% endif %}
+
+  {% if not request.user.is_authenticated %}
+  <p>Założenie konta i zalogowanie się umożliwia korzystanie z pełnej funkcjonalności serwisu.</p>
+  {% endif %}
+
+  <p>
+  <b>{{ deeds_count_all }}</b> aktów w bazie,{% if query %}
+  <b>{{ deeds_count_query }}</b> aktów spełniających warunki wyszukiwania
+  {% endif %}
+  </p>
 
 
 {% if page_obj %}
@@ -51,6 +74,7 @@
 {% endif %}
 </div>
 
+</div>
 {% include 'isap/attribution_isap.html' %}
 
 {% endblock %}
