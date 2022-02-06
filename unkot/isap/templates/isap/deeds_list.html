@@ -28,7 +28,7 @@
 
   {% if request.user.is_authenticated %}
   {% if saved_searches_count %}
-  <p>Masz {{ saved_searches_count }} zapisanych wyszukiwań.</p>
+  <p>Masz {{ saved_searches_count }} <a href="{% url 'saved_isap_searches' %}">zapisanych wyszukiwań</a>.</p>
   {% else %}
   <p>Nie masz zapisanych żadnych wyszukiwań.</p>
   {% endif %}

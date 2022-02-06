@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}Zapisane wyszukiwania{% endblock %}
+
+
+{% block content %}
+
+<div class="mb-3" id="searches-list">
+  {% if searches.count %}
+  <p>Masz {{ searches.count }} zapisanych wyszukiwań.</p>
+  {% else %}
+  <p>Nie masz zapisanych żadnych wyszukiwań.</p>
+  {% endif %}
+
+{% if searches.count %}
+
+{% include 'isap/pagination.html' %}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Adres</th>
+            <th scope="col">Tytuł</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for search in searches %}
+        <tr>
+            <td>{{ search.query }}</td>
+            <td>
+              <a href="{% url 'search_isap_detail' search.id %}">{{ search.query }}</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>Brak aktów do wyświetlenia.</p>
+{% endif %}
+</div>
+
+</div>
+{% include 'isap/attribution_isap.html' %}
+
+{% endblock %}

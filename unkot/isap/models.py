@@ -1,12 +1,13 @@
+import hashlib
 import io
-from datetime import date, datetime, timezone
+from datetime import date, datetime
 
 from django.conf import settings
 from django.contrib.postgres.fields import ArrayField
 from django.contrib.postgres.indexes import GinIndex
 from django.contrib.postgres.search import SearchVector, SearchVectorField
 from django.db import models
-from django.utils import timezone as dj_timezone
+from django.utils import timezone
 
 from unkot.users.models import User
 
@@ -92,11 +93,46 @@ def get_deed_text_dir(address):
 
 class SearchIsap(models.Model):
     "SearchIsap stores an ISAP search: query, results, first_run_ts, last_run_ts"
-    query = models.CharField(primary_key=True, max_length=2000, default="")
+    query = models.CharField(max_length=2000, default="")
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    first_run_ts = models.DateTimeField(default=lambda: dj_timezone.now())
-    last_run_ts = models.DateTimeField(default=lambda: dj_timezone.now())
-    result = ArrayField(models.CharField(max_length=200), blank=True, default=list)
+
+    class Meta:
+        unique_together = [['query', 'user']]
 
     def __str__(self):
         return self.query
+
+
+class SearchIsapResult(models.Model):
+    search = models.ForeignKey('SearchIsap', on_delete=models.CASCADE)
+    first_run_ts = models.DateTimeField(auto_now_add=True)
+    last_run_ts = models.DateTimeField(auto_now=True)
+    result = ArrayField(models.CharField(max_length=200), blank=True, default=list)
+    # enforcing unique_together by postgresql on (query, result) causes
+    # exceeding of pg limitations for the size of indexed values
+    # so we use md5 hash of result
+    result_md5 = models.CharField(max_length=32, editable=False, default='')
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=['search', 'result_md5'], name='search_isap_result_md5_uniq'
+            ),
+        ]
+
+    def save(self, *args, **kwargs):
+        '''On save, update timestamps'''
+        if not self.id:
+            self.first_run_ts = timezone.now()
+        self.result_md5 = hashlib.md5(''.join(self.result).encode()).hexdigest()
+        self.last_run_ts = timezone.now()
+        return super(SearchIsapResult, self).save(*args, **kwargs)
+
+
+def save_search_result(query, addresses, user):
+    ss, _ = SearchIsap.objects.get_or_create(
+        query=query,
+        user=user,
+    )
+    ssr, _ = SearchIsapResult.objects.get_or_create(search=ss, result=addresses)
+    ssr.save()

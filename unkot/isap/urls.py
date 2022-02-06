@@ -6,4 +6,8 @@ urlpatterns = [
     # ex: /deeds/
     path("", views.deeds_list, name="deeds_list"),
     path("deed/<str:deed_address>/", views.deed_detail, name="deed_detail"),
+    path("saved-searches", views.saved_searches, name="saved_isap_searches"),
+    path(
+        'search-detail/<int:id>/', views.search_isap_detail, name='search_isap_detail'
+    ),
 ]

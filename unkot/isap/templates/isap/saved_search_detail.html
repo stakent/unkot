@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ deed.address }}{% endblock %}
+
+
+{% block content %}
+    <div class="container">
+
+        Search details
+
+
+        <ul class="list-unstyled">
+            <li>Zapytanie: "{{ search.query }}"</li>
+            <li>Pierwsze wykonanie: {{ search.first_run_ts }}</li>
+            <li>Najnowsze wykonanie: {{ search.last_run_ts }}</li>
+        </ul>
+      
+        {% for result in results %}
+        <ul class="list-unstyled">
+          <li>Data wykonania: {{ result.run_ts }}</li>
+          <li>Liczba dokumentów w wyniku wyszukiwania: {{ result.number_of_results }}</li>
+        </ul>
+
+        {% for deed in result.result %}
+        <ul class="list-unstyled">
+          <li>{{ deed }}</li>
+        </ul>
+        {% empty %}
+        <p>Wyszukiwanie nie zwróciło żadnego dokumentu.</p>
+        {% endfor %}
+        {% empty %}
+        <p>Brak zapisanych wyników wyszukiwania.</p>
+        {% endfor %}
+            
+    </div>
+
+{% include 'isap/attribution_isap.html' %}
+
+{% endblock %}

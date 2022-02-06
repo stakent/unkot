@@ -1,10 +1,11 @@
+from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
+from django.db.models import F, Func
 from django.http import Http404
 from django.shortcuts import render
-from django.utils import timezone
 
 from .filter_deeds import filter_deeds
-from .models import Deed, SearchIsap, load_deed_text
+from .models import Deed, SearchIsap, SearchIsapResult, load_deed_text
 
 
 def deeds_list(request):
@@ -25,6 +26,20 @@ def deeds_list(request):
         addresses = filter_deeds(query)
         deeds_count_query = len(addresses)
         paginator = Paginator(addresses, 25)
+
+        if request.user.is_authenticated and 'save search button' in request.POST:
+            ss, created = SearchIsap.objects.get_or_create(
+                query=query,
+                user=request.user,
+            )
+            sr, _ = SearchIsapResult.objects.get_or_create(search=ss)
+            sr.result = addresses
+            sr.save()
+            ss.save()
+            count = SearchIsapResult.objects.filter(search=ss).count()
+            print(
+                f'==== save_search: { query } { sr.first_run_ts } { sr.last_run_ts } { count }'
+            )
     else:
         addresses = Deed.objects.all().order_by("-change_date").values("address")
         paginator = Paginator(addresses, 25)
@@ -36,17 +51,6 @@ def deeds_list(request):
     pages_range = paginator.get_elided_page_range(
         page_obj.number, on_each_side=2, on_ends=1
     )
-
-    if request.user.is_authenticated and 'save search button' in request.POST:
-        ss, created = SearchIsap.objects.get_or_create(
-            query=query,
-            user=request.user,
-        )
-        if created:
-            ss.first_run_ts = timezone.now()
-        ss.last_run_ts = timezone.now()
-        ss.result = addresses
-        ss.save()
 
     if request.user.is_authenticated:
         saved_searches_count = SearchIsap.objects.filter(user=request.user).count()
@@ -79,3 +83,25 @@ def deed_detail(request, deed_address):
         "deed_text": deed_text,
     }
     return render(request, "isap/deed_detail.html", context)
+
+
+@login_required
+def saved_searches(request):
+    searches = SearchIsap.objects.filter(user=request.user)
+    context = {
+        'searches': searches,
+    }
+    return render(request, "isap/saved_searches_list.html", context)
+
+
+@login_required
+def search_isap_detail(request, id):
+    search = SearchIsap.objects.get(id=id)
+    results = SearchIsapResult.objects.filter(search=search).annotate(
+        number_of_results=Func(F('result'), function='CARDINALITY')
+    )
+    context = {
+        'search': search,
+        'results': results,
+    }
+    return render(request, "isap/saved_search_detail.html", context)
