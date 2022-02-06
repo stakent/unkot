@@ -41,18 +41,16 @@ def extract_text_from_deeds(log):
     debug_step = 10
     t1 = datetime.datetime.now()
     log.error(f"extract_text_from_deeds started { t1 }")
-    for deed in Deed.objects.all().order_by("-address").values("address"):
-        # fp = os.path.join(data_dir, deed.address + '.pdf')
-        address = deed["address"]
-        count = DeedText.objects.filter(deed_id=address).count()
+    for deed in Deed.objects.all().order_by("-address"):
+        count = DeedText.objects.filter(deed_id=deed.address).count()
         if count == 0:
-            extract_text_from_deed(address, deed.change_date, log)
+            extract_text_from_deed(deed.address, deed.change_date, log)
         if n % debug_step == 0:
             t2 = datetime.datetime.now()
             dt = t2 - t1
             seconds = dt.total_seconds()
             deeds_per_second = debug_step / seconds
-            print(f"====== { n } { address } {deeds_per_second:.1f} deeds/s")
+            print(f"====== { n } { deed.address } {deeds_per_second:.1f} deeds/s")
             t1 = t2
         n += 1
     log.info(f"extract_text_from_deeds finished { t1 }")
