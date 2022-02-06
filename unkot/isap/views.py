@@ -88,6 +88,10 @@ def deed_detail(request, deed_address):
 @login_required
 def saved_searches(request):
     searches = SearchIsap.objects.filter(user=request.user)
+    # FIXME use annotation on reverse one-to-many relation in previous line
+    for n in range(0, len(searches)):
+        count = SearchIsapResult.objects.filter(search=searches[n]).count()
+        searches[n].count = count
     context = {
         'searches': searches,
     }
