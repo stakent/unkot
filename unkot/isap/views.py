@@ -1,3 +1,5 @@
+import datetime
+
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.db.models import F, Func
@@ -104,8 +106,15 @@ def search_isap_detail(request, id):
     results = SearchIsapResult.objects.filter(search=search).annotate(
         number_of_results=Func(F('result'), function='CARDINALITY')
     )
+    first_run_ts = datetime.datetime(9999, 1, 1, 0, 0, tzinfo=datetime.timezone.utc)
+    last_run_ts = datetime.datetime(1, 1, 1, 0, 0, tzinfo=datetime.timezone.utc)
+    for sr in results:
+        first_run_ts = min(first_run_ts, sr.first_run_ts)
+        last_run_ts = max(last_run_ts, sr.last_run_ts)
     context = {
         'search': search,
+        'first_run_ts': first_run_ts,
+        'last_run_ts': last_run_ts,
         'results': results,
     }
     return render(request, "isap/saved_search_detail.html", context)

@@ -11,8 +11,8 @@
 
         <ul class="list-unstyled">
             <li>Zapytanie: "{{ search.query }}"</li>
-            <li>Pierwsze wykonanie: {{ search.first_run_ts }}</li>
-            <li>Najnowsze wykonanie: {{ search.last_run_ts }}</li>
+            <li>Pierwsze wykonanie: {{ first_run_ts }}</li>
+            <li>Najnowsze wykonanie: {{ last_run_ts }}</li>
         </ul>
       
         {% for result in results %}
