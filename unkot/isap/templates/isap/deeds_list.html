@@ -22,7 +22,7 @@
       <div class="col">
         <input class="btn btn-primary form-control" type="submit" value="Zapisz wyszukiwanie" name="save search button">
       </div>
-  {% endif %}
+      {% endif %}
     </div>
   </form>
 
@@ -45,33 +45,31 @@
   </p>
 
 
-{% if page_obj %}
+  {% if page_obj %}
 
-{% include 'isap/pagination.html' %}
+  {% include 'isap/pagination.html' %}
 
-<table class="table">
+  <table class="table">
     <thead>
-        <tr>
-            <th scope="col">Adres</th>
-            <th scope="col">Tytuł</th>
-            <th scope="col">Status</th>
-        </tr>
+      <tr>
+        <th scope="col">Tytuł</th>
+        <th scope="col">Status</th>
+        <th scope="col">Zmiana</th>
+      </tr>
     </thead>
     <tbody>
-        {% for deed in deeds %}
-        <tr>
-            <td>{{ deed.address }}</td>
-            <td>
-                <a href="{% url 'deed_detail' deed.address %}">{{ deed.title }}</a>
-            </td>
-            <td>{{ deed.status }}</td>
-        </tr>
-        {% endfor %}
+      {% for deed in deeds %}
+      <tr>
+        <td><a href="{% url 'deed_detail' deed.address %}">{{ deed.title }}</a></td>
+        <td>{{ deed.status }}</td>
+        <td>{{ deed.change_date }}</td>
+      </tr>
+      {% endfor %}
     </tbody>
-</table>
-{% else %}
-<p>Brak aktów do wyświetlenia.</p>
-{% endif %}
+  </table>
+  {% else %}
+  <p>Brak aktów do wyświetlenia.</p>
+  {% endif %}
 </div>
 
 </div>
