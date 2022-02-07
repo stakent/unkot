@@ -5,6 +5,7 @@ from django.core.paginator import Paginator
 from django.db.models import F, Func
 from django.http import Http404
 from django.shortcuts import render
+from django.utils import timezone
 
 from .filter_deeds import filter_deeds
 from .models import Deed, SearchIsap, SearchIsapResult, load_deed_text
@@ -25,7 +26,7 @@ def deeds_list(request):
     query = query.strip()
     deeds_count_query = None
     if query:
-        addresses = filter_deeds(query)
+        addresses = filter_deeds(query, timezone.now())
         deeds_count_query = len(addresses)
         paginator = Paginator(addresses, 25)
 
