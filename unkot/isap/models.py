@@ -7,6 +7,7 @@ from django.contrib.postgres.fields import ArrayField
 from django.contrib.postgres.indexes import GinIndex
 from django.contrib.postgres.search import SearchVector, SearchVectorField
 from django.db import models
+from django.urls import reverse
 from django.utils import timezone
 
 from unkot.users.models import User
@@ -33,6 +34,9 @@ class Deed(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse('deed_detail', kwargs={'pk': self.pk})
 
 
 class DeedText(models.Model):
@@ -95,6 +99,8 @@ class SearchIsap(models.Model):
     "SearchIsap stores an ISAP search: query, results, first_run_ts, last_run_ts"
     query = models.CharField(max_length=2000, default="")
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    first_run_ts = models.DateTimeField(blank=True, null=True)
+    last_run_ts = models.DateTimeField(blank=True, null=True)
 
     class Meta:
         unique_together = [['query', 'user']]
