@@ -3,7 +3,7 @@ from datetime import datetime, timezone
 
 from django.contrib.postgres.search import SearchQuery
 
-from .models import DeedText
+from unkot.isap.models import DeedText
 
 
 def filter_deeds(filter_terms, now=None):
