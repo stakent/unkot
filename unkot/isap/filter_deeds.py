@@ -25,5 +25,8 @@ def filter_deeds(filter_terms, now=None):
         .distinct("deed_id")
     )
     # FIXME line below is slow, make to work .order_by("change_date")?
-    addresses = [dt["deed_id"] for dt in sorted(dts, key=lambda dt: dt["change_date"])]
+    addresses = [
+        dt["deed_d"]
+        for dt in sorted(dts, key=lambda dt: dt["change_date"], reverse=True)
+    ]
     return addresses
