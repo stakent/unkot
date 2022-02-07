@@ -111,8 +111,8 @@ class SearchIsap(models.Model):
 
 class SearchIsapResult(models.Model):
     search = models.ForeignKey('SearchIsap', on_delete=models.CASCADE)
-    first_run_ts = models.DateTimeField(auto_now_add=True)
-    last_run_ts = models.DateTimeField(auto_now=True)
+    first_run_ts = models.DateTimeField(blank=True, null=True)
+    last_run_ts = models.DateTimeField(blank=True, null=True)
     result = ArrayField(models.CharField(max_length=200), blank=True, default=list)
     # enforcing unique_together by postgresql on (query, result) causes
     # exceeding of pg limitations for the size of indexed values
@@ -128,17 +128,37 @@ class SearchIsapResult(models.Model):
 
     def save(self, *args, **kwargs):
         '''On save, update timestamps'''
+        try:
+            now = kwargs['now']
+        except KeyError:
+            now = timezone.now()
+        try:
+            del kwargs['now']
+        except KeyError:
+            pass
         if not self.id:
-            self.first_run_ts = timezone.now()
+            self.first_run_ts = now
         self.result_md5 = hashlib.md5(''.join(self.result).encode()).hexdigest()
-        self.last_run_ts = timezone.now()
+        self.last_run_ts = now
+        try:
+            self.search.first_run_ts = min(self.search.first_run_ts, self.first_run_ts)
+        except TypeError:
+            self.search.first_run_ts = self.first_run_ts
+        try:
+            self.search.last_run_ts = max(self.search.last_run_ts, self.last_run_ts)
+        except TypeError:
+            self.search.last_run_ts = self.last_run_ts
+        self.search.save()
         return super(SearchIsapResult, self).save(*args, **kwargs)
 
 
-def save_search_result(query, addresses, user):
+def save_search_result(query, addresses, user, now=None):
     ss, _ = SearchIsap.objects.get_or_create(
         query=query,
         user=user,
     )
     ssr, _ = SearchIsapResult.objects.get_or_create(search=ss, result=addresses)
-    ssr.save()
+    if now is not None:
+        ssr.save(now=now)
+    else:
+        ssr.save()

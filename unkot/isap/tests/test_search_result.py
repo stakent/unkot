@@ -78,3 +78,29 @@ class SearchResultTestCase(TestCase):
 
         self.assertLess(ts2_1, saved_result2.last_run_ts)
         self.assertGreater(ts2_2, saved_result2.last_run_ts)
+
+    def test_save_search_first_run_ts_last_run_ts(self):
+        'Test SaveSearch fields first_run_ts, last_run_ts'
+        query = 'test query run_ts'
+        save_search_result(query, addresses=self.addresses_3, user=self.user)
+        saved_search = SearchIsap.objects.get(query=query, user=self.user)
+
+        now = timezone.now()
+
+        save_search_result(query, addresses=self.addresses_3, user=self.user, now=now)
+
+        saved_results = SearchIsapResult.objects.filter(search=saved_search)
+        saved_search = SearchIsap.objects.get(query=query, user=self.user)
+
+        self.assertEqual(saved_search.first_run_ts, saved_results[0].first_run_ts)
+        self.assertEqual(saved_search.last_run_ts, saved_results[0].last_run_ts)
+
+        save_search_result(query, addresses=self.addresses_4, user=self.user)
+
+        saved_results = SearchIsapResult.objects.filter(search=saved_search).order_by(
+            '-last_run_ts'
+        )
+        saved_search = SearchIsap.objects.get(query=query, user=self.user)
+
+        self.assertEqual(saved_search.first_run_ts, saved_results[1].first_run_ts)
+        self.assertEqual(saved_search.last_run_ts, saved_results[0].last_run_ts)
