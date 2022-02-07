@@ -6,7 +6,7 @@
 {% block content %}
     <div class="container">
 
-        Search details
+      <p>Search details</p>
 
 
         <ul class="list-unstyled">
@@ -17,13 +17,14 @@
       
         {% for result in results %}
         <ul class="list-unstyled">
-          <li>Data wykonania: {{ result.run_ts }}</li>
+          <li>Data pierwszego wykonania: {{ result.first_run_ts }}</li>
+          <li>Data ostatniego wykonania: {{ result.last_run_ts }}</li>
           <li>Liczba dokumentów w wyniku wyszukiwania: {{ result.number_of_results }}</li>
         </ul>
 
-        {% for deed in result.result %}
+        {% for address in result.result %}
         <ul class="list-unstyled">
-          <li>{{ deed }}</li>
+          <li><a href="{% url 'deed_detail' address %}">{{ address }}</a>
         </ul>
         {% empty %}
         <p>Wyszukiwanie nie zwróciło żadnego dokumentu.</p>

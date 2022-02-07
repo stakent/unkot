@@ -100,7 +100,9 @@ class SearchIsap(models.Model):
     query = models.CharField(max_length=2000, default="")
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     first_run_ts = models.DateTimeField(blank=True, null=True)
-    last_run_ts = models.DateTimeField(blank=True, null=True)
+    last_run_ts = models.DateTimeField(
+        blank=True, null=True, default=datetime(1, 1, 1, tzinfo=timezone.utc)
+    )
 
     class Meta:
         unique_together = [['query', 'user']]
@@ -128,37 +130,22 @@ class SearchIsapResult(models.Model):
 
     def save(self, *args, **kwargs):
         '''On save, update timestamps'''
-        try:
-            now = kwargs['now']
-        except KeyError:
-            now = timezone.now()
-        try:
-            del kwargs['now']
-        except KeyError:
-            pass
-        if not self.id:
-            self.first_run_ts = now
         self.result_md5 = hashlib.md5(''.join(self.result).encode()).hexdigest()
-        self.last_run_ts = now
-        try:
-            self.search.first_run_ts = min(self.search.first_run_ts, self.first_run_ts)
-        except TypeError:
-            self.search.first_run_ts = self.first_run_ts
-        try:
-            self.search.last_run_ts = max(self.search.last_run_ts, self.last_run_ts)
-        except TypeError:
-            self.search.last_run_ts = self.last_run_ts
         self.search.save()
         return super(SearchIsapResult, self).save(*args, **kwargs)
 
 
-def save_search_result(query, addresses, user, now=None):
-    ss, _ = SearchIsap.objects.get_or_create(
+def save_search_result(query, addresses, user, now):
+    ss, created = SearchIsap.objects.get_or_create(
         query=query,
         user=user,
     )
-    ssr, _ = SearchIsapResult.objects.get_or_create(search=ss, result=addresses)
-    if now is not None:
-        ssr.save(now=now)
-    else:
-        ssr.save()
+    if created:
+        ss.first_run_ts = now
+    ss.last_run_ts = now
+
+    ssr, created = SearchIsapResult.objects.get_or_create(search=ss, result=addresses)
+    if created:
+        ssr.first_run_ts = now
+    ssr.last_run_ts = now
+    ssr.save()

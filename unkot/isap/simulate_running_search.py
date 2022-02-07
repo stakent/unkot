@@ -29,5 +29,5 @@ def simulate_running_search(query, name, date_from, date_to, dt=timedelta(days=1
     while now <= ts2:
         print(f'==== now: { now }')
         addresses = filter_deeds(query, now)
-        save_search_result(query=query, addresses=addresses, user=user)
+        save_search_result(query=query, addresses=addresses, user=user, now=now)
         now += dt
