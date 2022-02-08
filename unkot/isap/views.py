@@ -39,10 +39,6 @@ def deeds_list(request):
             sr.result = addresses
             sr.save()
             ss.save()
-            count = SearchIsapResult.objects.filter(search=ss).count()
-            print(
-                f'==== save_search: { query } { sr.first_run_ts } { sr.last_run_ts } { count }'
-            )
     else:
         addresses = Deed.objects.all().order_by("-change_date").values("address")
         paginator = Paginator(addresses, 25)
