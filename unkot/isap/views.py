@@ -103,19 +103,46 @@ def saved_searches(request):
 
 @login_required
 def search_isap_detail(request, id):
+    print(f'====== search_isap_detail request.GET { request.GET }')
     search = SearchIsap.objects.get(id=id)
-    results = SearchIsapResult.objects.filter(search=search).annotate(
-        number_of_results=Func(F('result'), function='CARDINALITY')
+    results = (
+        SearchIsapResult.objects.filter(search=search)
+        .annotate(number_of_results=Func(F('result'), function='CARDINALITY'))
+        .order_by('-last_run_ts')
     )
-    first_run_ts = datetime.datetime(9999, 1, 1, 0, 0, tzinfo=datetime.timezone.utc)
     last_run_ts = datetime.datetime(1, 1, 1, 0, 0, tzinfo=datetime.timezone.utc)
-    for sr in results:
-        first_run_ts = min(first_run_ts, sr.first_run_ts)
-        last_run_ts = max(last_run_ts, sr.last_run_ts)
+    for i in range(0, len(results)):
+        # FIXME search.last_run_ts has incorrect value
+        last_run_ts = max(last_run_ts, results[i].last_run_ts)
+        new_result = results[i]
+        try:
+            previous_result = results[i + 1]
+        except IndexError:
+            continue
+        new_docs = []
+        removed_docs = []
+        for doc in new_result.result:
+            if doc not in previous_result.result:
+                new_docs.append(doc)
+        for doc in previous_result.result:
+            if doc not in new_result.result:
+                removed_docs.append(doc)
+        results[i].new_docs = new_docs
+        results[i].removed_docs = removed_docs
     context = {
         'search': search,
-        'first_run_ts': first_run_ts,
         'last_run_ts': last_run_ts,
         'results': results,
     }
     return render(request, "isap/saved_search_detail.html", context)
+
+
+@login_required
+def search_isap_result_detail(request, id):
+    result = SearchIsapResult.objects.get(id=id)
+    result_docs_count = len(result.result)
+    context = {
+        'result': result,
+        'result_docs_count': result_docs_count,
+    }
+    return render(request, "isap/saved_search_result_detail.html", context)

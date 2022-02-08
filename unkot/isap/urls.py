@@ -10,4 +10,9 @@ urlpatterns = [
     path(
         'search-detail/<int:id>/', views.search_isap_detail, name='search_isap_detail'
     ),
+    path(
+        'search-result-detail/<int:id>/',
+        views.search_isap_result_detail,
+        name='search_isap_result_detail',
+    ),
 ]
