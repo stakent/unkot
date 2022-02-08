@@ -297,3 +297,7 @@ SOCIALACCOUNT_FORMS = {"signup": "unkot.users.forms.UserSocialSignupForm"}
 
 # Your stuff...
 # ------------------------------------------------------------------------------
+# unkot settings
+ISAP_DATA_DIR = "/tmp/unkot/"
+ISAP_PDF_DIR = ISAP_DATA_DIR + "pdf/"
+ISAP_TEXT_DIR = ISAP_DATA_DIR + "txt/"

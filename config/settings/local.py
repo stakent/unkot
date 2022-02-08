@@ -77,7 +77,3 @@ INSTALLED_APPS += ["django_extensions"]  # noqa F405
 CELERY_TASK_EAGER_PROPAGATES = True
 # Your stuff...
 # ------------------------------------------------------------------------------
-# unkot settings
-ISAP_DATA_DIR = "/v/d/tmp/cm_dev/"  # FIXME read from environment variable
-ISAP_PDF_DIR = ISAP_DATA_DIR + "pdf/"
-ISAP_TEXT_DIR = ISAP_DATA_DIR + "txt/"
