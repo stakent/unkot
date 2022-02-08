@@ -8,7 +8,13 @@ from django.shortcuts import render
 from django.utils import timezone
 
 from .filter_deeds import filter_deeds
-from .models import Deed, SearchIsap, SearchIsapResult, load_deed_text
+from .models import (
+    Deed,
+    SearchIsap,
+    SearchIsapResult,
+    load_deed_text,
+    save_search_result,
+)
 
 
 def deeds_list(request):
@@ -31,14 +37,7 @@ def deeds_list(request):
         paginator = Paginator(addresses, 25)
 
         if request.user.is_authenticated and 'save search button' in request.POST:
-            ss, created = SearchIsap.objects.get_or_create(
-                query=query,
-                user=request.user,
-            )
-            sr, _ = SearchIsapResult.objects.get_or_create(search=ss)
-            sr.result = addresses
-            sr.save()
-            ss.save()
+            save_search_result(query, addresses, request.user, timezone.now())
     else:
         addresses = Deed.objects.all().order_by("-change_date").values("address")
         paginator = Paginator(addresses, 25)

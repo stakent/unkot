@@ -115,8 +115,8 @@ class SearchIsap(models.Model):
 
 class SearchIsapResult(models.Model):
     search = models.ForeignKey('SearchIsap', on_delete=models.CASCADE)
-    first_run_ts = models.DateTimeField(blank=True, null=True)
-    last_run_ts = models.DateTimeField(blank=True, null=True)
+    first_run_ts = models.DateTimeField(default=NO_DATETIME_PROVIDED)
+    last_run_ts = models.DateTimeField(default=NO_DATETIME_PROVIDED)
     result = ArrayField(models.CharField(max_length=200), blank=True, default=list)
     # enforcing unique_together by postgresql on (query, result) causes
     # exceeding of pg limitations for the size of indexed values
@@ -133,11 +133,12 @@ class SearchIsapResult(models.Model):
     def save(self, *args, **kwargs):
         '''On save, update timestamps'''
         self.result_md5 = hashlib.md5(''.join(self.result).encode()).hexdigest()
-        self.search.save()
         return super(SearchIsapResult, self).save(*args, **kwargs)
 
 
 def save_search_result(query, addresses, user, now):
+    if now is None:
+        raise ValueError('save_search_result: parameter now is None')
     ss, created = SearchIsap.objects.get_or_create(
         query=query,
         user=user,
@@ -145,6 +146,7 @@ def save_search_result(query, addresses, user, now):
     if created:
         ss.first_run_ts = now
     ss.last_run_ts = now
+    ss.save()
 
     ssr, created = SearchIsapResult.objects.get_or_create(search=ss, result=addresses)
     if created:
