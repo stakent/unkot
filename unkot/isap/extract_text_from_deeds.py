@@ -40,7 +40,7 @@ def extract_text_from_deeds(log):
     n = 0
     debug_step = 10
     t1 = datetime.datetime.now()
-    log.error(f"extract_text_from_deeds started { t1 }")
+    log.info(f"extract_text_from_deeds started { t1 }")
     for deed in Deed.objects.all().order_by("-address"):
         count = DeedText.objects.filter(deed_id=deed.address).count()
         if count == 0:
