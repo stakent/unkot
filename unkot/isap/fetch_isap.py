@@ -55,11 +55,7 @@ def fetch_isap_deed_pdf(sess, publisher, year, position):
     deed_pdf_dir = get_deed_pdf_dir(address)
     fp = os.path.join(deed_pdf_dir, address + ".pdf")
     pdf_data = resp.raw.read()
-    try:
-        with open(fp, "wb") as f:
-            f.write(pdf_data)
-    except FileNotFoundError:
-        os.mkdir(deed_pdf_dir)
+    os.makedirs(deed_pdf_dir, exist_ok=True)
     with open(fp, "wb") as f:
         f.write(pdf_data)
 

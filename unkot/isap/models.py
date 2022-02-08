@@ -88,11 +88,13 @@ def load_deed_text(address):
 
 
 def get_deed_pdf_dir(address):
-    return f"{ settings.ISAP_PDF_DIR }{ address[-3:] }/"
+    # WDU20220000013
+    # 01234567890123
+    return f"{ settings.ISAP_PDF_DIR }{ address[3:7] }/"
 
 
 def get_deed_text_dir(address):
-    return f"{ settings.ISAP_TEXT_DIR }{ address[-3:] }/"
+    return f"{ settings.ISAP_TEXT_DIR }{ address[3:7] }/"
 
 
 class SearchIsap(models.Model):

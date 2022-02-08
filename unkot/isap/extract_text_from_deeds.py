@@ -17,10 +17,7 @@ from unkot.isap.models import (
 def extract_text_from_deed(address, change_date, log):
     in_pdf_path = os.path.join(get_deed_pdf_dir(address), address + ".pdf")
     out_txt_path = os.path.join(get_deed_text_dir(address), address + ".txt")
-    try:
-        os.mkdir(get_deed_text_dir(address))
-    except FileExistsError:
-        pass
+    os.makedirs(get_deed_text_dir(address), exist_ok=True)
     try:
         pdf_to_text(in_pdf_path, out_txt_path)
     except CalledProcessError as e:
