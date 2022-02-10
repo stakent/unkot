@@ -49,6 +49,9 @@ class DeedText(models.Model):
     class Meta:
         indexes = (GinIndex(fields=["search_vector"]),)
 
+    def __str__(self):
+        return f'{ self.deed.title} { self.seq }'
+
 
 def save_deed_text(address, change_date, text):
     """Save deed text in chunks and update search vectors."""
@@ -110,7 +113,7 @@ class SearchIsap(models.Model):
         unique_together = [['query', 'user']]
 
     def __str__(self):
-        return self.query
+        return f'"{ self.query }" { self.user.name }'
 
 
 class SearchIsapResult(models.Model):
@@ -129,6 +132,9 @@ class SearchIsapResult(models.Model):
                 fields=['search', 'result_md5'], name='search_isap_result_md5_uniq'
             ),
         ]
+
+    def __str__(self):
+        return f'"{ str(self.search) } { self.first_run_ts }'
 
     def save(self, *args, **kwargs):
         '''On save, update timestamps'''
