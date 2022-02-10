@@ -15,7 +15,9 @@ def filter_deeds(filter_terms, now):
     Returns:
     list of deeds addresses
     """
+    # FIXME 'plain' or 'websearch' -> , search_type='websearch')
     query = SearchQuery(filter_terms, config="polish")
+    # print(f'==== filter_deeds: query: { query }')
     dts = (
         DeedText.objects.filter(search_vector=query, change_date__lte=now)
         .values("deed_id", "change_date")
