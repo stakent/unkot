@@ -5,6 +5,7 @@ from datetime import datetime
 from zoneinfo import ZoneInfo
 
 import requests
+from django.db import transaction
 
 from unkot.isap.extract_text_from_deeds import extract_text_from_deed
 from unkot.isap.models import NO_DATE_PROVIDED, Deed, get_deed_pdf_dir
@@ -81,30 +82,35 @@ def fetch_isap_year_deeds(sess, publisher, year, new_only, log):
     js = res.json()
     items = js["items"]
     for item in items:
-        d, created = Deed.objects.get_or_create(address=item["address"])
-        if new_only and not created:
-            continue
-        d.publisher = item["publisher"]
-        d.year = int(item["year"])
-        d.volume = int(item["volume"])
-        d.pos = int(item["pos"])
-        d.deed_type = item["type"]
-        d.title = item["title"]
-        d.status = item["status"]
-        d.display_address = item["displayAddress"]
-        d.promulgation = replace_null_by_NO_DATE_PROVIDED(item["promulgation"])
-        d.announcement_date = replace_null_by_NO_DATE_PROVIDED(item["announcementDate"])
-        ts = datetime.strptime(item["changeDate"], "%Y-%m-%d %H:%M:%S")
-        ts = ts.replace(tzinfo=ZoneInfo("Europe/Warsaw"))
-        d.change_date = ts
-        d.eli = item["ELI"]
-        if created:
-            d.text = ""  # only text extraction module writes to this field
-        d.save()
-        fetch_isap_deed_pdf(sess, d.publisher, d.year, d.pos)
-        # pdf -> text -> db
-        extract_text_from_deed(address=d.address, change_date=d.change_date, log=log)
-        n_deeds_fetched = +1
+        with transaction.atomic():
+            d, created = Deed.objects.get_or_create(address=item["address"])
+            if new_only and not created:
+                continue
+            d.publisher = item["publisher"]
+            d.year = int(item["year"])
+            d.volume = int(item["volume"])
+            d.pos = int(item["pos"])
+            d.deed_type = item["type"]
+            d.title = item["title"]
+            d.status = item["status"]
+            d.display_address = item["displayAddress"]
+            d.promulgation = replace_null_by_NO_DATE_PROVIDED(item["promulgation"])
+            d.announcement_date = replace_null_by_NO_DATE_PROVIDED(
+                item["announcementDate"]
+            )
+            ts = datetime.strptime(item["changeDate"], "%Y-%m-%d %H:%M:%S")
+            ts = ts.replace(tzinfo=ZoneInfo("Europe/Warsaw"))
+            d.change_date = ts
+            d.eli = item["ELI"]
+            if created:
+                d.text = ""  # only text extraction module writes to this field
+            d.save()
+            fetch_isap_deed_pdf(sess, d.publisher, d.year, d.pos)
+            # pdf -> text -> db
+            extract_text_from_deed(
+                address=d.address, change_date=d.change_date, log=log
+            )
+            n_deeds_fetched = +1
     return n_deeds_fetched
 
 
