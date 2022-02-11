@@ -239,7 +239,7 @@ LOGGING = {
     "disable_existing_loggers": False,
     "formatters": {
         "verbose": {
-            "format": "%(levelname)s %(asctime)s %(module)s "
+            "format": "%(levelname)s %(asctime)s %(module)s:%(lineno)d "
             "%(process)d %(thread)d %(message)s"
         }
     },
