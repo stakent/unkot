@@ -31,6 +31,7 @@ def deeds_list(request):
         query = ''
     query = query.strip()
     deeds_count_query = None
+
     if query:
         addresses = filter_deeds(query, timezone.now())
         deeds_count_query = len(addresses)
@@ -39,7 +40,7 @@ def deeds_list(request):
         if request.user.is_authenticated and 'save search button' in request.POST:
             save_search_result(query, addresses, request.user, timezone.now())
     else:
-        addresses = Deed.objects.all().order_by("-change_date").values("address")
+        addresses = Deed.objects.order_by("-change_date", 'address').values("address")
         paginator = Paginator(addresses, 25)
 
     deeds_count_all = Deed.objects.count()

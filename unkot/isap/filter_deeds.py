@@ -21,8 +21,14 @@ def filter_deeds(filter_terms, now):
     dts = (
         DeedText.objects.filter(search_vector=query, change_date__lte=now)
         .values("deed_id", "change_date")
-        .distinct("deed_id")
+        .order_by('-change_date', 'deed_id')
     )
     # FIXME line below is slow, make to work .order_by("change_date")?
-    addresses = [dt["deed_id"] for dt in sorted(dts, key=lambda dt: dt["change_date"])]
+    addresses_all = [
+        dt["deed_id"] for dt in sorted(dts, key=lambda dt: dt["change_date"])
+    ]
+    addresses = []
+    for addr in addresses_all:
+        if addr not in addresses:
+            addresses.append(addr)
     return addresses
