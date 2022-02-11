@@ -8,7 +8,7 @@ import requests
 from django.db import transaction
 
 from unkot.isap.extract_text_from_deeds import extract_text_from_deed
-from unkot.isap.models import NO_DATE_PROVIDED, Deed, get_deed_pdf_dir
+from unkot.isap.models import NO_DATE_PROVIDED, Deed, DeedText, get_deed_pdf_dir
 
 # Get an instance of a logger
 logger = logging.getLogger(__name__)
@@ -44,13 +44,7 @@ def fetch_isap_deed_pdf(sess, publisher, year, position):
     url = "http://isap.sejm.gov.pl/api"
     url = url + f"/isap/deeds/{publisher}/{year}/{position}/text."
     resp = sess.get(url + "pdf", stream=True)
-    try:
-        resp.raise_for_status()
-    except requests.exceptions.HTTPError as e:
-        msg = f'File "{ __name__ } "'
-        msg = msg + str(e)
-        logger.warning(msg)
-        return
+    resp.raise_for_status()
 
     print(f"======= fetch_isap_deed_pdf: { address } pdf")
 
@@ -72,7 +66,11 @@ def replace_null_by_NO_DATE_PROVIDED(field):
 
 
 def fetch_isap_year_deeds(sess, publisher, year, new_only, log):
-    """Fetch data from ISAP publisher's year index."""
+    """Fetch data from ISAP publisher's year index.
+    If new_only==True then fetch:
+        - new deeds
+        - text of existing deeds without text
+    """
     url = "http://isap.sejm.gov.pl/api"
     url = url + f"/isap/acts/{ publisher }/{ year }"
     logger.info(f"==== fetching { publisher } index for { year }")
@@ -85,7 +83,9 @@ def fetch_isap_year_deeds(sess, publisher, year, new_only, log):
         with transaction.atomic():
             d, created = Deed.objects.get_or_create(address=item["address"])
             if new_only and not created:
-                continue
+                dts = DeedText.objects.filter(deed_id=d.address)
+                if dts.count() > 0 and dts[0].text != '':
+                    continue
             d.publisher = item["publisher"]
             d.year = int(item["year"])
             d.volume = int(item["volume"])
@@ -105,7 +105,11 @@ def fetch_isap_year_deeds(sess, publisher, year, new_only, log):
             if created:
                 d.text = ""  # only text extraction module writes to this field
             d.save()
-            fetch_isap_deed_pdf(sess, d.publisher, d.year, d.pos)
+            try:
+                fetch_isap_deed_pdf(sess, d.publisher, d.year, d.pos)
+            except requests.exceptions.HTTPError as e:
+                log.warning(f'error fetching pdf text for { d.address }: "{ e }"')
+                continue
             # pdf -> text -> db
             extract_text_from_deed(
                 address=d.address, change_date=d.change_date, log=log
