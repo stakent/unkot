@@ -18,6 +18,7 @@ NO_DATETIME_PROVIDED = datetime(1, 1, 1, 0, 0, tzinfo=timezone.utc)
 
 class Deed(models.Model):
     "Deed"
+
     address = models.CharField(primary_key=True, max_length=200, default="")
     publisher = models.CharField(max_length=200, default="")
     year = models.IntegerField(default=0)
@@ -117,6 +118,10 @@ class SearchIsap(models.Model):
 
 
 class SearchIsapResult(models.Model):
+    @classmethod
+    def get_result_md5(_, result):
+        return hashlib.md5(''.join(sorted(result)).encode()).hexdigest()
+
     search = models.ForeignKey('SearchIsap', on_delete=models.CASCADE)
     first_run_ts = models.DateTimeField(default=NO_DATETIME_PROVIDED)
     last_run_ts = models.DateTimeField(default=NO_DATETIME_PROVIDED)
@@ -137,8 +142,8 @@ class SearchIsapResult(models.Model):
         return f'"{ str(self.search) } { self.first_run_ts }'
 
     def save(self, *args, **kwargs):
-        '''On save, update timestamps'''
-        self.result_md5 = hashlib.md5(''.join(self.result).encode()).hexdigest()
+        '''On save, update result hash'''
+        self.result_md5 = self.get_result_md5(self.result)
         return super(SearchIsapResult, self).save(*args, **kwargs)
 
 
@@ -154,8 +159,12 @@ def save_search_result(query, addresses, user, now):
     ss.last_run_ts = now
     ss.save()
 
-    ssr, created = SearchIsapResult.objects.get_or_create(search=ss, result=addresses)
+    ssr, created = SearchIsapResult.objects.get_or_create(
+        search=ss,
+        result_md5=SearchIsapResult.get_result_md5(addresses),
+    )
     if created:
         ssr.first_run_ts = now
     ssr.last_run_ts = now
+    ssr.result = addresses
     ssr.save()
