@@ -7,6 +7,7 @@ from django.http import Http404
 from django.shortcuts import render
 from django.utils import timezone
 
+from .check_deeds_list_ordering import check_deeds_list_ordering
 from .filter_deeds import filter_deeds
 from .models import (
     Deed,
@@ -35,18 +36,22 @@ def deeds_list(request):
     if query:
         addresses = filter_deeds(query, timezone.now())
         deeds_count_query = len(addresses)
-        paginator = Paginator(addresses, 25)
+        paginator = Paginator(addresses, 10)
 
         if request.user.is_authenticated and 'save search button' in request.POST:
             save_search_result(query, addresses, request.user, timezone.now())
     else:
         addresses = Deed.objects.order_by("-change_date", 'address').values("address")
-        paginator = Paginator(addresses, 25)
+        paginator = Paginator(addresses, 10)
 
     deeds_count_all = Deed.objects.count()
 
     page_obj = paginator.get_page(page_number)
-    deeds = Deed.objects.filter(address__in=page_obj.object_list)
+    deeds = list(
+        Deed.objects.filter(address__in=page_obj.object_list).order_by(
+            '-change_date', 'address'
+        )
+    )
     pages_range = paginator.get_elided_page_range(
         page_obj.number, on_each_side=2, on_ends=1
     )
@@ -55,6 +60,8 @@ def deeds_list(request):
         saved_searches_count = SearchIsap.objects.filter(user=request.user).count()
     else:
         saved_searches_count = 0
+
+    check_deeds_list_ordering(deeds)
 
     context = {
         "deeds_count_all": deeds_count_all,
