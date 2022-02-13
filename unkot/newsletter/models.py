@@ -34,7 +34,7 @@ class Subscriber(models.Model):
         if self.activation_token == '':
             self.activation_token = secrets.token_urlsafe()
         activation_url = (
-            f'https://www.unkot.pl/newsletter/activate/{ self.activation_token }/'
+            f'https://unkot.pl/newsletter/activate/{ self.activation_token }/'
         )
         subject = 'aktywacja subskrybcji newsletter unkot.pl'
         msg = 'W celu powierdzenia subskrybcji newsletter unkot.pl '
