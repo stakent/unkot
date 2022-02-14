@@ -47,11 +47,11 @@ Moved to [Live reloading and SASS compilation](http://cookiecutter-django.readth
 
 This app comes with Celery.
 
-To run a celery worker:
+To run a celery worker in a terminal:
 
 ``` bash
 cd unkot
-celery -A config.celery_app worker -l info
+celery -A config.celery_app worker --beat --loglevel=info
 ```
 
 Please note: For Celery's import magic to work, it is important *where* the celery commands are run. If you are in the same folder with *manage.py*, you should be right.
