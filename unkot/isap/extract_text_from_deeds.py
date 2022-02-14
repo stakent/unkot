@@ -3,8 +3,6 @@ import datetime
 import os.path
 from subprocess import CalledProcessError
 
-from isap.pdf_to_text import pdf_to_text
-
 from unkot.isap.models import (
     Deed,
     DeedText,
@@ -12,6 +10,8 @@ from unkot.isap.models import (
     get_deed_text_dir,
     save_deed_text,
 )
+
+from .pdf_to_text import pdf_to_text
 
 
 def extract_text_from_deed(address, change_date, log):
