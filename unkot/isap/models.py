@@ -109,6 +109,7 @@ class SearchIsap(models.Model):
     last_run_ts = models.DateTimeField(
         blank=True, null=True, default=datetime(1, 1, 1, tzinfo=timezone.utc)
     )
+    subscribed = models.BooleanField(default=False)
 
     class Meta:
         unique_together = [['query', 'user']]

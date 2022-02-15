@@ -106,8 +106,10 @@ def saved_searches(request):
 
 @login_required
 def search_isap_detail(request, id):
-    print(f'====== search_isap_detail request.GET { request.GET }')
     search = SearchIsap.objects.get(id=id)
+    if request.method == 'POST':
+        search.subscribed = 'yes' in request.POST['subscribe-search']
+        search.save()
     results = (
         SearchIsapResult.objects.filter(search=search)
         .annotate(number_of_results=Func(F('result'), function='CARDINALITY'))

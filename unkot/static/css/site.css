@@ -3,3 +3,7 @@ body { padding-top: 70px; }
 .errorlist {
 	list-style: none;
 }
+
+.up-active {
+	opacity: 20%;
+}
