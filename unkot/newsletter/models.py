@@ -37,7 +37,7 @@ class Subscriber(models.Model):
             f'https://unkot.pl/newsletter/activate/{ self.activation_token }/'
         )
         subject = 'aktywacja subskrybcji newsletter unkot.pl'
-        msg = 'W celu powierdzenia subskrybcji newsletter unkot.pl '
+        msg = 'W celu potwierdzenia subskrybcji newsletter unkot.pl '
         msg += 'prosimy o odwiedzenie poniżego linku aktywacyjnego.\n'
         msg += f'{ activation_url }'
 
