@@ -124,14 +124,14 @@ def search_isap_detail(request, id):
             previous_result = results[i + 1]
         except IndexError:
             continue
-        new_docs = []
-        removed_docs = []
-        for doc in new_result.result:
-            if doc not in previous_result.result:
-                new_docs.append(doc)
-        for doc in previous_result.result:
-            if doc not in new_result.result:
-                removed_docs.append(doc)
+        new_result_docs = set(new_result.result)
+        previous_result_docs = set(previous_result.result)
+        # WDU20200001325
+        # 01234567890123
+        new_docs = list(new_result_docs - previous_result_docs)
+        new_docs = sorted(new_docs, key=lambda r: int(r[7:14]), reverse=True)
+        removed_docs = list(previous_result_docs - new_result_docs)
+        removed_docs = sorted(removed_docs, key=lambda r: int(r[7:14]), reverse=True)
         results[i].new_docs = new_docs
         results[i].removed_docs = removed_docs
     context = {
