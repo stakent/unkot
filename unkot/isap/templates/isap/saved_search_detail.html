@@ -30,7 +30,6 @@
   </div>
 </form>
 
-
   {% for result in results %}
   <ul class="list-unstyled">
     <li>Data pierwszego wykonania: {{ result.first_run_ts }}</li>
@@ -47,16 +46,24 @@
       {% else %}
       brak
       {% endif %}
-
     </li>
-    {% if result.removed_docs %}
-    <li>Usunięte dokumenty: {{ result.removed_docs }}</li>
-    {% endif %}
+    <li>
+      Usunięte dokumenty: 
+      {% if result.removed_docs %}
+      <ul class="list-unstyled">
+        {% for doc in result.removed_docs %}
+        <li><a href="{% url 'deed_detail' doc %}">{{ doc }}</a></li>
+        {% endfor %}
+      </ul>
+      {% else %}
+      brak
+      {% endif %}
+    </li>
     <li><a href="{% url 'search_isap_result_detail' result.id %}">Wszystkie dokumenty</a></li>
-  </ul>
   {% empty %}
   <p>Brak zapisanych wyników wyszukiwania.</p>
   {% endfor %}
+  </ul>
 
 </div>
 
