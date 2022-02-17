@@ -42,6 +42,7 @@ class Deed(models.Model):
 
 class DeedText(models.Model):
     deed = models.ForeignKey(Deed, on_delete=models.CASCADE)
+    title = models.CharField(max_length=2000, default="")
     change_date = models.DateTimeField(blank=True, default=NO_DATETIME_PROVIDED)
     seq = models.IntegerField(default=0)
     text = models.TextField(default="")
@@ -66,6 +67,7 @@ def save_deed_text(address, change_date, text):
         curr_size = curr_size + len(line)
         if curr_size > max_size:
             dt, _ = DeedText.objects.get_or_create(deed_id=address, seq=seq)
+            dt.title = Deed.objects.get(address).title
             dt.change_date = change_date
             dt.text = part.getvalue()
             dt.save()
@@ -76,6 +78,8 @@ def save_deed_text(address, change_date, text):
             curr_size = 0
     if curr_size > 0:
         dt, _ = DeedText.objects.get_or_create(deed_id=address, seq=seq)
+        dt.title = Deed.objects.get(address).title
+        dt.change_date = change_date
         dt.text = part.getvalue()
         dt.save()
         dt.search_vector = SearchVector("text", config="polish")
