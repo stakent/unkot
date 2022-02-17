@@ -102,8 +102,6 @@ def fetch_isap_year_deeds(sess, publisher, year, new_only, log):
             ts = ts.replace(tzinfo=ZoneInfo("Europe/Warsaw"))
             d.change_date = ts
             d.eli = item["ELI"]
-            if created:
-                d.text = ""  # only text extraction module writes to this field
             d.save()
             try:
                 fetch_isap_deed_pdf(sess, d.publisher, d.year, d.pos)
