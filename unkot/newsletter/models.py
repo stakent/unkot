@@ -49,7 +49,9 @@ class Subscriber(models.Model):
             message=msg,
             html_message=html,
             from_email='kontakt@unkot.pl',
-            recipient_list=(self.email,),
+            recipient_list=[
+                self.email,
+            ],
             fail_silently=False,
         )
         self.activation_email_sent_ts = timezone.now()
