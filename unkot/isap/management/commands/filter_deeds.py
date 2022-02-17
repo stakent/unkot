@@ -1,5 +1,6 @@
 from django.core.management.base import BaseCommand
-from isap.filter_deeds import filter_deeds
+from django.utils import timezone
+from ...filter_deeds import filter_deeds
 
 
 class Command(BaseCommand):
@@ -11,5 +12,5 @@ class Command(BaseCommand):
         )
 
     def handle(self, *args, **options):
-        deeds = filter_deeds(options["filter_terms"])
+        deeds = filter_deeds(options["filter_terms"], now=timezone.now())
         self.stdout.write(self.style.SUCCESS(f"Returned { len(deeds) } deeds"))

@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand
-from isap.simulate_running_search import simulate_running_search
+from ...simulate_running_search import simulate_running_search
 
 
 class Command(BaseCommand):

@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand
-from isap.fetch_isap_to_database import fetch_isap_to_database
+from ...fetch_isap_to_database import fetch_isap_to_database
 
 
 class Command(BaseCommand):
