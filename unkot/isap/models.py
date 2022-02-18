@@ -184,5 +184,5 @@ def save_search_result(
     ssr.result = addresses
     ssr.save()
 
-    if created:
+    if created and ss.subscribed:
         send_new_isap_search_result_email(ssr)

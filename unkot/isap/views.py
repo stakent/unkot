@@ -130,11 +130,15 @@ def search_isap_detail(request, id):
         # WDU20200001325
         # 01234567890123
         new_docs = list(new_result_docs - previous_result_docs)
-        new_docs = sorted(new_docs, key=lambda r: int(r[7:14]), reverse=True)
+        new_deeds = Deed.objects.filter(address__in=new_docs).order_by(
+            '-change_date', 'address'
+        )
         removed_docs = list(previous_result_docs - new_result_docs)
-        removed_docs = sorted(removed_docs, key=lambda r: int(r[7:14]), reverse=True)
-        results[i].new_docs = new_docs
-        results[i].removed_docs = removed_docs
+        removed_deeds = Deed.objects.filter(address__in=removed_docs).order_by(
+            '-change_date', 'address'
+        )
+        results[i].new_deeds = new_deeds
+        results[i].removed_deeds = removed_deeds
     context = {
         'search': search,
         'last_run_ts': last_run_ts,

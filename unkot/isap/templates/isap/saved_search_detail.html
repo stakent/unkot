@@ -39,10 +39,10 @@
     <li>Liczba dokumentów w wyniku wyszukiwania: {{ result.number_of_results }}</li>
     <li>
       Nowe dokumenty:
-      {% if result.new_docs %}
+      {% if result.new_deeds %}
       <ul class="list-unstyled">
-        {% for doc in result.new_docs %}
-        <li><a href="{% url 'deed_detail' doc %}">{{ doc }}</a></li>
+        {% for deed in result.new_deeds %}
+        <li><a href="{% url 'deed_detail' deed.address %}">{{ deed.title }}</a></li>
         {% endfor %}
       </ul>
       {% else %}
@@ -51,10 +51,10 @@
     </li>
     <li>
       Usunięte dokumenty: 
-      {% if result.removed_docs %}
+      {% if result.removed_deeds %}
       <ul class="list-unstyled">
-        {% for doc in result.removed_docs %}
-        <li><a href="{% url 'deed_detail' doc %}">{{ doc }}</a></li>
+        {% for deed in result.removed_deeds %}
+        <li><a href="{% url 'deed_detail' deed.address %}">{{ deed.title }}</a></li>
         {% endfor %}
       </ul>
       {% else %}
