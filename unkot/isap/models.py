@@ -6,6 +6,7 @@ from django.conf import settings
 from django.contrib.postgres.fields import ArrayField
 from django.contrib.postgres.indexes import GinIndex
 from django.contrib.postgres.search import SearchVector, SearchVectorField
+from django.contrib.sites.models import Site
 from django.db import models
 from django.urls import reverse
 from django.utils import timezone
@@ -152,7 +153,9 @@ class SearchIsapResult(models.Model):
         return f'"{ str(self.search) } { self.first_run_ts }'
 
     def get_absolute_url(self):
-        return reverse('search_isap_result_detail', kwargs={"id": self.id})
+        domain = Site.objects.get_current().domain
+        path = reverse('search_isap_result_detail', kwargs={"id": self.id})
+        return f'https://{ domain }{ path }'
 
     def save(self, *args, **kwargs):
         '''On save, update result hash'''
