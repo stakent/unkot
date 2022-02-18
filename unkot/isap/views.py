@@ -1,9 +1,9 @@
 import datetime
 
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.core.paginator import Paginator
 from django.db.models import F, Func
-from django.http import Http404
+from django.http import Http404, HttpResponse
 from django.shortcuts import render
 from django.utils import timezone
 
@@ -16,6 +16,7 @@ from .models import (
     load_deed_text,
     save_search_result,
 )
+from .send_new_isap_search_result_email import send_new_isap_search_result_email
 
 
 def deeds_list(request):
@@ -163,3 +164,12 @@ def search_isap_result_detail(request, id):
         "pages_range": pages_range,
     }
     return render(request, "isap/saved_search_result_detail.html", context)
+
+
+@user_passes_test(lambda user: user.is_staff)
+def send_new_isap_search_result_email_view(request, id):
+    if request.method == 'GET':
+        return Http404
+    ssr = SearchIsapResult.objects.get(id=id)
+    send_new_isap_search_result_email(ssr)
+    return HttpResponse('Wiadomość wysłana - przeładuj stronę')

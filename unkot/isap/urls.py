@@ -15,4 +15,9 @@ urlpatterns = [
         views.search_isap_result_detail,
         name='search_isap_result_detail',
     ),
+    path(
+        'send_new_isap_search_result_email/<int:id>/',
+        views.send_new_isap_search_result_email_view,
+        name='send_new_isap_search_result_email_view',
+    ),
 ]

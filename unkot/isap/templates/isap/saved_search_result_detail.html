@@ -7,6 +7,13 @@
 <div class="container">
 
   <p>Wynik wyszukiwania</p>
+  {% if request.user.is_staff %}
+  <form method="post" action="{% url 'send_new_isap_search_result_email_view' result.id %}" up-target="#email-form-target" up-submit>
+    {% csrf_token %}
+    <input class="btn btn-primary form-control" type="submit" value="Wyślij wiadomość" name="save search button">
+  </form>
+  <div id="email-form-target"></div>
+  {% endif %}
 
   <ul class="list-unstyled">
     <li>Zapytanie: "{{ result.search.query }}"</li>

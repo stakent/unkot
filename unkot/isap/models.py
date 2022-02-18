@@ -12,6 +12,8 @@ from django.utils import timezone
 
 from unkot.users.models import User
 
+from .send_new_isap_search_result_email import send_new_isap_search_result_email
+
 NO_DATE_PROVIDED = date(1, 1, 1)
 NO_DATETIME_PROVIDED = datetime(1, 1, 1, 0, 0, tzinfo=timezone.utc)
 
@@ -149,6 +151,9 @@ class SearchIsapResult(models.Model):
     def __str__(self):
         return f'"{ str(self.search) } { self.first_run_ts }'
 
+    def get_absolute_url(self):
+        return reverse('search_isap_result_detail', kwargs={"id": self.id})
+
     def save(self, *args, **kwargs):
         '''On save, update result hash'''
         self.result_md5 = self.get_result_md5(self.result)
@@ -178,3 +183,6 @@ def save_search_result(
     ssr.last_run_ts = now
     ssr.result = addresses
     ssr.save()
+
+    if created:
+        send_new_isap_search_result_email(ssr)
