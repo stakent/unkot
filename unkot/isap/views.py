@@ -144,10 +144,22 @@ def search_isap_detail(request, id):
 
 @login_required
 def search_isap_result_detail(request, id):
+    page_number = request.GET.get('page', 1)
     result = SearchIsapResult.objects.get(id=id)
     result_docs_count = len(result.result)
+    paginator = Paginator(result.result, 10)
+    page_obj = paginator.get_page(page_number)
+    deeds = Deed.objects.filter(address__in=page_obj.object_list).order_by(
+        '-change_date', 'address'
+    )
+    pages_range = paginator.get_elided_page_range(
+        page_obj.number, on_each_side=2, on_ends=1
+    )
     context = {
+        'deeds': deeds,
         'result': result,
         'result_docs_count': result_docs_count,
+        "page_obj": page_obj,
+        "pages_range": pages_range,
     }
     return render(request, "isap/saved_search_result_detail.html", context)

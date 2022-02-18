@@ -4,26 +4,28 @@
 
 
 {% block content %}
-    <div class="container">
+<div class="container">
 
-      <p>Wynik wyszukiwania</p>
+  <p>Wynik wyszukiwania</p>
 
-        <ul class="list-unstyled">
-            <li>Zapytanie: "{{ result.search.query }}"</li>
-            <li>Pierwsze wykonanie: {{ result.first_run_ts }}</li>
-            <li>Najnowsze wykonanie: {{ result.last_run_ts }}</li>
-            <li>Liczba dokumentów: {{ result_docs_count }}</li>
-        </ul>
-      
-        {% if result.result %}
-        <ul class="list-unstyled">
-        {% for address in result.result %}
-            <li><a href="{% url 'deed_detail' address %}">{{ address }}</a></li>
-        {% endfor %}
-        </ul>
-        {% endif %}
-            
-    </div>
+  <ul class="list-unstyled">
+    <li>Zapytanie: "{{ result.search.query }}"</li>
+    <li>Pierwsze wykonanie: {{ result.first_run_ts }}</li>
+    <li>Najnowsze wykonanie: {{ result.last_run_ts }}</li>
+    <li>Liczba dokumentów zwróconych przez wyszukiwanie: {{ result_docs_count }}</li>
+  </ul>
+
+  {% include 'isap/pagination.html' %}
+
+  {% if result.result %}
+  <ul class="list-unstyled">
+    {% for deed in deeds %}
+    <li><a href="{% url 'deed_detail' deed.address %}">{{ deed.title }}</a></li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+
+</div>
 
 {% include 'isap/attribution_isap.html' %}
 
