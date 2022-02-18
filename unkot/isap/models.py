@@ -87,7 +87,7 @@ def save_deed_text(address, change_date, text):
     return
 
 
-def load_deed_text(address):
+def load_deed_text(address: str) -> str:
     dts = DeedText.objects.filter(deed_id=address).order_by("seq")
     text = io.StringIO()
     for dt in dts:
@@ -95,13 +95,13 @@ def load_deed_text(address):
     return text.getvalue()
 
 
-def get_deed_pdf_dir(address):
+def get_deed_pdf_dir(address: str) -> str:
     # WDU20220000013
     # 01234567890123
     return f"{ settings.ISAP_PDF_DIR }{ address[3:7] }/"
 
 
-def get_deed_text_dir(address):
+def get_deed_text_dir(address: str) -> str:
     return f"{ settings.ISAP_TEXT_DIR }{ address[3:7] }/"
 
 
@@ -124,7 +124,10 @@ class SearchIsap(models.Model):
 
 class SearchIsapResult(models.Model):
     @classmethod
-    def get_result_md5(_, result):
+    def get_result_md5(_, result: list[str]) -> str:
+        '''Return hash of the search result list[string] where
+        string == Deed.deed_id value
+        '''
         return hashlib.md5(''.join(sorted(result)).encode()).hexdigest()
 
     search = models.ForeignKey('SearchIsap', on_delete=models.CASCADE)
@@ -152,7 +155,9 @@ class SearchIsapResult(models.Model):
         return super(SearchIsapResult, self).save(*args, **kwargs)
 
 
-def save_search_result(query, addresses, user, now):
+def save_search_result(
+    query: str, addresses: list[str], user: User, now: datetime
+) -> None:
     if now is None:
         raise ValueError('save_search_result: parameter now is None')
     ss, created = SearchIsap.objects.get_or_create(
