@@ -78,7 +78,7 @@ def save_deed_text(address, change_date, text):
             curr_size = 0
     if curr_size > 0:
         dt, _ = DeedText.objects.get_or_create(deed_id=address, seq=seq)
-        dt.title = Deed.objects.get(address).title
+        dt.title = Deed.objects.get(address=address).title
         dt.change_date = change_date
         dt.text = part.getvalue()
         dt.save()
