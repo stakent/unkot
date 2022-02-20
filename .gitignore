@@ -289,3 +289,4 @@ unkot/media/
 .env
 .envs/*
 !.envs/.local/
+.envs/
