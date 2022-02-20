@@ -15,8 +15,8 @@ from .models import (
     SearchIsapResult,
     load_deed_text,
     save_search_result,
+    send_new_isap_search_result_email,
 )
-from .send_new_isap_search_result_email import send_new_isap_search_result_email
 
 
 def deeds_list(request):
