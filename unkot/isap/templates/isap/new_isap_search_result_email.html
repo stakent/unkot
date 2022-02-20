@@ -1,0 +1,27 @@
+
+{% if render_txt %}
+
+W serwisie unkot.pl pojawił się nowy wynik wyszukiwania 
+opisnego frazą "{{ ssr.search.query }}" dostępnego pod adresem
+https://unkot.pl{{ ssr.search.get_absolute_url }}
+
+Wynik wyszukiwania dostępny jest pod adresem 
+https://unkot.pl{{ ssr.get_absolute_url }}
+
+{% endif %}
+
+
+{% if render_html %}
+
+<p>W serwisie <a href="https://unkot.pl{% url 'home' %}">unkot.pl</a> 
+pojawił się  
+<a href="https://unkot.pl{% url 'search_isap_result_detail' ssr.id %}">
+nowy wynik wyszukiwania
+</a>
+- 
+<a href="https://unkot.pl{% url 'search_isap_detail' ssr.search.id %}">
+  {{ ssr.search.query }}"
+</a>
+</p
+
+{% endif %}

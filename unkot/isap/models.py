@@ -6,13 +6,13 @@ from django.conf import settings
 from django.contrib.postgres.fields import ArrayField
 from django.contrib.postgres.indexes import GinIndex
 from django.contrib.postgres.search import SearchVector, SearchVectorField
+from django.core.mail import send_mail
 from django.db import models
+from django.template.loader import render_to_string
 from django.urls import reverse
 from django.utils import timezone
 
 from unkot.users.models import User
-
-from .send_new_isap_search_result_email import send_new_isap_search_result_email
 
 NO_DATE_PROVIDED = date(1, 1, 1)
 NO_DATETIME_PROVIDED = datetime(1, 1, 1, 0, 0, tzinfo=timezone.utc)
@@ -189,3 +189,36 @@ def save_search_result(
 
     if created and ss.subscribed:
         send_new_isap_search_result_email(ssr)
+
+
+def send_new_isap_search_result_email(
+    search_result: SearchIsapResult,
+) -> None:
+    'Send email notification for new result of subscribed saved search.'
+
+    from_email = 'kontakt@unkot.pl'
+    recipient_list = [
+        search_result.search.user.email,
+    ]
+    subject = f'Wiadomość unkot.pl - nowy wynik wyszukiwania "{ search_result.search.query }" '
+    subject += 'w publikacjach ISAP Kancelarii Sejmu'
+
+    ctx = {
+        'ssr': search_result,
+        'render_txt': True,
+        'render_html': False,
+    }
+    template_name = 'isap/new_isap_search_result_email.html'
+    text_message = render_to_string(template_name, ctx)
+    ctx['render_txt'] = False
+    ctx['render_html'] = True
+    html_message = render_to_string(template_name, ctx)
+
+    send_mail(
+        subject=subject,
+        message=text_message,
+        recipient_list=recipient_list,
+        from_email=from_email,
+        html_message=html_message,
+        fail_silently=False,
+    )
