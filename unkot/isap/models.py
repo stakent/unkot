@@ -123,6 +123,9 @@ class SearchIsap(models.Model):
     def __str__(self):
         return f'"{ self.query }" { self.user.name }'
 
+    def get_absolute_url(self):
+        return reverse('search_isap_detail', kwargs={"id": self.id})
+
 
 class SearchIsapResult(models.Model):
     @classmethod
