@@ -17,6 +17,8 @@ ALLOWED_HOSTS = [
     "127.0.0.1",
     "unkot-x230.local",
     "192.168.1.205",
+    "192.168.1.200",
+    "p7",
 ]
 
 INTERNAL_IPS = [
