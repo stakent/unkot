@@ -26,7 +26,9 @@ def check_search_results(query=None, new_res=None, prev_res=None):
             raise ValueError(msg)
 
 
-def simulate_running_search(query, name, date_from, date_to, dt=timedelta(days=1)):
+def simulate_running_search(
+    query: str, name: str, date_from: str, date_to: str, dt=timedelta(days=1)
+) -> None:
     '''
     Simulate performing search by user identified by an email.
 
