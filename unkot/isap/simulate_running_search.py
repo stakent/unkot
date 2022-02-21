@@ -30,7 +30,7 @@ def simulate_running_search(
     query: str, name: str, date_from: str, date_to: str, dt=timedelta(days=1)
 ) -> None:
     '''
-    Simulate performing search by user identified by an email.
+    Simulate performing search by user identified by name.
 
     Parameters:
     query(str) filter terms
