@@ -7,4 +7,5 @@ echo ""
 echo "********************************************************"
 echo ""
 
-./manage.py test unkot/isap
+dropdb --if-exists test_unkot_dev
+./manage.py test --no-input unkot
