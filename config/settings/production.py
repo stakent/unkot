@@ -84,15 +84,6 @@ ADMIN_URL = env("DJANGO_ADMIN_URL")
 # ------------------------------------------------------------------------------
 # https://anymail.readthedocs.io/en/stable/installation/#installing-anymail
 INSTALLED_APPS += ["anymail"]  # noqa F405
-# https://docs.djangoproject.com/en/dev/ref/settings/#email-backend
-# https://anymail.readthedocs.io/en/stable/installation/#anymail-settings-reference
-# https://anymail.readthedocs.io/en/stable/esps/mailgun/
-EMAIL_BACKEND = "anymail.backends.mailjet.EmailBackend"
-ANYMAIL = {
-    "MAILJET_API_KEY": "6afa41b16b7f3b3e8257e724d6133400",
-    "MAILJET_SECRET_KEY": "8aa706e5c270a019b0463dda1fe76c66",
-    "MAILJET_API_URL": "https://api.mailjet.com/v3.1/",
-}
 
 
 # LOGGING
