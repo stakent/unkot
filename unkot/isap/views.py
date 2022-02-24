@@ -21,6 +21,15 @@ from .models import (
 
 def deeds_list(request):
     "deeds_list"
+    import logging
+    from django.conf import settings
+
+    try:
+        msg = settings.ANYMAIL
+    except AttributeError:
+        msg = 'no ANYMAIL key in settings'
+    logging.error(f'==== deeds_list: settings.ANYMAIL: { msg }')
+
     page_number = request.GET.get('page', request.POST.get('page', 1))
 
     if 'search button' in request.POST:
