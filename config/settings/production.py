@@ -87,6 +87,8 @@ INSTALLED_APPS += ["anymail"]  # noqa F405
 EMAIL_BACKEND = "anymail.backends.mailjet.EmailBackend"
 # subkeys for unkot.pl
 ANYMAIL = {
+    "MAILJET_API_KEY": env("MAILJET_API_KEY"),
+    "MAILJET_SECRET_KEY": env("MAILJET_SECRET_KEY"),
     "MAILJET_API_URL": "https://api.mailjet.com/v3.1/",
 }
 
