@@ -84,6 +84,11 @@ ADMIN_URL = env("DJANGO_ADMIN_URL")
 # ------------------------------------------------------------------------------
 # https://anymail.readthedocs.io/en/stable/installation/#installing-anymail
 INSTALLED_APPS += ["anymail"]  # noqa F405
+EMAIL_BACKEND = "anymail.backends.mailjet.EmailBackend"
+# subkeys for unkot.pl
+ANYMAIL = {
+    "MAILJET_API_URL": "https://api.mailjet.com/v3.1/",
+}
 
 
 # LOGGING
