@@ -1,0 +1,26 @@
+{
+  "name": "unkot",
+  "version": "1.0.0",
+  "description": "Behold My Awesome Project!",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "cypress": "^9.5.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gitlab.com/stakent/unkot.git"
+  },
+  "author": "",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://gitlab.com/stakent/unkot/issues"
+  },
+  "homepage": "https://gitlab.com/stakent/unkot#readme"
+}
