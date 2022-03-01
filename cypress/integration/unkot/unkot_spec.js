@@ -12,10 +12,8 @@ if (typeof adminPassword !== 'string' || !adminPassword) {
 }
 
 describe('Register as new user', () => {
-  // TODO log in as new user
   // TODO save new search without subscribing the search, add deed matching the search, verify no email notification is sent
   // TODO save new search and subscribe the search, add deed matching the search, verify the notification is sent
-  // TODO delete new account
 
 	it('clik the link "Zarejestruj się"', () => {
 		cy.visit('/')
