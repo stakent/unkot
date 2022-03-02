@@ -294,3 +294,6 @@ unkot/media/
 # cypress secrets file copied for each environment 
 # from apropriate .envs/cypress/* file
 cypress.env.json
+
+cypress/screenshots/
+cypress/videos/
