@@ -1,6 +1,7 @@
 "fetch_isap_to_database "
 import logging
 import os.path
+import sys
 from datetime import datetime
 from zoneinfo import ZoneInfo
 
@@ -14,12 +15,12 @@ from unkot.isap.models import NO_DATE_PROVIDED, Deed, DeedText, get_deed_pdf_dir
 logger = logging.getLogger(__name__)
 
 
-def fetch_isap_deed_pdf(sess, publisher, year, position):
+def fetch_isap_deed_pdf(session, publisher, year, position):
     """Fetch deed from ISAP as pdf
 
     Parameters:
 
-    sess (requests.Session): session object used for requests to ISAP API
+    session (requests.Session): session object used for requests to ISAP API
     publisher (str): symbol of the publication
             "WDU" "Dz.U." "Dziennik Ustaw"
             "WMP" "M.P." "Monitor Polski"
@@ -43,14 +44,17 @@ def fetch_isap_deed_pdf(sess, publisher, year, position):
     address = f"{ publisher }{ year }{position:07d}"
     url = "http://isap.sejm.gov.pl/api"
     url = url + f"/isap/deeds/{publisher}/{year}/{position}/text."
-    resp = sess.get(url + "pdf", stream=True)
+    resp = session.get(url + "pdf", stream=True)
     resp.raise_for_status()
 
     print(f"======= fetch_isap_deed_pdf: { address } pdf")
 
     deed_pdf_dir = get_deed_pdf_dir(address)
     fp = os.path.join(deed_pdf_dir, address + ".pdf")
-    pdf_data = resp.raw.read()
+    pdf_data = resp.content
+    if len(pdf_data) == 0:
+        logger.critical(f'fetch_isap_deed_pdf: got empty deed content for { address }')
+        sys.exit(1)
     os.makedirs(deed_pdf_dir, exist_ok=True)
     with open(fp, "wb") as f:
         f.write(pdf_data)
@@ -65,7 +69,7 @@ def replace_null_by_NO_DATE_PROVIDED(field):
     return value
 
 
-def fetch_isap_year_deeds(sess, publisher, year, new_only, log):
+def fetch_isap_year_deeds(session, publisher, year, new_only, log):
     """Fetch data from ISAP publisher's year index.
     If new_only==True then fetch:
         - new deeds
@@ -75,7 +79,7 @@ def fetch_isap_year_deeds(sess, publisher, year, new_only, log):
     url = url + f"/isap/acts/{ publisher }/{ year }"
     logger.info(f"==== fetching { publisher } index for { year }")
     n_deeds_fetched = 0
-    res = sess.get(url)  # fetch index
+    res = session.get(url)  # fetch index
     res.raise_for_status()
     js = res.json()
     items = js["items"]
@@ -104,7 +108,7 @@ def fetch_isap_year_deeds(sess, publisher, year, new_only, log):
             d.eli = item["ELI"]
             d.save()
             try:
-                fetch_isap_deed_pdf(sess, d.publisher, d.year, d.pos)
+                fetch_isap_deed_pdf(session, d.publisher, d.year, d.pos)
             except requests.exceptions.HTTPError as e:
                 log.warning(f'error fetching pdf text for { d.address }: "{ e }"')
                 continue
@@ -131,7 +135,7 @@ def fetch_isap_to_database(publisher, year1, year2, new_only=False, log=None):
     year2 (int): newest year of time range
     new_only (bool): fetch new deeds
     """
-    sess = requests.Session()
+    session = requests.Session()
 
     if year1 > year2:
         raise ValueError('parameter "year1" has to be smaller or equal "year2"')
@@ -146,6 +150,6 @@ def fetch_isap_to_database(publisher, year1, year2, new_only=False, log=None):
     for year in range(year2, year1 - 1, -1):
         for publ in publishers:
             n_deeds_fetched += fetch_isap_year_deeds(
-                sess, publ, year, new_only, log=logger
+                session, publ, year, new_only, log=logger
             )
     return n_deeds_fetched

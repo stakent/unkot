@@ -21,9 +21,8 @@ def extract_text_from_deed(address, change_date, log):
     try:
         pdf_to_text(in_pdf_path, out_txt_path)
     except CalledProcessError as e:
-        log.fatal(f"{ __file__ } { e }")
-        # log.error(f"{ __file__ } { e }")
-        # return
+        log.exception(f"{ __file__ } '{ e.stderr }'")
+        return
     try:
         with open(out_txt_path, "r") as f:
             text = f.read()

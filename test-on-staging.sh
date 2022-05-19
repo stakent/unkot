@@ -39,7 +39,7 @@ ssh $STAGING_SSH "\
 
 ssh $STAGING_SSH "\
 	cd $STAGING_REPO; \
-	CYPRESS_baseUrl=http://192.168.1.200:8001 ./node_modules/.bin/cypress run \
+	CYPRESS_baseUrl=http://192.168.0.200:8001 ./node_modules/.bin/cypress run \
 "
 
 echo -e "${GREEN}Successfully done testing on staging ($STAGING_SSH)"
