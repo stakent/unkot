@@ -50,7 +50,7 @@ def fetch_isap_deed_pdf(session, publisher, year, position):
 
     deed_pdf_dir = get_deed_pdf_dir(address)
     fp = os.path.join(deed_pdf_dir, address + ".pdf")
-    pdf_data = resp.raw.read()
+    pdf_data = resp.content
     os.makedirs(deed_pdf_dir, exist_ok=True)
     with open(fp, "wb") as f:
         f.write(pdf_data)
