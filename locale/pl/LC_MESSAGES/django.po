@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-01-27 09:29+0100\n"
+"POT-Creation-Date: 2022-05-19 10:48+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -118,7 +118,7 @@ msgstr ""
 "e-mail</a>."
 
 #: unkot/templates/account/login.html:7 unkot/templates/account/login.html:11
-#: unkot/templates/account/login.html:56 unkot/templates/base.html:73
+#: unkot/templates/account/login.html:56 unkot/templates/base.html:80
 msgid "Sign In"
 msgstr "Zaloguj"
 
@@ -153,7 +153,7 @@ msgid "Forgot Password?"
 msgstr "Ustaw nowe hasło"
 
 #: unkot/templates/account/logout.html:5 unkot/templates/account/logout.html:8
-#: unkot/templates/account/logout.html:17 unkot/templates/base.html:62
+#: unkot/templates/account/logout.html:17 unkot/templates/base.html:69
 msgid "Sign Out"
 msgstr "Wyloguj"
 
@@ -236,7 +236,7 @@ msgid "Signup"
 msgstr "Zaloguj"
 
 #: unkot/templates/account/signup.html:9 unkot/templates/account/signup.html:19
-#: unkot/templates/base.html:68
+#: unkot/templates/base.html:75
 msgid "Sign Up"
 msgstr "Załóż nowe konto"
 
@@ -303,15 +303,19 @@ msgstr ""
 "<strong>Uwaga:</strong> wciąż  możecie Państwo <a href=\"%(email_url)s"
 "\">zmienić adres e-mail</a>."
 
-#: unkot/templates/base.html:50
+#: unkot/templates/base.html:54
 msgid "Home"
 msgstr "Start"
 
-#: unkot/templates/base.html:53
+#: unkot/templates/base.html:57
+msgid "ISAP"
+msgstr ""
+
+#: unkot/templates/base.html:60
 msgid "About"
 msgstr "O serwisie"
 
-#: unkot/templates/base.html:58
+#: unkot/templates/base.html:65
 msgid "My Profile"
 msgstr "Moje konto"
 
@@ -357,6 +361,6 @@ msgstr "Ta nazwa użytkownika została już zajęta."
 msgid "Name of User"
 msgstr "Nazwa użytkownika"
 
-#: unkot/users/views.py:25
+#: unkot/users/tests/test_views.py:67 unkot/users/views.py:25
 msgid "Information successfully updated"
 msgstr "Informacje uaktualnione"
