@@ -1,6 +1,7 @@
 "fetch_isap_to_database "
 import logging
 import os.path
+import sys
 from datetime import datetime
 from zoneinfo import ZoneInfo
 
@@ -51,6 +52,9 @@ def fetch_isap_deed_pdf(session, publisher, year, position):
     deed_pdf_dir = get_deed_pdf_dir(address)
     fp = os.path.join(deed_pdf_dir, address + ".pdf")
     pdf_data = resp.content
+    if len(pdf_data) == 0:
+        logger.critical(f'fetch_isap_deed_pdf: got empty deed content for { address }')
+        sys.exit(1)
     os.makedirs(deed_pdf_dir, exist_ok=True)
     with open(fp, "wb") as f:
         f.write(pdf_data)
