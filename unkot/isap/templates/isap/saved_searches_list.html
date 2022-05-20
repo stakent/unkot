@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load i18n %}
 
 {% block title %}Zapisane wyszukiwania{% endblock %}
 
@@ -7,7 +8,13 @@
 
 <div class="mb-3" id="searches-list">
   {% if searches.count %}
-  <p>Masz {{ searches.count }} zapisanych wyszukiwań.</p>
+  <p>
+  {% blocktranslate trimmed count searches.count as counter %}
+  Masz {{ counter }} zapisane wyszukiwanie
+  {% plural %}
+  Masz {{ counter }} zapisanych wyszukiwań
+  {% endblocktranslate %}
+  </p>
   {% else %}
   <p>Nie masz zapisanych żadnych wyszukiwań.</p>
   {% endif %}

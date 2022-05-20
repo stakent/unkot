@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-20 12:29+0200\n"
+"POT-Creation-Date: 2022-05-20 12:55+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,7 +20,8 @@ msgstr ""
 "%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n"
 "%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
 
-#: unkot/isap/templates/isap/deeds_list.html:34
+#: unkot/isap/templates/isap/deeds_list.html:33
+#: unkot/isap/templates/isap/saved_searches_list.html:11
 #, python-format
 msgid "Masz %(counter)s zapisane wyszukiwanie"
 msgid_plural "Masz %(counter)s zapisanych wyszukiwań"
