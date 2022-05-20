@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load i18n %}
 
 {% block title %}Wykaz aktów{% endblock %}
 
@@ -28,7 +29,15 @@
 
   {% if request.user.is_authenticated %}
   {% if saved_searches_count %}
-  <p>Masz {{ saved_searches_count }} <a href="{% url 'saved_isap_searches' %}">zapisanych wyszukiwań</a>.</p>
+  <p>
+  {% blocktranslate trimmed count saved_searches_count as counter %}
+  Masz {{ counter }} zapisane wyszukiwanie
+  {% plural %}
+  Masz {{ counter }} zapisanych wyszukiwań
+  {% endblocktranslate %}
+  -
+  <a href="{% url 'saved_isap_searches' %}">zapisane wyszukiwania</a>.
+  </p>
   {% else %}
   <p>Nie masz zapisanych żadnych wyszukiwań.</p>
   {% endif %}

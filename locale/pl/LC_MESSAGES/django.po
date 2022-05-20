@@ -6,9 +6,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-19 10:48+0200\n"
+"POT-Creation-Date: 2022-05-20 12:29+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,6 +19,15 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n"
 "%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n"
 "%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
+
+#: unkot/isap/templates/isap/deeds_list.html:34
+#, python-format
+msgid "Masz %(counter)s zapisane wyszukiwanie"
+msgid_plural "Masz %(counter)s zapisanych wyszukiwań"
+msgstr[0] "Masz %(counter)s zapisane wyszukiwanie"
+msgstr[1] "Masz %(counter)s zapisane wyszukiwania"
+msgstr[2] "Masz %(counter)s zapisanych wyszukiwań"
+msgstr[3] "Masz %(counter)s zapisanych wyszukiwań"
 
 #: unkot/templates/account/account_inactive.html:5
 #: unkot/templates/account/account_inactive.html:8
