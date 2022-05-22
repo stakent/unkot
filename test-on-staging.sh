@@ -27,19 +27,13 @@ ssh $STAGING_SSH "\
 
 rsync -r .envs ${STAGING_SSH}:${STAGING_REPO}
 
-ssh $STAGING_SSH "
-	cd $STAGING_REPO; \
-	cp .envs/cypress/staging.json cypress.env.json \
-"
+cp .envs/cypress/staging.json cypress.env.json 
 
 ssh $STAGING_SSH "\
 	cd $STAGING_REPO; \
 	docker-compose -f local.yml up --force-recreate --build -d \
 "
 
-ssh $STAGING_SSH "\
-	cd $STAGING_REPO; \
-	CYPRESS_baseUrl=http://192.168.0.200:8001 ./node_modules/.bin/cypress run \
-"
+CYPRESS_baseUrl=http://192.168.0.200:8001 ./node_modules/.bin/cypress run
 
 echo -e "${GREEN}Successfully done testing on staging ($STAGING_SSH)"

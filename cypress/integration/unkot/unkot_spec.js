@@ -15,9 +15,9 @@ describe('Register as new user', () => {
   // TODO save new search without subscribing the search, add deed matching the search, verify no email notification is sent
   // TODO save new search and subscribe the search, add deed matching the search, verify the notification is sent
 
-	it('clik the link "Zarejestruj się"', () => {
+	it('clik the link "Załóż nowe konto"', () => {
 		cy.visit('/')
-    cy.contains('Zarejestruj się').click()
+    cy.contains('Załóż nowe konto').click()
     cy.url().should('include', '/accounts/signup/')
   })
   
@@ -37,12 +37,12 @@ describe('Register as new user', () => {
     cy.get('#id_password2')
       .type(userPassword)
       .should('have.value', userPassword)
-    cy.contains('Zarejestruj się »').click()
-    cy.contains('Zweryfikuj swój adres e-mail')
+    cy.contains('Załóż nowe konto »').click()
+    cy.contains('Proszę zweryfikować Państwa adres e-mail')
   })
 
   it('mark test user email as verified', () => {
-    cy.visit('/')    
+    cy.visit('/')
     cy.contains('Zaloguj').click()
     cy.get('#id_login')
       .type(adminUser)
@@ -56,7 +56,7 @@ describe('Register as new user', () => {
     cy.contains(email).click()
     cy.contains('Zweryfikowany').click()
     cy.contains('Zapisz').click()
-    cy.contains('Wyloguj się').click()
+    cy.contains('Wyloguj').click()
     cy.contains('Wylogowany')
   })
 
@@ -75,8 +75,8 @@ describe('Register as new user', () => {
     // FIXME add here tests using logged in user
 
     cy.visit('/isap/')
-    cy.contains("Wyloguj się").click()
-    cy.contains("Czy na pewno chcesz się wylogować ?")
+    cy.contains("Wyloguj").click()
+    cy.contains("Czy na pewno wylogować?")
     cy.get('.btn-danger').click()
     cy.contains("Zaloguj")
   })
@@ -91,13 +91,12 @@ describe('Register as new user', () => {
       .type(adminPassword)
       .should('have.value', adminPassword)
     cy.get('.primaryAction').click()
-    cy.contains('Django Admin').click()
-    cy.contains('Użytkownicy').click()
+    cy.visit('/admin/users/user/')
     cy.contains(userName).click()
     cy.get('.deletelink').click()
     cy.url().should('include', '/delete/')
     cy.contains('Tak, na pewno').click()
-    cy.contains('Wyloguj się').click()
+    cy.contains('Wyloguj').click()
     cy.visit('/')
   })
 })
