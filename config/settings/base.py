@@ -184,6 +184,7 @@ TEMPLATES = [
                 "django.contrib.messages.context_processors.messages",
                 "unkot.users.context_processors.allauth_settings",
             ],
+            'debug': True,
         },
     }
 ]

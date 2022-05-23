@@ -33,7 +33,7 @@ git checkout production
 
 git merge main
 
-git push --follow-tags repo-production
+git push --tags repo-production
 
 ssh $PRODUCTION_SSH "\
         cd $PRODUCTION_REPO; \
