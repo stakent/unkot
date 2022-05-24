@@ -108,7 +108,10 @@ def saved_searches(request):
 
 @login_required
 def saved_search_delete(request, id):
-    search = SearchIsap.objects.get(id=id)
+    try:
+        search = SearchIsap.objects.get(id=id)
+    except SearchIsap.DoesNotExist:
+        return redirect('saved_isap_searches')
     if request.method == 'POST':
         if 'delete button' in request.POST:
             search.delete()
