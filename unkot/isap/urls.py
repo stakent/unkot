@@ -16,6 +16,11 @@ urlpatterns = [
         name='search_isap_result_detail',
     ),
     path(
+        'saved-search-delete/<int:id>/',
+        views.saved_search_delete,
+        name='saved_search_delete',
+    ),
+    path(
         'send_new_isap_search_result_email/<int:id>/',
         views.send_new_isap_search_result_email_view,
         name='send_new_isap_search_result_email_view',

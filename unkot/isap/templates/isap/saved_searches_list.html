@@ -28,6 +28,7 @@
       <tr>
         <th scope="col">Zapytanie</th>
         <th scope="col">Liczba różnych wyników</th>
+        <th scope="col"></th>
       </tr>
     </thead>
     <tbody>
@@ -37,6 +38,7 @@
           <a href="{% url 'search_isap_detail' search.id %}">{{ search.query }}</a>
         </td>
         <td>{{ search.count }}</td>
+        <td><a href="{% url 'saved_search_delete' search.id %}">Usuń</a></td>
       </tr>
       {% endfor %}
     </tbody>

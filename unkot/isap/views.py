@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from django.core.paginator import Paginator
 from django.db.models import F, Func
 from django.http import Http404, HttpResponse
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.utils import timezone
 
 from .check_deeds_list_ordering import check_deeds_list_ordering
@@ -104,6 +104,17 @@ def saved_searches(request):
         'searches': searches,
     }
     return render(request, "isap/saved_searches_list.html", context)
+
+
+@login_required
+def saved_search_delete(request, id):
+    search = SearchIsap.objects.get(id=id)
+    if request.method == 'POST':
+        if 'delete button' in request.POST:
+            search.delete()
+        return redirect('saved_isap_searches')
+    context = {'search': search}
+    return render(request, "isap/saved_search_delete.html", context)
 
 
 @login_required
