@@ -33,10 +33,10 @@ git checkout production
 
 git merge main
 
-git push --tags repo-production
+git push --follow-tags repo-production
 
 ssh $PRODUCTION_SSH "\
         cd $PRODUCTION_REPO; \
-	git checkout -f production \
+	git checkout -f production; \
 	docker-compose -f production.yml up --force-recreate --build -d \
 "
