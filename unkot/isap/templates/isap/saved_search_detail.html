@@ -24,17 +24,17 @@
       {% if search.subscribed %}checked{% endif %}
       >
       <label class="form-check-label" for="subscribe-search">
-        Subskrybuj
+        Subskrybuj wyszukiwanie
       </label>
     </div>
   </form>
-
+  <hr>
   {% for result in results %}
-  <p>Wynik wyszukiwania od {{ result.first_run_ts }} do {{ result.last_run_ts }}.<br>
-  Liczba dokumentów w wyniku wyszukiwania: {{ result.number_of_results }}.</p>
+  <h3>Wynik wyszukiwania od {{ result.first_run_ts }} do {{ result.last_run_ts }}.<br>
+  Liczba dokumentów w wyniku wyszukiwania: {{ result.number_of_results }}.</h3>
 
   {% if result.new_deeds %}
-  <p>Nowe dokumenty: {{ result.new_deeds|length }}</p>
+  <h4>Nowe dokumenty: {{ result.new_deeds|length }}</h4>
   <table class="table table-striped table-condensed">
     <thead class="thead-light">
       <tr>
