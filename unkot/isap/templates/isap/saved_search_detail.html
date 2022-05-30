@@ -14,7 +14,6 @@
     <li>Liczba różniących się od siebie wyników: {{ results.count }}</li>
   </ul>
 
-  {% if request.user.is_staff %}
   <form action="." class="form-up" method="post" up-transition="move-left" up-autosubmit>
     {% csrf_token %}
     <div class="form-check">
@@ -29,7 +28,6 @@
       </label>
     </div>
   </form>
-  {% endif %}
 
   {% for result in results %}
   <p>Wynik wyszukiwania od {{ result.first_run_ts }} do {{ result.last_run_ts }}.<br>
