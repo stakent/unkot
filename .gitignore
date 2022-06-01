@@ -1,9 +1,6 @@
 ### Python template
 
 # local files
-# generated from docs repo
-unkot/templates/pages/polityka-prywatnosci.html
-unkot/templates/pages/regulamin.html
 
 certs/*
 
