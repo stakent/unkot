@@ -1,31 +1,43 @@
 {% extends "base.html" %}
+{% load i18n %}
 
-{% block title %}O serwisie{% endblock %}
+{% block title %}{% translate "About Us" %}{% endblock %}
 
 {% block content %}
 
-<h2>O serwisie</h2>
+<h2>{% translate "About Us" %}</h2>
+
 
 <p>
-    Jedyną stałą rzeczą jest zmiana.
+{% blocktranslate trimmed %}
+The only constant is the change.
+{% endblocktranslate %}
 </p>
 <p>
-    Działając w otaczającej nas rzeczywistości prawnej i gospodarczej
-    musimy reagować na zmiany w niej zachodzące.
+{% blocktranslate trimmed %}
+Conducting bussiness in our legislative and market environment
+forces us to act on the changes quickly.
+{% endblocktranslate %}
 </p>
 <p>
-    Te podmioty, które wcześniej otrzymują informacje o zachodzących
-    zmianach zyskują przewagę na rynku.
+{% blocktranslate trimmed %}
+Those who are notified about the changes earlier
+are in a better position on the market.
+{% endblocktranslate %}
 </p>
 <p>
-    Naszą misją jest dostarczanie odbiorcom naszych usług aktualnych
-    informacji o zachodzących zmianach, o nowych możliwościach
-    pojawiających się na rynku.
+{% blocktranslate trimmed %}
+Our mission is to promptly notify our customers about
+ongoing changes and new market opportunities.
+{% endblocktranslate %}
 </p>
+
+{% url 'kontakt' as contact_url %}
 <p>
-    Jeśli potrzebujecie Państwo rozwiązania na miarę, dostosowanego
-    do Państwa potrzeb lub macie Państwo sugestie dotyczące tego co już oferujemy,
-    to zapraszamy do <a href={% url 'kontakt' %}>kontaktu</a>.
+{% blocktranslate trimmed %}
+If your firm needs a bespoke solution or you have a suggestion about our services
+do not hesitate to <a href={{ contact_url }}>contact us</a>.
+{% endblocktranslate %}
 </p>
 
 {% endblock %}

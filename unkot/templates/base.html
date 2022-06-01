@@ -84,12 +84,24 @@
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'admin:index' %}">Django Admin</a>
               </li>
-              {% endif %}
             </ul>
           </div>
+          {% endif %}
+          <form class="form-inline" action="{% url 'set_language' %}" method="post">
+            {% csrf_token %}
+            <input name="next" type="hidden" value="{{ redirect_to }}" />
+            {% get_current_language as LANGUAGE_CODE %}
+            {% if LANGUAGE_CODE != 'pl' %} 
+            <button type="submit" name="language" value="pl"
+              class="btn btn-sm btn-outline-info">przełącz na Polski</button>
+            {% endif %}
+            {% if LANGUAGE_CODE != 'en' %} 
+            <button type="submit" name="language" value="en"
+              class="btn btn-sm btn-outline-info">switch to English</button>
+            {% endif %}
+          </form>
         </div>
       </nav>
-
     </div>
 
     <div class="container">
@@ -113,13 +125,13 @@
             <a href="{% url 'home' %}">unkot</a>
           </li>
           <li class="list-inline-item">
-            <a href="{% url 'regulamin' %}">Regulamin</a>
+            <a href="{% url 'regulamin' %}">{% translate "Terms of Service" %}</a>
           </li>
           <li class="list-inline-item">
-            <a href="{% url 'polityka-prywatnosci' %}">Polityka prywatności</a>
+            <a href="{% url 'polityka-prywatnosci' %}">{% translate "Privacy Policy" %}</a>
           </li>
           <li class="list-inline-item">
-            <a href="{% url 'kontakt' %}">Kontakt</a>
+            <a href="{% url 'kontakt' %}">{% translate "Contact" %}</a>
           </li>
         </ul>
       </div>

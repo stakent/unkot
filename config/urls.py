@@ -33,6 +33,7 @@ urlpatterns = [
     # Your stuff: custom urls includes go here
     path("isap/", include("unkot.isap.urls")),
     path("newsletter/", include("unkot.newsletter.urls")),
+    path('i18n/', include('django.conf.urls.i18n')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 

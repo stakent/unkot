@@ -1,37 +1,43 @@
 {% extends "base.html" %}
+{% load i18n %}
 
 
 {% block content %}
 
-<p>Oferujemy <a href="{% url 'deeds_list' %}">monitoring zmian w polskim prawie</a>.</p>
+<p>{% translate "We provide" %} 
+<a href="{% url 'deeds_list' %}">
+  {% translate "Polish law change monitoring" %}
+</a></p>
 
 <ul class="list-unstyled">
-<li>
-    Wyszukaj interesujące akty prawne.
-</li><li>
-    Zapisz wyszukiwanie wraz z wykazem aktów prawnych
-    pasujących do wyszukiwania w&nbsp;danej chwili.
-</li><li>
-    Otrzymuj powiadomienia przez e-mail, jeśli prawodawca 
-    opublikuje nowe akty prawne pasujące do wyszukiwania.
-</li>
+  <li>
+    {% translate "Search for relevant statues" %}.
+  </li>
+  <li>
+    {% translate "Save a search query with a set of statues matching the search query at the moment" %}.
+  </li>
+  <li>
+    {% translate "Receive email notfications when new statues matching the search query are published" %}.
+  </li>
 </ul>
 
 <p>
-    Zmiany prawa wciąż mogą zaskakiwać, ale Państwa firma będzie miała<br>
-    <b>więcej czasu</b> na reakcję na zmiany.
+{% translate "Changes in the law can still be surprising, but your firm will have" %}
+{% translate "<b>more time</b> to accomodate the change" %}.
 </p>
 
 <p>
-    Pracujemy nad rozwinięciem oferty zmierzając do&nbsp;ułatwienia
-    firmom poruszania się po obecnej, niełatwej, rzeczywistości gospodarczej.
+{% blocktranslate trimmed %}
+We work on more services for firms to prosper in current harsh market conditions
+{% endblocktranslate %}.
 </p>
 <p>
-    Zainteresowanych naszymi produktami zapraszamy
-    do&nbsp;<a href="{% url 'newsletter_subscribe' %}">zapisania się</a> na nasz newsletter.
+{% translate "If you are interested in our offer, please" %}
+<a href="{% url 'newsletter_subscribe' %}">{% translate "subscribe" %}</a>
+{% translate "to our newsletter" %}.
 </p>
 <p>
-    Planujemy wysyłanie do kilku e-maili miesięcznie.
+{% translate "We send up to a few emails per month" %}.
 </p>
 
 {% endblock %}

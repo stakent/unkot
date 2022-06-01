@@ -1,18 +1,21 @@
 {% extends "base.html" %}
+{% load i18n %}
 
-{% block title %}O serwisie{% endblock %}
+{% block title %}{% translate "Contact"%}{%endblock %}
 
 {% block content %}
 
-<h2>Kontakt</h2>
+<h2>{% translate "Contact"%}</h2>
 
 <p>
     e-mail: kontakt@unkot.pl
 </p>
+{% get_current_language as LANGUAGE_CODE %}
 <p>
     Dariusz Walat<br>
     ul. Rejtana 20A<br>
-    35-115 Rzeszów
+    35-115 Rzeszów{% if LANGUAGE_CODE != 'pl' %}<br>
+    Poland{% endif %}
 </p>
 
 {% endblock %}

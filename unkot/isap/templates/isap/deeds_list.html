@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load i18n %}
 
-{% block title %}Wykaz aktów{% endblock %}
+{% block title %}{% translate "Statues list" %}{% endblock %}
 
 
 {% block content %}
@@ -17,11 +17,11 @@
     </div> 
     <div class="row">
       <div class="col">
-        <input class="btn btn-primary form-control" type="submit" value="Szukaj" name="search button">
+        <input class="btn btn-primary form-control" type="submit" value="{% translate "Search" %}" name="search button">
       </div>
       {% if request.user.is_authenticated %}
       <div class="col">
-        <input class="btn btn-primary form-control" type="submit" value="Zapisz wyszukiwanie" name="save search button">
+        <input class="btn btn-primary form-control" type="submit" value="{% translate "Save search" %}" name="save search button">
       </div>
       {% endif %}
     </div>
@@ -31,25 +31,35 @@
   {% if saved_searches_count %}
   <p>
   {% blocktranslate trimmed count saved_searches_count as counter %}
-  Masz {{ counter }} zapisane wyszukiwanie
+  You have {{ counter }} saved search
   {% plural %}
-  Masz {{ counter }} zapisanych wyszukiwań
+  You have {{ counter }} saved searches
   {% endblocktranslate %}
   -
-  <a href="{% url 'saved_isap_searches' %}">zapisane wyszukiwania</a>.
+  <a href="{% url 'saved_isap_searches' %}">{% translate "saved searches" %}</a>
   </p>
   {% else %}
-  <p>Nie masz zapisanych żadnych wyszukiwań.</p>
+  <p>You don't have any saved searches</p>
   {% endif %}
   {% endif %}
 
   {% if not request.user.is_authenticated %}
-  <p>Założenie konta i zalogowanie się umożliwia korzystanie z pełnej funkcjonalności serwisu.</p>
+  <p>{% translate "Creating an account and signing is necessary to use full funcionality of this service" %}. </p>
   {% endif %}
 
   <p>
-  <b>{{ deeds_count_all }}</b> aktów w bazie{% if query %},
-  <b>{{ deeds_count_query }}</b> aktów spełniających warunki wyszukiwania
+
+  {% blocktranslate trimmed count deeds_count_all as counter %}
+  {{ counter }} statue in database
+  {% plural %}
+  {{ counter }} statues in database
+  {% endblocktranslate %}
+  {% if query %}<br>
+  {% blocktranslate trimmed count deeds_count_query as counter %}
+  {{ counter }} statue matching search criteria
+  {% plural %}
+  {{ counter }} statues matching search citeria
+  {% endblocktranslate %}
   {% endif %}
   </p>
 
@@ -61,9 +71,9 @@
   <table class="table table-striped table-condensed">
     <thead>
       <tr>
-        <th scope="col">Tytuł</th>
-        <th scope="col">Status</th>
-        <th scope="col">Zmiana</th>
+        <th scope="col">{% translate "Title" %}</th>
+        <th scope="col">{% translate "Status" %}</th>
+        <th scope="col">{% translate "Change date" %}</th>
       </tr>
     </thead>
     <tbody>
@@ -77,7 +87,7 @@
     </tbody>
   </table>
   {% else %}
-  <p>Brak aktów do wyświetlenia.</p>
+  <p>{% translate "No statues to display" %}.</p>
   {% endif %}
 </div>
 
