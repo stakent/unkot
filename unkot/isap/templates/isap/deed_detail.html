@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load i18n %}
 
 {% block title %}{{ deed.title }}{% endblock %}
 
@@ -6,32 +7,31 @@
 {% block content %}
 <div class="container">
 
-  <p>O akcie</p>
+  <p>{% translate "Statue details" %}</p>
 
   <h2>{{ deed.title }}</h2>
 
   <ul class="list-unstyled">
-    {# <li>Adres: {{ deed.address }}</li> #}
-    <li>Publikacja:
+    <li>{% translate "Publication" %}:
       {% if deed.publisher == 'WMP' %}
       Monitor Polski
       {% elif deed.publisher == 'WDU' %}
       Dziennik Ustaw
       {% endif %}
     </li>
-    <li>Rok: {{ deed.year }}</li>
+    <li>{% translate "Year" %}: {{ deed.year }}</li>
     {% if deed.volume %}
-    <li>Tom: {{ deed.volume }}</li>
+    <li>{% translate "Volume" %}: {{ deed.volume }}</li>
     {% endif %}
-    <li>Nr: {{ deed.pos }}</li>
-    <li>Typ: {{ deed.deed_type }}</li>
+    <li>{% translate "Position" %}: {{ deed.pos }}</li>
+    <li>{% translate "Statue type" %}: {{ deed.deed_type }}</li>
     <li>Status: {{ deed.status }}</li>
     <li>{{ deed.display_address }}</li>
-    <li>Data ogłoszenia: {{ deed.promulgation }}</li>
-    <li>Data wydania: {{ deed.announcement_date }}</li>
+    <li>{% translate "Promulgation date" %}: {{ deed.promulgation }}</li>
+    <li>{% translate "Announcement date" %}: {{ deed.announcement_date }}</li>
     <li>{{ deed.change_date }}</li>
     {# <li>{{ deed.eli }}</li> #}
-    <li><a href="http://isap.sejm.gov.pl/api/isap/deeds/{{ deed.publisher }}/{{ deed.year}}/{{ deed.pos }}/text.pdf">Opublikowany przez ISAP tekst aktu formacie pdf</a>
+    <li><a href="http://isap.sejm.gov.pl/api/isap/deeds/{{ deed.publisher }}/{{ deed.year}}/{{ deed.pos }}/text.pdf">{% translate "Statue text published by ISAP as pdf file" %}</a>
   </ul>
 </div>
 

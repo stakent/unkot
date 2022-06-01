@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-01 09:27+0200\n"
+"POT-Creation-Date: 2022-06-01 10:10+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,6 +26,42 @@ msgid ""
 msgstr ""
 "Materiały pochodzą z Internetowego Systemu Aktów Prawnych (ISAP) Kacelarii "
 "Sejmu RP"
+
+#: unkot/isap/templates/isap/deed_detail.html:10
+msgid "Statue details"
+msgstr "O akcie"
+
+#: unkot/isap/templates/isap/deed_detail.html:15
+msgid "Publication"
+msgstr "Publikacja"
+
+#: unkot/isap/templates/isap/deed_detail.html:22
+msgid "Year"
+msgstr "Rok"
+
+#: unkot/isap/templates/isap/deed_detail.html:24
+msgid "Volume"
+msgstr "Tom"
+
+#: unkot/isap/templates/isap/deed_detail.html:26
+msgid "Position"
+msgstr "Pozycja"
+
+#: unkot/isap/templates/isap/deed_detail.html:27
+msgid "Statue type"
+msgstr "Rodzaj aktu"
+
+#: unkot/isap/templates/isap/deed_detail.html:30
+msgid "Promulgation date"
+msgstr "Data ogłoszenia"
+
+#: unkot/isap/templates/isap/deed_detail.html:31
+msgid "Announcement date"
+msgstr "Data wydania"
+
+#: unkot/isap/templates/isap/deed_detail.html:34
+msgid "Statue text published by ISAP as pdf file"
+msgstr "Opublikowany przez ISAP tekst aktu formacie pdf"
 
 #: unkot/isap/templates/isap/deeds_list.html:4
 msgid "Statues list"
