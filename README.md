@@ -7,6 +7,18 @@ Polish law change monitoring service.
 Receive email notifications when changes of the laws relevant for you are published.
 
 
+Local development using virualenv
+
+Use:
+
+. env-local.sh
+
+to set local configuration data in your development envirnoment.
+
+The rest is pretty standard or descirbed in Cookiecutter Django documentation.
+
+Cookiecutter Django readme below:
+
 [![Built with Cookiecutter Django](https://img.shields.io/badge/built%20with-Cookiecutter%20Django-ff69b4.svg?logo=cookiecutter)](https://github.com/cookiecutter/cookiecutter-django/)
 [![Black code style](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black)
 
