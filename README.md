@@ -15,7 +15,7 @@ Use:
 
 to set local configuration data in your development envirnoment.
 
-The rest is pretty standard or descirbed in Cookiecutter Django documentation.
+The rest is pretty standard or described in Cookiecutter Django documentation.
 
 Cookiecutter Django readme below:
 
