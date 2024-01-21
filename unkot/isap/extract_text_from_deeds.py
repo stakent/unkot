@@ -24,7 +24,7 @@ def extract_text_from_deed(address, change_date, log):
         log.exception(f"{ __file__ } '{ e.stderr }'")
         return
     try:
-        with open(out_txt_path, "r") as f:
+        with open(out_txt_path) as f:
             text = f.read()
     except FileNotFoundError as e:
         log.error(f"extract_text_from_deed error reading text from file { e }")

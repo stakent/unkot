@@ -1,43 +1,29 @@
 {% extends "base.html" %}
 {% load i18n %}
-
-
 {% block content %}
-
-<p>{% translate "We provide" %} 
-<a href="{% url 'deeds_list' %}">
-  {% translate "Polish law change monitoring" %}
-</a></p>
-
-<ul class="list-unstyled">
-  <li>
-    {% translate "Search for relevant statues" %}.
-  </li>
-  <li>
-    {% translate "Save a search query with a set of statues matching the search query at the moment" %}.
-  </li>
-  <li>
-    {% translate "Receive email notfications when new statues matching the search query are published" %}.
-  </li>
-</ul>
-
-<p>
-{% translate "Changes in the law can still be surprising, but your firm will have" %}
-{% translate "<b>more time</b> to accomodate the change" %}.
-</p>
-
-<p>
-{% blocktranslate trimmed %}
-We work on more services for firms to prosper in current harsh market conditions
-{% endblocktranslate %}.
-</p>
-<p>
-{% translate "If you are interested in our offer, please" %}
-<a href="{% url 'newsletter_subscribe' %}">{% translate "subscribe" %}</a>
-{% translate "to our newsletter" %}.
-</p>
-<p>
-{% translate "We send up to a few emails per month" %}.
-</p>
-
-{% endblock %}
+    <p>
+        {% translate "We provide" %}
+        <a href="{% url 'deeds_list' %}">{% translate "Polish law change monitoring" %}</a>
+    </p>
+    <ul class="list-unstyled">
+        <li>{% translate "Search for relevant statues" %}.</li>
+        <li>{% translate "Save a search query with a set of statues matching the search query at the moment" %}.</li>
+        <li>{% translate "Receive email notfications when new statues matching the search query are published" %}.</li>
+    </ul>
+    <p>
+        {% translate "Changes in the law can still be surprising, but your firm will have" %}
+        {% translate "<b>more time</b> to accomodate the change" %}.
+    </p>
+    <p>
+        {% blocktranslate trimmed %}
+            We work on more services for firms to prosper in current harsh market conditions
+        {% endblocktranslate %}
+        .
+    </p>
+    <p>
+        {% translate "If you are interested in our offer, please" %}
+        <a href="{% url 'newsletter_subscribe' %}">{% translate "subscribe" %}</a>
+        {% translate "to our newsletter" %}.
+    </p>
+    <p>{% translate "We send up to a few emails per month" %}.</p>
+{% endblock content %}

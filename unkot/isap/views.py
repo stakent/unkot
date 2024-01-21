@@ -131,7 +131,7 @@ def search_isap_detail(request, id):
         .annotate(number_of_results=Func(F('result'), function='CARDINALITY'))
         .order_by('-last_run_ts')
     )
-    last_run_ts = datetime.datetime(1, 1, 1, 0, 0, tzinfo=datetime.timezone.utc)
+    last_run_ts = datetime.datetime(1, 1, 1, 0, 0, tzinfo=datetime.UTC)
     for i in range(0, len(results)):
         # FIXME search.last_run_ts has incorrect value
         last_run_ts = max(last_run_ts, results[i].last_run_ts)

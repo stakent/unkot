@@ -17,6 +17,5 @@ def pdf_to_text(in_pdf_path, out_txt_path):
     subprocess.run(
         [PDFTOTEXT, in_pdf_path, out_txt_path],
         check=True,
-        stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE,
+        capture_output=True,
     )

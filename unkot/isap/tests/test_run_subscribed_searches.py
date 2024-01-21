@@ -1,16 +1,9 @@
 from django.core import mail
 from django.test import TestCase
-from django.urls import reverse
-from django.utils import timezone
 
 from unkot.users.models import User
 
-from ..models import (
-    SearchIsap,
-    SearchIsapResult,
-    save_search_result,
-    send_new_isap_search_result_email,
-)
+from ..models import SearchIsap
 from ..run_subscribed_searches import run_subscribed_searches
 
 
@@ -28,7 +21,6 @@ class RunSubscribedSearchesTestCase(TestCase):
     def test_run_subscribed_searches_user_search_not_subscribed(self):
         'Test run_subscribed_searches returning new result for not subscribed search.'
         query = 'random query for notification testing 12'
-        now = timezone.now()
 
         ss, _ = SearchIsap.objects.get_or_create(query=query, user=self.user)
         ss.subscribed = False
@@ -43,7 +35,6 @@ class RunSubscribedSearchesTestCase(TestCase):
     def test_run_subscribed_searches_user_search_subscribed(self):
         'Test run_subscribed_searches returning new result for subscribed search.'
         query = 'random query for notification testing 13'
-        now = timezone.now()
 
         ss, _ = SearchIsap.objects.get_or_create(query=query, user=self.user)
         ss.subscribed = True

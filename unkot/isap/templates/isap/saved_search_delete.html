@@ -1,20 +1,27 @@
-{% extends 'base.html' %}
-
-{% block title %}Usuń zapisane wyszukiwanie{% endblock %}
-
-
+{% extends "base.html" %}
+{% block title %}
+    Usuń zapisane wyszukiwanie
+{% endblock title %}
 {% block content %}
-<div class="container">
-
-  <p>Czy usunąć zapisane wyszukiwanie <br>"{{ search.query }}"?</p>
-  <form method="post" action="{% url 'saved_search_delete' search.id %}">
-    {% csrf_token %}
-    <div class="form-group mx-sm-3 mb-2">
-    <input class="btn btn-secondary mb-2" type="submit" value="Nie usuwaj" name="cancel button">
-    <input class="btn btn-danger mb-2" type="submit" value="Tak, usuń" name="delete button">
+    <div class="container">
+        <p>
+            Czy usunąć zapisane wyszukiwanie
+            <br>
+            "{{ search.query }}"?
+        </p>
+        <form method="post" action="{% url 'saved_search_delete' search.id %}">
+            {% csrf_token %}
+            <div class="form-group mx-sm-3 mb-2">
+                <input class="btn btn-secondary mb-2"
+                       type="submit"
+                       value="Nie usuwaj"
+                       name="cancel button">
+                <input class="btn btn-danger mb-2"
+                       type="submit"
+                       value="Tak, usuń"
+                       name="delete button">
+            </div>
+        </form>
     </div>
-  </form>
-
-{% include 'isap/attribution_isap.html' %}
-
-{% endblock %}
+    {% include "isap/attribution_isap.html" %}
+{% endblock content %}

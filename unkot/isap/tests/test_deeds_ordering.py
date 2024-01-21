@@ -1,12 +1,12 @@
-from datetime import datetime, timedelta
 import random
+from datetime import datetime, timedelta
 
 from django.test import TestCase
 from django.utils import timezone
 
-from ..filter_deeds import filter_deeds
-from ..models import Deed, DeedText, save_deed_text
 from ..check_deeds_list_ordering import check_deeds_list_ordering
+from ..filter_deeds import filter_deeds
+from ..models import Deed, save_deed_text
 
 
 class DeedsOrderingTestCase(TestCase):

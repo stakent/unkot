@@ -160,7 +160,7 @@ class SearchIsapResult(models.Model):
     def save(self, *args, **kwargs):
         '''On save, update result hash'''
         self.result_md5 = self.get_result_md5(self.result)
-        return super(SearchIsapResult, self).save(*args, **kwargs)
+        return super().save(*args, **kwargs)
 
 
 def save_search_result(
