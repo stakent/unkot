@@ -10,7 +10,7 @@ texchars	()\[]{}<\>\\$*.%
 defstringtype  "nroff" "nroff" ".mm" ".ms" ".me" ".man" ".NeXT"
 
 boundarychars "-"
-boundarychars "'" 
+boundarychars "'"
 boundarychars "."
 wordchars [a-z] [A-Z]
 wordchars ń Ń
@@ -92,7 +92,7 @@ L E C			>	-C,GŁYBYŚMY
 L E C			>	-C,GŁYBYŚCIE
 L E C			>	-C,GŁYBY
 
-[^DSZ] N Ą Ć		>	-Ć,ŁEM		#splunąć, usunąć, cisnąć 
+[^DSZ] N Ą Ć		>	-Ć,ŁEM		#splunąć, usunąć, cisnąć
 [^DSZ] N Ą Ć		>	-ĄĆ,ĘŁAM	#(on mnie ciśnie), machnąć  (4, 5, 6)
 [^DSZ] N Ą Ć		>	-Ć,ŁEŚ
 [^DSZ] N Ą Ć		>	-ĄĆ,ĘŁAŚ
@@ -175,7 +175,7 @@ E D N Ą Ć		>	-NĄĆ,LIBY
 E D N Ą Ć		>	-EDNĄĆ,ADŁYBYŚMY
 E D N Ą Ć		>	-EDNĄĆ,ADŁYBYŚCIE
 E D N Ą Ć		>	-EDNĄĆ,ADŁYBY
- 
+
 Z N Ą Ć		>	-Ć,ŁEM		#liznąć (6)
 Z N Ą Ć		>	-ĄĆ,ĘŁAM
 Z N Ą Ć		>	-Ć,ŁEŚ
@@ -863,7 +863,7 @@ L E C		>	-EC,OKŁYBY
 [^ĄEŚŹ] Ć	>	-Ć,ŁYBYŚCIE
 [^ĄEŚŹ] Ć	>	-Ć,ŁYBYŚMY
 
-[^AĘO] [^HSZ] N Ą Ć	>	-NĄĆ,ŁEM 	#chudnąć-chudłem, !blednąć (7, 15) 
+[^AĘO] [^HSZ] N Ą Ć	>	-NĄĆ,ŁEM 	#chudnąć-chudłem, !blednąć (7, 15)
 [^AĘO] [^HSZ] N Ą Ć	>	-NĄĆ,ŁAM
 [^AĘO] [^HSZ] N Ą Ć	>	-NĄĆ,ŁEŚ
 [^AĘO] [^HSZ] N Ą Ć	>	-NĄĆ,ŁAŚ
@@ -1901,7 +1901,7 @@ L Ą C		>	-ĄC,ĘKNIJCIEŻ
 L Ą C		>	-ĄC,ĘKNIJCIE
 
 S I Ą C		>	-C,ŻŻE	#przysiąc
-S I Ą C		>	-C,Ż	
+S I Ą C		>	-C,Ż
 S I Ą C		>	-C,ŻMYŻ
 S I Ą C		>	-C,ŻMY
 S I Ą C		>	-C,ŻCIEŻ
@@ -2006,7 +2006,7 @@ J A Ć		>	-AĆ,CIE
 [^Z] D A Ć	>	-Ć,JCIE
 
 Y Z D A Ć	>	-Ć,JŻE		#drzyzdać
-Y Z D A Ć	>	-Ć,J	
+Y Z D A Ć	>	-Ć,J
 Y Z D A Ć	>	-Ć,JMYŻ
 Y Z D A Ć	>	-Ć,JMY
 Y Z D A Ć	>	-Ć,JCIEŻ
@@ -2062,14 +2062,14 @@ M A Ć		>	-AĆ,CIE
 [KŁOP] T A Ć	>	-TAĆ,CZCIE
 
 K O Ł A T A Ć	>	-TAĆ,CZŻE	#kołatać
-K O Ł A T A Ć	>	-TAĆ,CZ	
+K O Ł A T A Ć	>	-TAĆ,CZ
 K O Ł A T A Ć	>	-TAĆ,CZMYŻ
 K O Ł A T A Ć	>	-TAĆ,CZMY
 K O Ł A T A Ć	>	-TAĆ,CZCIEŻ
 K O Ł A T A Ć	>	-TAĆ,CZCIE
 
 [BŁ] E C H T A Ć	>	-TAĆ,CZŻE	#-bechtać, -łechtać
-[BŁ] E C H T A Ć	>	-TAĆ,CZ	
+[BŁ] E C H T A Ć	>	-TAĆ,CZ
 [BŁ] E C H T A Ć	>	-TAĆ,CZMYŻ
 [BŁ] E C H T A Ć	>	-TAĆ,CZMY
 [BŁ] E C H T A Ć	>	-TAĆ,CZCIEŻ
@@ -2229,8 +2229,8 @@ Z I Ą Ć			>	-ZIĄĆ,EŹCIEŻ
 [LZ] Ą Ć		>	-ĄĆ,NIJCIE
 [LZ] Ą Ć		>	-ĄĆ,NIJCIEŻ
 
-[^BDWZ] Ż Ą Ć		>	-ĄĆ,NIJŻE	
-[^BDWZ] Ż Ą Ć		>	-ĄĆ,NIJ		
+[^BDWZ] Ż Ą Ć		>	-ĄĆ,NIJŻE
+[^BDWZ] Ż Ą Ć		>	-ĄĆ,NIJ
 [^BDWZ] Ż Ą Ć		>	-ĄĆ,NIJMY
 [^BDWZ] Ż Ą Ć		>	-ĄĆ,NIJMYŻ
 [^BDWZ] Ż Ą Ć		>	-ĄĆ,NIJCIE
@@ -2518,7 +2518,7 @@ B Y Ć		>	-YĆ,ĄDŹCIEŻ
 [MRTW] Y Ć	>	-Ć,JCIEŻ
 
 C Z Y Ć		>	-Ć,JŻE	#czeszczyć
-C Z Y Ć		>	-Ć,J	
+C Z Y Ć		>	-Ć,J
 C Z Y Ć		>	-Ć,JMY
 C Z Y Ć		>	-Ć,JMYŻ
 C Z Y Ć		>	-Ć,JCIE
@@ -2568,7 +2568,7 @@ U Ć		>	-Ć,JCIEŻ
 
 flag *h:
 
-# Flaga tworzy odmiany w czasie teraźniejszym lub przyszłym dla 
+# Flaga tworzy odmiany w czasie teraźniejszym lub przyszłym dla
 # niektórych czasowników nie załapujących się za flagi I i J
 
 L E C          		>	 -C,GNĘ  		#oblec (15a)
@@ -2941,7 +2941,7 @@ C I Ą Ć			>	-CIĄĆ,TNĄ
 [AEOUY] J Ą Ć		>	-ĄĆ,MIEMY
 [AEOUY] J Ą Ć		>	-ĄĆ,MIECIE
 [AEOUY] J Ą Ć		>	-ĄĆ,MĄ
-   
+
 [^AEOUY] J Ą Ć		>	-JĄĆ,EJMĘ	#objąć, !ująć (20)
 [^AEOUY] J Ą Ć		>	-JĄĆ,EJMIESZ
 [^AEOUY] J Ą Ć		>	-JĄĆ,EJMIE
@@ -3019,7 +3019,7 @@ E Ć			>	-Ć,JEMY
 E Ć			>	-Ć,JECIE
 E Ć			>	-Ć,JĄ
 
-[BFMNPW] I Ć		>	-Ć,Ę		#ograbić (72, 73, 
+[BFMNPW] I Ć		>	-Ć,Ę		#ograbić (72, 73,
 [BFMNPW] I Ć		>	-Ć,SZ		#	  74, 77, 79)
 [BFMNPW] I Ć		>	-Ć,-
 [BFMNPW] I Ć		>	-Ć,MY
@@ -3461,7 +3461,7 @@ S N Ą Ć			>	-Ć,-
 
 Z N Ą Ć			>	-ĄĆ,Ę
 Z N Ą Ć			>	-Ć,-
-Z N Ą Ć			>	-ZNĄĆ,ŹNIESZ    #grzęznąć (6, 8, 9) 
+Z N Ą Ć			>	-ZNĄĆ,ŹNIESZ    #grzęznąć (6, 8, 9)
 Z N Ą Ć			>	-ZNĄĆ,ŹNIE
 Z N Ą Ć			>	-ZNĄĆ,ŹNIEMY
 Z N Ą Ć			>	-ZNĄĆ,ŹNIECIE
@@ -3609,7 +3609,7 @@ L E Ź Ć			>	-ŹĆ,ZĄ
 
 flag *k:
 
-#Flaga tworzy tryb rozkazujący dla czasowników 
+#Flaga tworzy tryb rozkazujący dla czasowników
 
 [IL] Ą C		>	-ĄC,ĘGNIJŻE	#przysiąc (18a)
 [IL] Ą C		>	-ĄC,ĘGNIJ	#przysiąc (18a)
@@ -3745,7 +3745,7 @@ H C I E Ć		>	-Ć,JCIE
 [^U] M I E Ć	>	-EĆ,JCIE
 
 U M I E Ć	>	-IEĆ,ŻE	 #rozumieć
-U M I E Ć	>	-IEĆ,-	
+U M I E Ć	>	-IEĆ,-
 U M I E Ć	>	-IEĆ,MYŻ
 U M I E Ć	>	-IEĆ,MY
 U M I E Ć	>	-IEĆ,CIEŻ
@@ -3828,8 +3828,8 @@ R E Ć          		>       -EĆ,YJMY
 R E Ć          		>       -EĆ,YJCIEŻ
 R E Ć          		>       -EĆ,YJCIE
 
-[^ABCLONSWZ] I Ć	>	-IĆ,ŻE		#nakarmić (72), !prosić, !wiercić, !biadolić 
-[^ABCLONSWZ] I Ć	>	-IĆ,-		#nakarmić (72), !prosić, !wiercić, !biadolić 
+[^ABCLONSWZ] I Ć	>	-IĆ,ŻE		#nakarmić (72), !prosić, !wiercić, !biadolić
+[^ABCLONSWZ] I Ć	>	-IĆ,-		#nakarmić (72), !prosić, !wiercić, !biadolić
 [^ABCLONSWZ] I Ć	>	-IĆ,MYŻ
 [^ABCLONSWZ] I Ć	>	-IĆ,MY
 [^ABCLONSWZ] I Ć	>	-IĆ,CIEŻ
@@ -4132,7 +4132,7 @@ Z [EY] C    	> -C,ŻONYM
 [^Ż] A Ć    > -Ć,NYCH
 [^Ż] A Ć    > -Ć,NYMI
 [^Ż] A Ć    > -Ć,NYM
-					
+
 Ż A Ć    	> -Ć,NY		#zauważać
 Ż A Ć    	> -Ć,NEGO
 Ż A Ć    	> -Ć,NEMU
@@ -5561,7 +5561,7 @@ X		>	-X,KSIE
 R R		>	-R,ZE
 [^SA] T		>	-T,CIE
 [^I] A T	> 	-T,CIE
-[^W] I A T	> 	-T,CIE 		#proletariat 		
+[^W] I A T	> 	-T,CIE 		#proletariat
 W I A T 	>       -AT,ECIE
 S T		>	-ST,ŚCIE
 [^O] Ł		>	-Ł,LE
@@ -5604,7 +5604,7 @@ X		>	-X,KSOWI
 X		>	-X,KS
 
 # narzędnik lp.:
-[^GKŃ]		>	EM		#luz, !śnieg 
+[^GKŃ]		>	EM		#luz, !śnieg
 [GK]		>	IEM		#śnieg, Atlantyk
 Ń		>	-Ń,NIEM
 X		>	-X,KSEM
@@ -5624,7 +5624,7 @@ I Z D		>	-ZD,ŹDZIE	#podgwizd
 R R		>	-R,ZE
 [^SA] T		>	-T,CIE		#chwyt
 [^I] A T	> 	-T,CIE
-[^W] I A T	> 	-T,CIE 		#proletariat 		
+[^W] I A T	> 	-T,CIE 		#proletariat
 W I A T 	>       -AT,ECIE	#kwiat, okwiat, powiat
 S T		>	-ST,ŚCIE	#agrest
 [^S] Ł		>	-Ł,LE		#żywioł
@@ -5683,7 +5683,7 @@ flag *s:
 
 # Mianownik lm. dla rzeczowników nieosobowych rodzaju męskiego oraz
 # osobowych, lecz odmienianych identycznie jak nieosobowe (odmiana +'-e' i
-# +'-y', np. partacz, Lach) 
+# +'-y', np. partacz, Lach)
 
 # mianownik lm.:
 [^ACĆGJKLŃOŚUYZŹŻ] >	Y		#kompurtery
@@ -5817,7 +5817,7 @@ flag *P:
 # karzeł -> karła
 # goniec -> gońca
 # giez -> gza
-#	
+#
 # Flagi te (PRtZz) nie obejmują "miękkokońcówkowych" rzeczowników rodzaju
 # męskiego (np. karp, drop, czerw, gołąb)
 
@@ -6121,7 +6121,7 @@ S I O Ł		>	-SIOŁ,ŚLE
 Ł O		>	-ŁO,LE
 Ł O		>	-O,EM
 
-flag *R:	
+flag *R:
 
 # Podobnie, jak dla P, lecz w dopełniaczu lp. odmieniają się na 'u'.
 # Rzeczowniki typu anyżek -> anyżku
@@ -6492,7 +6492,7 @@ J C I E C       >       -IEC,ACH
 [CS] Z E C      >       -EC,CACH
 R Z E C         >       -ZEC,CACH
 [^I] E Ć        >       -EĆ,CIACH
-I E Ć           >       -IEĆ,CIACH      
+I E Ć           >       -IEĆ,CIACH
 Ą D             >       -ĄD,ĘDACH
 Ó D             >       -ÓD,ODACH
 Ą G             >       -ĄG,ĘGACH
@@ -6633,7 +6633,7 @@ Y		>	-Y,E
 L I		>	-I,E
 
 
-flag *p: 
+flag *p:
 
 # odmiana rzeczowników żeńskich z wołaczem -o
 # z podwojonym i
@@ -6698,7 +6698,7 @@ K A P I Ą T K A         >       -KAPIĄTKA, CEPIĄTCE
 A W I A R A     >       -AWIARA,EJWIERZE
 R Z A           >       -A,IE
 
-#biernik 
+#biernik
 [^DGHKŁNRTWZ] A              >       -A,Ę
 [^O] G A                >       -A,Ę
 [^N] O G A              >       -A,Ę
@@ -6802,13 +6802,13 @@ flag *u:
 Ó W		>	-ÓW,OWIACH
 
 Ą B		>	-ĄB,ĘBIE	#gołąb
-Ą B		>	-ĄB,ĘBI	
+Ą B		>	-ĄB,ĘBI
 Ą B		>	-ĄB,ĘBIOM
 Ą B		>	-ĄB,ĘBIAMI
 Ą B		>	-ĄB,ĘBIACH
 
-Ą P		>	IE		#krąp 
-Ą P		>	I	
+Ą P		>	IE		#krąp
+Ą P		>	I
 Ą P		>	IOM
 Ą P		>	IAMI
 Ą P		>	IACH
@@ -6922,7 +6922,7 @@ U M		>	-UM,ÓW
 [^P] Ę T O	>	-ĘTO,ĄT		#święto
 P Ę T O		>	-O,-		#pęto
 Ż E		>	-E,Y 		#bezdroże ???
-[CRS] Z E	>	-E,Y		#bożyszcze ???	
+[CRS] Z E	>	-E,Y		#bożyszcze ???
 [^I] Ę		>	-Ę,ĄT		#zwierzę
 M I Ę		>	-Ę,ON		#brzemię
 [^M] I Ę	>	-Ę,ĄT		#jagnię, bliźnię, chłopię
@@ -6963,7 +6963,7 @@ U M		>	-UM,AMI
 M I Ę		>	-Ę,ONAMI
 [^M] I Ę	>	TAMI
 
-# miejscownik lm.:	
+# miejscownik lm.:
 O		>	-O,ACH
 E		>	-E,ACH
 U M		>	-UM,ACH
@@ -7691,7 +7691,7 @@ T R Z [EY] C            >       -C,GĄCĄ
 
 
 
-flag *x:		
+flag *x:
 
 # Przymiotniki, imiesłowy, przymiotniki zestopniowane (np. większy, cichszy,
 # lepszy)
@@ -7709,7 +7709,7 @@ Y		>	-Y,A		#dobry
 D E N		>	-EN,NA		#jeden
 
 # rodzaj nijaki:
-[^L] I		>	E	
+[^L] I		>	E
 L I		>	-I,E
 Y		>	-Y,E
 [^D] E N	>	-EN,O
@@ -7779,7 +7779,7 @@ flag *L:
 I A             >       -A,-
 Ś               >       -Ś,SI
 
-#biernik 
+#biernik
 [^CNW] A        >       -A,Ę
 
 #narzędnik
@@ -7814,11 +7814,11 @@ S A G N A               >       -A,I
 [BCDFŁMPRSTVWXZŻ] A     >       -A,Y    #barakuda, alkowa
 C               >       Y               #pomoc
 [^EŚ] Ć         >       -Ć,CI           #!litość !płeć
-[^HŁ] E Ć       >       -Ć,CI   
+[^HŁ] E Ć       >       -Ć,CI
 [HŁ] E Ć        >       -EĆ,CI          #płacheć, płeć
 [^E] Ś Ć                >       -Ć,CI           #litość
 [^Z] E Ś Ć      >       -Ć,CI           #rękojeść
-Z E Ś Ć         >       -EŚĆ,CI         #cześć  
+Z E Ś Ć         >       -EŚĆ,CI         #cześć
 J               >       -J,I            #kolej
 [^EÓ] L          >       I
 [^I] E L          >       I
@@ -7981,7 +7981,7 @@ flag *Y:
 # przymiotniki, które również pasują do osób (jedną z flag Yy dodaje się
 # zwykle do flag X(x), jeżeli pasuje)
 
-# biały -> biali 
+# biały -> biali
 # cały -> cali
 # pożarty -> pożarci
 
@@ -8577,5 +8577,3 @@ L E Ź Ć                 >       -ŹĆ,ZĄCA
 L E Ź Ć                 >       -ŹĆ,ZĄCĄ
 L E Ź Ć                 >       -ŹĆ,ZĄCE
 L E Ź Ć                 >       -ŹĆ,ZĄCEJ
-
-
