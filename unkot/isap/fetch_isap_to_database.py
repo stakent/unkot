@@ -1,5 +1,4 @@
 "fetch_isap_to_database "
-import logging
 import os.path
 import sys
 from datetime import datetime
@@ -7,26 +6,23 @@ from zoneinfo import ZoneInfo
 
 import requests
 from django.db import transaction
+from structlog import get_logger
 
 from unkot.isap.extract_text_from_deeds import extract_text_from_deed
-from unkot.isap.models import NO_DATE_PROVIDED, Deed, DeedText, get_deed_pdf_dir
+from unkot.isap.models import NO_DATE_PROVIDED, Deed, DeedText, get_deed_file
+from unkot.isap.serializers import ActInfo, ActsInYear
 
 # Get an instance of a logger
-logger = logging.getLogger(__name__)
+log = get_logger()
 
 
-def fetch_isap_deed_pdf(session, publisher, year, position):
+def fetch_isap_deed_pdf(session: requests.Session, act_info: ActInfo) -> None:
     """Fetch deed from ISAP as pdf
 
     Parameters:
 
     session (requests.Session): session object used for requests to ISAP API
-    publisher (str): symbol of the publication
-            "WDU" "Dz.U." "Dziennik Ustaw"
-            "WMP" "M.P." "Monitor Polski"
-            and more
-    year (int): year of the publication of the deed
-    position (int): sequential number of the deed in the year
+    act_info: ActInfo with act metedata
 
     Returns: nothing
 
@@ -39,25 +35,26 @@ def fetch_isap_deed_pdf(session, publisher, year, position):
     /isap/deeds/{publisher}/{year}/{position}/text.html
     does sometimes return the deed text as html
     """
-    # address WDU20220000010
-    #                1234567
-    address = f"{ publisher }{ year }{position:07d}"
-    url = "http://isap.sejm.gov.pl/api"
-    url = url + f"/isap/deeds/{publisher}/{year}/{position}/text."
-    resp = session.get(url + "pdf", stream=True)
+    # http://api.sejm.gov.pl/eli/acts/DU/2020/1/text.pdf
+
+    url = f"http://api.sejm.gov.pl/eli/acts/{act_info.publisher}/{act_info.year}/{act_info.pos}/text.pdf"
+
+    log.info("start fetch act as pdf", act_info=act_info)
+    resp = session.get(url, stream=True)
     resp.raise_for_status()
 
-    print(f"======= fetch_isap_deed_pdf: { address } pdf")
-
-    deed_pdf_dir = get_deed_pdf_dir(address)
-    fp = os.path.join(deed_pdf_dir, address + ".pdf")
+    deed_pdf_file = get_deed_file(act_info=act_info, kind="pdf")
     pdf_data = resp.content
     if len(pdf_data) == 0:
-        logger.critical(f'fetch_isap_deed_pdf: got empty deed content for { address }')
+        log.critical(
+            f'fetch_isap_deed_pdf: got empty deed content for { act_info.address }'
+        )
         sys.exit(1)
-    os.makedirs(deed_pdf_dir, exist_ok=True)
-    with open(fp, "wb") as f:
+    os.makedirs(deed_pdf_file.parent, exist_ok=True)  # type: ignore
+    with open(deed_pdf_file, "wb") as f:
         f.write(pdf_data)
+
+    # log.info("end fetch act as pdf", act_info=act_info)
 
 
 def replace_null_by_NO_DATE_PROVIDED(field):
@@ -69,58 +66,64 @@ def replace_null_by_NO_DATE_PROVIDED(field):
     return value
 
 
-def fetch_isap_year_deeds(session, publisher, year, new_only, log):
+def fetch_isap_year_deeds(session, publisher, year: int, new_only: bool) -> int:
     """Fetch data from ISAP publisher's year index.
     If new_only==True then fetch:
         - new deeds
         - text of existing deeds without text
     """
-    url = "http://isap.sejm.gov.pl/api"
-    url = url + f"/isap/acts/{ publisher }/{ year }"
-    logger.info(f"==== fetching { publisher } index for { year }")
-    n_deeds_fetched = 0
+    # bad http://isap.sejm.gov.pl/api/isap/acts/DU/2024
+    # http://api.sejm.gov.pl/eli/acts/{publisher}/{year}
+    url = "http://api.sejm.gov.pl/eli"
+    url = url + f"/acts/{ publisher }/{ year }"
+    log.info("fetching acts index", publisher=publisher, year=year)
+
     res = session.get(url)  # fetch index
     res.raise_for_status()
-    js = res.json()
-    items = js["items"]
-    for item in items:
+
+    acts_in_year = ActsInYear.model_validate(res.json())
+
+    log.info("fetched acts list", number_of_acts=len(acts_in_year.items))
+
+    n_deeds_fetched = 0
+    for act_info in acts_in_year.items[84:]:  # FIXME remove limit
         with transaction.atomic():
-            d, created = Deed.objects.get_or_create(address=item["address"])
+            d, created = Deed.objects.get_or_create(address=act_info.address)
             if new_only and not created:
                 dts = DeedText.objects.filter(deed_id=d.address)
                 if dts.count() > 0 and dts[0].text != '':
                     continue
-            d.publisher = item["publisher"]
-            d.year = int(item["year"])
-            d.volume = int(item["volume"])
-            d.pos = int(item["pos"])
-            d.deed_type = item["type"]
-            d.title = item["title"]
-            d.status = item["status"]
-            d.display_address = item["displayAddress"]
-            d.promulgation = replace_null_by_NO_DATE_PROVIDED(item["promulgation"])
+            d.publisher = act_info.publisher
+            d.year = act_info.year
+            d.volume = act_info.volume
+            d.pos = act_info.pos
+            d.deed_type = act_info.type
+            d.title = act_info.title
+            d.status = act_info.status
+            d.display_address = act_info.display_address
+            d.promulgation = replace_null_by_NO_DATE_PROVIDED(act_info.promulgation)
             d.announcement_date = replace_null_by_NO_DATE_PROVIDED(
-                item["announcementDate"]
+                act_info.announcement_date
             )
-            ts = datetime.strptime(item["changeDate"], "%Y-%m-%d %H:%M:%S")
-            ts = ts.replace(tzinfo=ZoneInfo("Europe/Warsaw"))
-            d.change_date = ts
-            d.eli = item["ELI"]
+            # 2023-10-12T10:46:30
+            ts = datetime.strptime(act_info.change_date, "%Y-%m-%dT%H:%M:%S")
+            ts2 = ts.replace(tzinfo=ZoneInfo("Europe/Warsaw"))
+            d.change_date = ts2
+            d.eli = act_info.eli
             d.save()
             try:
-                fetch_isap_deed_pdf(session, d.publisher, d.year, d.pos)
+                fetch_isap_deed_pdf(session, act_info=act_info)
             except requests.exceptions.HTTPError as e:
-                log.warning(f'error fetching pdf text for { d.address }: "{ e }"')
+                log.warning("error fetching pdf text", act_info=act_info, error=e)
                 continue
             # pdf -> text -> db
-            extract_text_from_deed(
-                address=d.address, change_date=d.change_date, log=log
-            )
+            extract_text_from_deed(act_info=act_info, change_date=d.change_date)
             n_deeds_fetched = +1
+
     return n_deeds_fetched
 
 
-def fetch_isap_to_database(publisher, year1, year2, new_only=False, log=None):
+def fetch_isap_to_database(publisher: str, year1, year2, new_only=False) -> int:
     """Fetch deed from ISAP, extract text and store in database.
 
     Parameters:
@@ -149,7 +152,5 @@ def fetch_isap_to_database(publisher, year1, year2, new_only=False, log=None):
         ]
     for year in range(year2, year1 - 1, -1):
         for publ in publishers:
-            n_deeds_fetched += fetch_isap_year_deeds(
-                session, publ, year, new_only, log=logger
-            )
+            n_deeds_fetched += fetch_isap_year_deeds(session, publ, year, new_only)
     return n_deeds_fetched
