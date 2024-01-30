@@ -306,7 +306,7 @@ SOCIALACCOUNT_FORMS = {"signup": "unkot.users.forms.UserSocialSignupForm"}
 # unkot settings
 ISAP_DATA_DIR = "/tmp/unkot/"
 ISAP_PDF_DIR = ISAP_DATA_DIR + "pdf/"
-ISAP_TEXT_DIR = ISAP_DATA_DIR + "txt/"
+ISAP_TXT_DIR = ISAP_DATA_DIR + "txt/"
 
 IGNORABLE_404_URLS = [
     re.compile(r'^/favicon\.ico$'),
