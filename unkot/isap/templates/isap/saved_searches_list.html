@@ -14,7 +14,7 @@
                 {% endblocktranslate %}
             </p>
         {% else %}
-            <p>{% translate "You don't have any saved searches" %}.</p>
+            <p>{% translate "You don't have any saved searches yet." %}</p>
         {% endif %}
         {% if searches.count %}
             {% include "isap/pagination.html" %}
@@ -41,7 +41,7 @@
                 </tbody>
             </table>
         {% else %}
-            <p>{% translate "Brak aktów do wyświetlenia" %}.</p>
+            <p>{% translate "No statues to display." %}</p>
         {% endif %}
     </div>
     {% include "isap/attribution_isap.html" %}

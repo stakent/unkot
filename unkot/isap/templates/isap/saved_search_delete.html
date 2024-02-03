@@ -1,24 +1,27 @@
 {% extends "base.html" %}
+{% load i18n %}
 {% block title %}
-    Usuń zapisane wyszukiwanie
+    {% translate "Remove saved search" %}?
 {% endblock title %}
 {% block content %}
     <div class="container">
         <p>
-            Czy usunąć zapisane wyszukiwanie
-            <br>
-            "{{ search.query }}"?
+            <b>
+                {% translate "Remove saved search" %}
+                <br>
+                "{{ search.query }}"?
+            </b>
         </p>
         <form method="post" action="{% url 'saved_search_delete' search.id %}">
             {% csrf_token %}
             <div class="form-group mx-sm-3 mb-2">
-                <input class="btn btn-secondary mb-2"
+                <input class="btn btn-primary"
                        type="submit"
-                       value="Nie usuwaj"
+                       value="{% translate "No" %}"
                        name="cancel button">
-                <input class="btn btn-danger mb-2"
+                <input class="btn btn-danger"
                        type="submit"
-                       value="Tak, usuń"
+                       value="{% translate "Yes" %}"
                        name="delete button">
             </div>
         </form>

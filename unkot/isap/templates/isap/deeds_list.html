@@ -20,14 +20,14 @@
                 <div class="col">
                     <input class="btn btn-primary form-control"
                            type="submit"
-                           value="{% translate " Search" %}"
+                           value="{% translate "Search" %}"
                            name="search button">
                 </div>
                 {% if request.user.is_authenticated %}
                     <div class="col">
                         <input class="btn btn-primary form-control"
                                type="submit"
-                               value="{% translate " Save search" %}"
+                               value="{% translate "Save search" %}"
                                name="save search button">
                     </div>
                 {% endif %}
@@ -36,16 +36,16 @@
         {% if request.user.is_authenticated %}
             {% if saved_searches_count %}
                 <p>
-                    {% blocktranslate trimmed count saved_searches_count as counter %}
-                        You have {{ counter }} saved search
+                    {% blocktranslate trimmed count count=saved_searches_count %}
+                        You have 1 saved search
                     {% plural %}
-                        You have {{ counter }} saved searches
+                        You have {{ count }} saved searches
                     {% endblocktranslate %}
                     -
                     <a href="{% url 'saved_isap_searches' %}">{% translate "saved searches" %}</a>
                 </p>
             {% else %}
-                <p>You don't have any saved searches</p>
+                <p>{% translate "You don't have any saved searches yet." %}</p>
             {% endif %}
         {% endif %}
         {% if not request.user.is_authenticated %}
@@ -89,7 +89,7 @@
                 </tbody>
             </table>
         {% else %}
-            <p>{% translate "No statues to display" %}.</p>
+            <p>{% translate "No statues to display." %}</p>
         {% endif %}
     </div>
     {% include "isap/attribution_isap.html" %}

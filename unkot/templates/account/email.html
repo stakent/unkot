@@ -32,16 +32,10 @@
                     <div class="form-group">
                         <button class="secondaryAction btn btn-primary"
                                 type="submit"
-                                name="action_primary">
-                            {% translate "Make
-                            Primary" %}
-                        </button>
+                                name="action_primary">{% translate "Make Primary" %}</button>
                         <button class="secondaryAction btn btn-primary"
                                 type="submit"
-                                name="action_send">
-                            {% translate "Re-send
-                            Verification" %}
-                        </button>
+                                name="action_send">{% translate "Re-send Verification" %}</button>
                         <button class="primaryAction btn btn-primary"
                                 type="submit"
                                 name="action_remove">
@@ -53,8 +47,7 @@
             </form>
         {% else %}
             <p>
-                <strong>{% translate "Warning:" %}</strong> {% translate "You currently do not have any e-mail address set up. You
-                should really add an e-mail address so you can receive notifications, reset your password, etc." %}
+                <strong>{% translate "Warning:" %}</strong> {% translate "You currently do not have any e-mail address set up. You                should really add an e-mail address so you can receive notifications, reset your password, etc." %}
             </p>
         {% endif %}
         <h2>{% translate "Add E-mail Address" %}</h2>
@@ -68,7 +61,7 @@
         {{ block.super }}
         <script type="text/javascript">
     window.addEventListener('DOMContentLoaded', function () {
-        const message = "{% translate "Do you really want to remove the selected e-mail address ? " %}";
+        const message = "{% translate "Do you really want to remove the selected e-mail address?" %}";
         const actions = document.getElementsByName('action_remove');
         if (actions.length) {
             actions[0].addEventListener("click", function (e) {
