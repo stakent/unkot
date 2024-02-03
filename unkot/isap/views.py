@@ -1,5 +1,6 @@
 import datetime
 
+import pytz
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.core.paginator import Paginator
 from django.db.models import F, Func
@@ -131,7 +132,7 @@ def search_isap_detail(request, id):
         .annotate(number_of_results=Func(F('result'), function='CARDINALITY'))
         .order_by('-last_run_ts')
     )
-    last_run_ts = datetime.datetime(1, 1, 1, 0, 0, tzinfo=datetime.UTC)
+    last_run_ts = datetime.datetime(1, 1, 1, 0, 0, tzinfo=pytz.UTC)
     for i in range(0, len(results)):
         # FIXME search.last_run_ts has incorrect value
         last_run_ts = max(last_run_ts, results[i].last_run_ts)
