@@ -86,7 +86,7 @@ def fetch_isap_year_deeds(session, publisher, year: int, new_only: bool) -> int:
     log.info("fetched acts list", number_of_acts=len(acts_in_year.items))
 
     n_deeds_fetched = 0
-    for act_info in acts_in_year.items[84:]:  # FIXME remove limit
+    for act_info in acts_in_year.items:
         with transaction.atomic():
             d, created = Deed.objects.get_or_create(address=act_info.address)
             if new_only and not created:
