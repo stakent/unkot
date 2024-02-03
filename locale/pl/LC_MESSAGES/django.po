@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-03 15:33+0100\n"
+"POT-Creation-Date: 2024-02-03 19:18+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -120,14 +120,17 @@ msgstr[2] "%(counter)s aktów spełnia kryteria wyszukiwania 2"
 msgstr[3] "%(counter)s aktów spełnia kryteria wyszukiwania 3"
 
 #: unkot/isap/templates/isap/deeds_list.html:74
+#: unkot/isap/templates/isap/saved_search_detail.html:39
 msgid "Title"
 msgstr "Tytuł"
 
 #: unkot/isap/templates/isap/deeds_list.html:75
+#: unkot/isap/templates/isap/saved_search_detail.html:40
 msgid "Status"
 msgstr "Status"
 
 #: unkot/isap/templates/isap/deeds_list.html:76
+#: unkot/isap/templates/isap/saved_search_detail.html:41
 msgid "Change date"
 msgstr "Zmiana"
 
@@ -152,6 +155,46 @@ msgstr "Tak"
 #: unkot/isap/templates/isap/saved_search_detail.html:4
 msgid "Search:"
 msgstr "Wyszukiwanie:"
+
+#: unkot/isap/templates/isap/saved_search_detail.html:8
+msgid "Saved search"
+msgstr "Zapisane wyszukiwanie"
+
+#: unkot/isap/templates/isap/saved_search_detail.html:10
+msgid "Firrst run"
+msgstr "Pierwsze wyszukiwanie"
+
+#: unkot/isap/templates/isap/saved_search_detail.html:11
+msgid "Most recent run"
+msgstr "Ostatnie wyszukiwanie"
+
+#: unkot/isap/templates/isap/saved_search_detail.html:12
+msgid "Number unique search results"
+msgstr "Liczba unikalnych wyników wyszukiwania"
+
+#: unkot/isap/templates/isap/saved_search_detail.html:24
+msgid "Subscribe search"
+msgstr "Subskrybuj wyszukiwanie"
+
+#: unkot/isap/templates/isap/saved_search_detail.html:30
+msgid "Search results from"
+msgstr "Wyniki wyszukiwania od"
+
+#: unkot/isap/templates/isap/saved_search_detail.html:30
+msgid "to"
+msgstr "do"
+
+#: unkot/isap/templates/isap/saved_search_detail.html:32
+msgid "Number of acts in the search reasult:"
+msgstr "Liczba dokumentów znalezionych przez wyszukiwanie:"
+
+#: unkot/isap/templates/isap/saved_search_detail.html:35
+msgid "New acts:"
+msgstr "Nowe dokumenty:"
+
+#: unkot/isap/templates/isap/saved_search_detail.html:57
+msgid "No new acts."
+msgstr "Brak nowych dokumentów w wynikach wyszukiwania."
 
 #: unkot/isap/templates/isap/saved_searches_list.html:4
 msgid "Saved searches"
@@ -642,3 +685,8 @@ msgstr "Nazwa użytkownika"
 #: unkot/users/tests/test_views.py:67 unkot/users/views.py:23
 msgid "Information successfully updated"
 msgstr "Informacje zostały uaktualnione"
+
+#, fuzzy
+#~| msgid "Number of unique search results"
+#~ msgid "Number unique results"
+#~ msgstr "Liczba unikalnych wyników wyszukiwania"
