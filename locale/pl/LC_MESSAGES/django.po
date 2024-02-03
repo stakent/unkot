@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-03 12:41+0100\n"
+"POT-Creation-Date: 2024-02-03 15:33+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -148,6 +148,10 @@ msgstr "Nie"
 #: unkot/isap/templates/isap/saved_search_delete.html:24
 msgid "Yes"
 msgstr "Tak"
+
+#: unkot/isap/templates/isap/saved_search_detail.html:4
+msgid "Search:"
+msgstr "Wyszukiwanie:"
 
 #: unkot/isap/templates/isap/saved_searches_list.html:4
 msgid "Saved searches"
