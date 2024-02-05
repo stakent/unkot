@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-03 19:18+0100\n"
+"POT-Creation-Date: 2024-02-05 20:09+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -318,7 +318,7 @@ msgid "issue a new e-mail confirmation request"
 msgstr "wysłać nową wiadomość potwierdzającą adres e-mail"
 
 #: unkot/templates/account/login.html:6 unkot/templates/account/login.html:9
-#: unkot/templates/account/login.html:48
+#: unkot/templates/account/login.html:48 unkot/templates/base.html:84
 msgid "Sign In"
 msgstr "Zaloguj"
 
@@ -444,6 +444,7 @@ msgid "Signup"
 msgstr "Zaloguj"
 
 #: unkot/templates/account/signup.html:8 unkot/templates/account/signup.html:25
+#: unkot/templates/base.html:79
 msgid "Sign Up"
 msgstr "Załóż nowe konto"
 
@@ -531,15 +532,15 @@ msgstr "O serwisie"
 msgid "My Profile"
 msgstr "Państwa Profil"
 
-#: unkot/templates/base.html:143
+#: unkot/templates/base.html:141
 msgid "Terms of Service"
 msgstr "Regulamin"
 
-#: unkot/templates/base.html:146
+#: unkot/templates/base.html:144
 msgid "Privacy Policy"
 msgstr "Polityka prywatności"
 
-#: unkot/templates/base.html:149 unkot/templates/pages/contact.html:4
+#: unkot/templates/base.html:147 unkot/templates/pages/contact.html:4
 #: unkot/templates/pages/contact.html:7
 msgid "Contact"
 msgstr "Kontakt"
@@ -654,6 +655,10 @@ msgstr "Użytkownik:"
 msgid "About me"
 msgstr "O mnie"
 
+#: unkot/templates/users/user_detail.html:21
+msgid "E-mail address"
+msgstr "Adres e-mail"
+
 #: unkot/templates/users/user_form.html:16
 msgid "Update"
 msgstr "Uaktualnij"
@@ -685,8 +690,3 @@ msgstr "Nazwa użytkownika"
 #: unkot/users/tests/test_views.py:67 unkot/users/views.py:23
 msgid "Information successfully updated"
 msgstr "Informacje zostały uaktualnione"
-
-#, fuzzy
-#~| msgid "Number of unique search results"
-#~ msgid "Number unique results"
-#~ msgstr "Liczba unikalnych wyników wyszukiwania"
