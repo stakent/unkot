@@ -79,3 +79,14 @@ INSTALLED_APPS += ["django_extensions"]  # noqa F405
 CELERY_TASK_EAGER_PROPAGATES = False
 # Your stuff...
 # ------------------------------------------------------------------------------
+
+if DEBUG:
+    # convert Django warning to error with backtrace
+    import warnings
+
+    warnings.filterwarnings(
+        'error',
+        r"DateTimeField .* received a naive datetime",
+        RuntimeWarning,
+        r'django\.db\.models\.fields',
+    )
