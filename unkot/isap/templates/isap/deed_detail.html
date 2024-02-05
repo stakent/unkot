@@ -24,10 +24,10 @@
             <li>{% translate "Statue type" %}: {{ deed.deed_type }}</li>
             <li>Status: {{ deed.status }}</li>
             <li>{{ deed.display_address }}</li>
-            <li>{% translate "Promulgation date" %}: {{ deed.promulgation }}</li>
-            <li>{% translate "Announcement date" %}: {{ deed.announcement_date }}</li>
-            <li>{{ deed.change_date }}</li>
-            {# <li>{{ deed.eli }}</li> #}
+            <li>{% translate "Promulgation date" %}: {{ deed.promulgation|date:"Y-m-d" }}</li>
+            <li>{% translate "Announcement date" %}: {{ deed.announcement_date|date:"Y-m-d" }}</li>
+            <li>{{ deed.change_date|date:"Y-m-d H:i" }}</li>
+            <li>{{ deed.eli }}</li>
             <a href="https://isap.sejm.gov.pl/api/isap/deeds/{{ deed.publisher }}/{{ deed.year }}/{{ deed.pos }}/text.pdf">
                 {% translate "Statue text published by ISAP as pdf file" %}
             </a>

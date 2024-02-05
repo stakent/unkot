@@ -83,7 +83,10 @@
                                 <a href="{% url 'deed_detail' deed.address %}">{{ deed.title }}</a>
                             </td>
                             <td>{{ deed.status }}</td>
-                            <td>{{ deed.change_date }}</td>
+                            <td>
+                                {{ deed.change_date|date:"Y-m-d"  }}<br>
+                                {{ deed.change_date|date:"H:i"  }}
+                            </td>
                         </tr>
                     {% endfor %}
                 </tbody>
