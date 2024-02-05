@@ -2,22 +2,54 @@
 
 Polish unkot.pl and eventually english unkot.com.
 
-Polish law change monitoring service. 
+Polish law change monitoring service.
 
 Receive email notifications when changes of the laws relevant for you are published.
 
 
-Local development using virualenv
+## Local development using pyenv and virtualenv
 
-Use:
+1. Install [pyenv](https://github.com/pyenv/pyenv)
 
-. env-local.sh
+2. Install target Python version ex:
 
-to set local configuration data in your development envirnoment.
+        pyenv install 3.10.13
+
+3. Acivate taget Python version ex:
+
+        pyenv shell 3.10.13
+
+4. Create and activate virtualenv:
+
+        python -m venv venv ; . venv/bin/activate
+
+5. Install local development dependencies:
+
+        pip install -r requirements/local.txt
+
+6. Set the local development environment varibales:
+
+        . env-local.sh
+
+## i18n
+
+### Create or refresh messages translations file django.po
+
+        ./manage.py makemessages --all --ignore 'venv/*'
+
+
+### Compile messages translations to use by gettext
+
+        ./manage.py compilemessages --ignore 'venv/*'
+
 
 The rest is pretty standard or described in Cookiecutter Django documentation.
 
-Cookiecutter Django readme below:
+---
+
+## Cookiecutter Django readme
+
+below:
 
 [![Built with Cookiecutter Django](https://img.shields.io/badge/built%20with-Cookiecutter%20Django-ff69b4.svg?logo=cookiecutter)](https://github.com/cookiecutter/cookiecutter-django/)
 [![Black code style](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black)
