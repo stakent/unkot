@@ -1,40 +1,37 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 {% load i18n %}
-
-{% block title %}{{ deed.title }}{% endblock %}
-
-
+{% block title %}
+    {{ deed.title }}
+{% endblock title %}
 {% block content %}
-<div class="container">
-
-  <p>{% translate "Statue details" %}</p>
-
-  <h2>{{ deed.title }}</h2>
-
-  <ul class="list-unstyled">
-    <li>{% translate "Publication" %}:
-      {% if deed.publisher == 'WMP' %}
-      Monitor Polski
-      {% elif deed.publisher == 'WDU' %}
-      Dziennik Ustaw
-      {% endif %}
-    </li>
-    <li>{% translate "Year" %}: {{ deed.year }}</li>
-    {% if deed.volume %}
-    <li>{% translate "Volume" %}: {{ deed.volume }}</li>
-    {% endif %}
-    <li>{% translate "Position" %}: {{ deed.pos }}</li>
-    <li>{% translate "Statue type" %}: {{ deed.deed_type }}</li>
-    <li>Status: {{ deed.status }}</li>
-    <li>{{ deed.display_address }}</li>
-    <li>{% translate "Promulgation date" %}: {{ deed.promulgation }}</li>
-    <li>{% translate "Announcement date" %}: {{ deed.announcement_date }}</li>
-    <li>{{ deed.change_date }}</li>
-    {# <li>{{ deed.eli }}</li> #}
-    <li><a href="http://isap.sejm.gov.pl/api/isap/deeds/{{ deed.publisher }}/{{ deed.year}}/{{ deed.pos }}/text.pdf">{% translate "Statue text published by ISAP as pdf file" %}</a>
-  </ul>
-</div>
-
-{% include 'isap/attribution_isap.html' %}
-
-{% endblock %}
+    <div class="container">
+        <p>{% translate "Statue details" %}</p>
+        <h2>{{ deed.title }}</h2>
+        <ul class="list-unstyled">
+            <li>
+                {% translate "Publication" %}:
+                {% if deed.publisher == 'WMP' %}
+                    Monitor Polski
+                {% elif deed.publisher == 'WDU' %}
+                    Dziennik Ustaw
+                {% endif %}
+            </li>
+            <li>{% translate "Year" %}: {{ deed.year }}</li>
+            {% if deed.volume %}
+                <li>{% translate "Volume" %}: {{ deed.volume }}</li>
+            {% endif %}
+            <li>{% translate "Position" %}: {{ deed.pos }}</li>
+            <li>{% translate "Statue type" %}: {{ deed.deed_type }}</li>
+            <li>Status: {{ deed.status }}</li>
+            <li>{{ deed.display_address }}</li>
+            <li>{% translate "Promulgation date" %}: {{ deed.promulgation|date:"Y-m-d" }}</li>
+            <li>{% translate "Announcement date" %}: {{ deed.announcement_date|date:"Y-m-d" }}</li>
+            <li>{{ deed.change_date|date:"Y-m-d H:i" }}</li>
+            <li>{{ deed.eli }}</li>
+            <a href="https://isap.sejm.gov.pl/api/isap/deeds/{{ deed.publisher }}/{{ deed.year }}/{{ deed.pos }}/text.pdf">
+                {% translate "Statue text published by ISAP as pdf file" %}
+            </a>
+        </ul>
+    </div>
+    {% include "isap/attribution_isap.html" %}
+{% endblock content %}
