@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-06-01 10:10+0200\n"
+"POT-Creation-Date: 2024-02-05 20:09+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,9 +16,9 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n"
-"%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n"
-"%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && "
+"(n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && "
+"n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);\n"
 
 #: unkot/isap/templates/isap/attribution_isap.html:2
 msgid ""
@@ -27,39 +27,39 @@ msgstr ""
 "Materiały pochodzą z Internetowego Systemu Aktów Prawnych (ISAP) Kacelarii "
 "Sejmu RP"
 
-#: unkot/isap/templates/isap/deed_detail.html:10
+#: unkot/isap/templates/isap/deed_detail.html:8
 msgid "Statue details"
 msgstr "O akcie"
 
-#: unkot/isap/templates/isap/deed_detail.html:15
+#: unkot/isap/templates/isap/deed_detail.html:12
 msgid "Publication"
 msgstr "Publikacja"
 
-#: unkot/isap/templates/isap/deed_detail.html:22
+#: unkot/isap/templates/isap/deed_detail.html:19
 msgid "Year"
 msgstr "Rok"
 
-#: unkot/isap/templates/isap/deed_detail.html:24
+#: unkot/isap/templates/isap/deed_detail.html:21
 msgid "Volume"
 msgstr "Tom"
 
-#: unkot/isap/templates/isap/deed_detail.html:26
+#: unkot/isap/templates/isap/deed_detail.html:23
 msgid "Position"
 msgstr "Pozycja"
 
-#: unkot/isap/templates/isap/deed_detail.html:27
+#: unkot/isap/templates/isap/deed_detail.html:24
 msgid "Statue type"
 msgstr "Rodzaj aktu"
 
-#: unkot/isap/templates/isap/deed_detail.html:30
+#: unkot/isap/templates/isap/deed_detail.html:27
 msgid "Promulgation date"
 msgstr "Data ogłoszenia"
 
-#: unkot/isap/templates/isap/deed_detail.html:31
+#: unkot/isap/templates/isap/deed_detail.html:28
 msgid "Announcement date"
 msgstr "Data wydania"
 
-#: unkot/isap/templates/isap/deed_detail.html:34
+#: unkot/isap/templates/isap/deed_detail.html:32
 msgid "Statue text published by ISAP as pdf file"
 msgstr "Opublikowany przez ISAP tekst aktu formacie pdf"
 
@@ -67,29 +67,33 @@ msgstr "Opublikowany przez ISAP tekst aktu formacie pdf"
 msgid "Statues list"
 msgstr "Wykaz aktów"
 
-#: unkot/isap/templates/isap/deeds_list.html:20
+#: unkot/isap/templates/isap/deeds_list.html:23
 msgid "Search"
 msgstr "Szukaj"
 
-#: unkot/isap/templates/isap/deeds_list.html:24
+#: unkot/isap/templates/isap/deeds_list.html:30
 msgid "Save search"
 msgstr "Zapisz wyszukiwanie"
 
-#: unkot/isap/templates/isap/deeds_list.html:33
-#: unkot/isap/templates/isap/saved_searches_list.html:12
-#, python-format
-msgid "You have %(counter)s saved search"
-msgid_plural "You have %(counter)s saved searches"
-msgstr[0] "Masz %(counter)s zapisane wyszukiwanie"
-msgstr[1] "Masz %(counter)s zapisane wyszukiwania"
-msgstr[2] "Masz %(counter)s zapisanych wyszukiwań"
-msgstr[3] "Masz %(counter)s zapisanych wyszukiwań"
-
 #: unkot/isap/templates/isap/deeds_list.html:39
+#, python-format
+msgid "You have 1 saved search"
+msgid_plural "You have %(count)s saved searches"
+msgstr[0] "Masz %(count)s zapisane wyszukiwanie"
+msgstr[1] "Masz %(count)s zapisane wyszukiwania"
+msgstr[2] "Masz %(count)s zapisanych wyszukiwań"
+msgstr[3] "Masz %(count)s zapisanych wyszukiwań"
+
+#: unkot/isap/templates/isap/deeds_list.html:45
 msgid "saved searches"
 msgstr "zapisane wyszukiwania"
 
-#: unkot/isap/templates/isap/deeds_list.html:47
+#: unkot/isap/templates/isap/deeds_list.html:48
+#: unkot/isap/templates/isap/saved_searches_list.html:17
+msgid "You don't have any saved searches yet."
+msgstr "Nie masz jeszcze żadnych zapisanych wyszukiwań."
+
+#: unkot/isap/templates/isap/deeds_list.html:52
 msgid ""
 "Creating an account and signing is necessary to use full funcionality of "
 "this service"
@@ -97,7 +101,7 @@ msgstr ""
 "Założenie konta i zalogowanie się umożliwia korzystanie z pełnej "
 "funkcjonalności serwisu"
 
-#: unkot/isap/templates/isap/deeds_list.html:52
+#: unkot/isap/templates/isap/deeds_list.html:55
 #, python-format
 msgid "%(counter)s statue in database"
 msgid_plural "%(counter)s statues in database"
@@ -106,7 +110,7 @@ msgstr[1] "%(counter)s akty w bazie danych"
 msgstr[2] "%(counter)s aktów w bazie danych"
 msgstr[3] "%(counter)s aktów w bazie danych"
 
-#: unkot/isap/templates/isap/deeds_list.html:58
+#: unkot/isap/templates/isap/deeds_list.html:62
 #, python-format
 msgid "%(counter)s statue matching search criteria"
 msgid_plural "%(counter)s statues matching search citeria"
@@ -116,80 +120,142 @@ msgstr[2] "%(counter)s aktów spełnia kryteria wyszukiwania 2"
 msgstr[3] "%(counter)s aktów spełnia kryteria wyszukiwania 3"
 
 #: unkot/isap/templates/isap/deeds_list.html:74
+#: unkot/isap/templates/isap/saved_search_detail.html:39
 msgid "Title"
 msgstr "Tytuł"
 
 #: unkot/isap/templates/isap/deeds_list.html:75
+#: unkot/isap/templates/isap/saved_search_detail.html:40
 msgid "Status"
 msgstr "Status"
 
 #: unkot/isap/templates/isap/deeds_list.html:76
+#: unkot/isap/templates/isap/saved_search_detail.html:41
 msgid "Change date"
 msgstr "Zmiana"
 
-#: unkot/isap/templates/isap/deeds_list.html:90
-msgid "No statues to display"
-msgstr ""
+#: unkot/isap/templates/isap/deeds_list.html:92
+#: unkot/isap/templates/isap/saved_searches_list.html:44
+msgid "No statues to display."
+msgstr "Brak dokumentów do wyswietlenia."
+
+#: unkot/isap/templates/isap/saved_search_delete.html:4
+#: unkot/isap/templates/isap/saved_search_delete.html:10
+msgid "Remove saved search"
+msgstr "Usunąć zapisane wyszukiwania"
+
+#: unkot/isap/templates/isap/saved_search_delete.html:20
+msgid "No"
+msgstr "Nie"
+
+#: unkot/isap/templates/isap/saved_search_delete.html:24
+msgid "Yes"
+msgstr "Tak"
+
+#: unkot/isap/templates/isap/saved_search_detail.html:4
+msgid "Search:"
+msgstr "Wyszukiwanie:"
+
+#: unkot/isap/templates/isap/saved_search_detail.html:8
+msgid "Saved search"
+msgstr "Zapisane wyszukiwanie"
+
+#: unkot/isap/templates/isap/saved_search_detail.html:10
+msgid "Firrst run"
+msgstr "Pierwsze wyszukiwanie"
+
+#: unkot/isap/templates/isap/saved_search_detail.html:11
+msgid "Most recent run"
+msgstr "Ostatnie wyszukiwanie"
+
+#: unkot/isap/templates/isap/saved_search_detail.html:12
+msgid "Number unique search results"
+msgstr "Liczba unikalnych wyników wyszukiwania"
+
+#: unkot/isap/templates/isap/saved_search_detail.html:24
+msgid "Subscribe search"
+msgstr "Subskrybuj wyszukiwanie"
+
+#: unkot/isap/templates/isap/saved_search_detail.html:30
+msgid "Search results from"
+msgstr "Wyniki wyszukiwania od"
+
+#: unkot/isap/templates/isap/saved_search_detail.html:30
+msgid "to"
+msgstr "do"
+
+#: unkot/isap/templates/isap/saved_search_detail.html:32
+msgid "Number of acts in the search reasult:"
+msgstr "Liczba dokumentów znalezionych przez wyszukiwanie:"
+
+#: unkot/isap/templates/isap/saved_search_detail.html:35
+msgid "New acts:"
+msgstr "Nowe dokumenty:"
+
+#: unkot/isap/templates/isap/saved_search_detail.html:57
+msgid "No new acts."
+msgstr "Brak nowych dokumentów w wynikach wyszukiwania."
 
 #: unkot/isap/templates/isap/saved_searches_list.html:4
 msgid "Saved searches"
 msgstr "Zapisane wyszukiwania"
 
-#: unkot/isap/templates/isap/saved_searches_list.html:19
-msgid "You don't have any saved searches"
-msgstr "Masz %(counter)s zapisane wyszukiwanie"
+# python-format
+#: unkot/isap/templates/isap/saved_searches_list.html:10
+#, python-format
+msgid "You have %(counter)s saved search"
+msgid_plural "You have %(counter)s saved searches"
+msgstr[0] "Masz %(counter)s zapisane wyszukiwanie"
+msgstr[1] "Masz %(counter)s zapisane wyszukiwania"
+msgstr[2] "Masz %(counter)s zapisanych wyszukiwań"
+msgstr[3] "Masz %(counter)s zapisanych wyszukiwań"
 
-#: unkot/isap/templates/isap/saved_searches_list.html:29
+#: unkot/isap/templates/isap/saved_searches_list.html:24
 msgid "Query"
 msgstr "Zapytanie"
 
-#: unkot/isap/templates/isap/saved_searches_list.html:30
+#: unkot/isap/templates/isap/saved_searches_list.html:25
 msgid "Number of unique search results"
 msgstr "Liczba unikalnych wyników wyszukiwania"
 
-#: unkot/isap/templates/isap/saved_searches_list.html:41
-#: unkot/templates/account/email.html:39
+#: unkot/isap/templates/isap/saved_searches_list.html:37
 msgid "Remove"
 msgstr "Usuń"
 
-#: unkot/isap/templates/isap/saved_searches_list.html:47
-msgid "Brak aktów do wyświetlenia"
-msgstr "Brak aktów do wyświetlenia"
-
-#: unkot/templates/account/account_inactive.html:5
-#: unkot/templates/account/account_inactive.html:8
+#: unkot/templates/account/account_inactive.html:4
+#: unkot/templates/account/account_inactive.html:7
 msgid "Account Inactive"
 msgstr "Konto nieaktywne"
 
-#: unkot/templates/account/account_inactive.html:10
+#: unkot/templates/account/account_inactive.html:8
 msgid "This account is inactive."
 msgstr "To konto nie jest aktywne."
 
-#: unkot/templates/account/email.html:7
+#: unkot/templates/account/email.html:5
 msgid "Account"
 msgstr "Konto"
 
-#: unkot/templates/account/email.html:10
+#: unkot/templates/account/email.html:8
 msgid "E-mail Addresses"
 msgstr "Adresy e-mail"
 
-#: unkot/templates/account/email.html:13
+#: unkot/templates/account/email.html:10
 msgid "The following e-mail addresses are associated with your account:"
 msgstr "Adresy e-mail powiązane z Państwa kontem:"
 
-#: unkot/templates/account/email.html:27
+#: unkot/templates/account/email.html:22
 msgid "Verified"
 msgstr "Zweryfikowane"
 
-#: unkot/templates/account/email.html:29
+#: unkot/templates/account/email.html:24
 msgid "Unverified"
 msgstr "Niezweryfikowane"
 
-#: unkot/templates/account/email.html:31
+#: unkot/templates/account/email.html:27
 msgid "Primary"
 msgstr "Główne"
 
-#: unkot/templates/account/email.html:37
+#: unkot/templates/account/email.html:35
 msgid "Make Primary"
 msgstr "Ustaw jako podstawowe"
 
@@ -197,36 +263,37 @@ msgstr "Ustaw jako podstawowe"
 msgid "Re-send Verification"
 msgstr "Prześlij ponownie wiadomość weryfikacyjną"
 
-#: unkot/templates/account/email.html:46
+#: unkot/templates/account/email.html:50
 msgid "Warning:"
 msgstr "Otrzeżenie:"
 
-#: unkot/templates/account/email.html:46
+#: unkot/templates/account/email.html:50
 msgid ""
-"You currently do not have any e-mail address set up. You should really add "
-"an e-mail address so you can receive notifications, reset your password, etc."
+"You currently do not have any e-mail address set up. You                "
+"should really add an e-mail address so you can receive notifications, reset "
+"your password, etc."
 msgstr ""
 "Żaden adres e-mail nie jest skojarzony z tym kontem.Pożądane jest podanie "
 "adresu e-mail w celu otrzymywania powiadomień, odzyskiwania hasła, itp."
 
-#: unkot/templates/account/email.html:51
+#: unkot/templates/account/email.html:53
 msgid "Add E-mail Address"
 msgstr "Dodaj adres e-mail"
 
-#: unkot/templates/account/email.html:56
+#: unkot/templates/account/email.html:57
 msgid "Add E-mail"
 msgstr "Dodaj e-mail"
 
-#: unkot/templates/account/email.html:66
+#: unkot/templates/account/email.html:64
 msgid "Do you really want to remove the selected e-mail address?"
 msgstr "Czy rzeczywiście chcesz usunąć wybrany adres e-mail?"
 
-#: unkot/templates/account/email_confirm.html:6
-#: unkot/templates/account/email_confirm.html:10
+#: unkot/templates/account/email_confirm.html:5
+#: unkot/templates/account/email_confirm.html:8
 msgid "Confirm E-mail Address"
 msgstr "Potwierdź adres e-mail"
 
-#: unkot/templates/account/email_confirm.html:16
+#: unkot/templates/account/email_confirm.html:12
 #, python-format
 msgid ""
 "Please confirm that <a href=\"mailto:%(email)s\">%(email)s</a> is an e-mail "
@@ -235,30 +302,31 @@ msgstr ""
 "Proszę potwierdzić, że adres e-mail <a href=\"mailto:%(email)s\">%(email)s</"
 "a> należy do użytkownika %(user_display)s."
 
-#: unkot/templates/account/email_confirm.html:20
+#: unkot/templates/account/email_confirm.html:17
 msgid "Confirm"
 msgstr "Potwierdź"
 
-#: unkot/templates/account/email_confirm.html:27
-#, python-format
-msgid ""
-"This e-mail confirmation link expired or is invalid. Please <a href="
-"\"%(email_url)s\">issue a new e-mail confirmation request</a>."
+#: unkot/templates/account/email_confirm.html:22
+#, fuzzy
+msgid "This e-mail confirmation link expired or is invalid. Please "
 msgstr ""
 "Łącze powierdzające z tej widomości e-mail wygasło lub jest nieprawidłowe. "
-"Proszę <a href=\"%(email_url)s\">wysłać nową wiadomość potwierdzającą adres "
-"e-mail</a>."
+"Proszę "
 
-#: unkot/templates/account/login.html:7 unkot/templates/account/login.html:11
-#: unkot/templates/account/login.html:56 unkot/templates/base.html:80
+#: unkot/templates/account/email_confirm.html:23
+msgid "issue a new e-mail confirmation request"
+msgstr "wysłać nową wiadomość potwierdzającą adres e-mail"
+
+#: unkot/templates/account/login.html:6 unkot/templates/account/login.html:9
+#: unkot/templates/account/login.html:48 unkot/templates/base.html:84
 msgid "Sign In"
 msgstr "Zaloguj"
 
-#: unkot/templates/account/login.html:17
+#: unkot/templates/account/login.html:13
 msgid "Please sign in with one of your existing third party accounts:"
 msgstr "Zaloguj używając jednego z tych kont zewnętrznych:"
 
-#: unkot/templates/account/login.html:19
+#: unkot/templates/account/login.html:15
 #, python-format
 msgid ""
 "Or, <a href=\"%(signup_url)s\">sign up</a> for a %(site_name)s account and "
@@ -267,50 +335,50 @@ msgstr ""
 "Albo, <a href=\"%(signup_url)s\">załóż konto</a> na %(site_name)si zaloguj "
 "poniżej"
 
-#: unkot/templates/account/login.html:32
+#: unkot/templates/account/login.html:25
 msgid "or"
 msgstr "albo"
 
-#: unkot/templates/account/login.html:41
+#: unkot/templates/account/login.html:31
 #, python-format
 msgid ""
-"If you have not created an account yet, then please <a href=\"%(signup_url)s"
-"\">sign up</a> first."
+"If you have not created an account yet, then please <a "
+"href=\"%(signup_url)s\">sign up</a> first."
 msgstr ""
-"Jeśli nie założyli jeszcze Państwo konta, proszę <a href=\"%(signup_url)s"
-"\">założyć konto</a> najpierw."
+"Jeśli nie założyli jeszcze Państwo konta, proszę <a "
+"href=\"%(signup_url)s\">założyć konto</a> najpierw."
 
-#: unkot/templates/account/login.html:55
+#: unkot/templates/account/login.html:47
 msgid "Forgot Password?"
 msgstr "Ustaw nowe hasło"
 
-#: unkot/templates/account/logout.html:5 unkot/templates/account/logout.html:8
-#: unkot/templates/account/logout.html:17 unkot/templates/base.html:69
+#: unkot/templates/account/logout.html:4 unkot/templates/account/logout.html:7
+#: unkot/templates/account/logout.html:16 unkot/templates/base.html:73
 msgid "Sign Out"
 msgstr "Wyloguj"
 
-#: unkot/templates/account/logout.html:10
+#: unkot/templates/account/logout.html:8
 msgid "Are you sure you want to sign out?"
 msgstr "Czy na pewno wylogować?"
 
-#: unkot/templates/account/password_change.html:6
-#: unkot/templates/account/password_change.html:9
+#: unkot/templates/account/password_change.html:5
+#: unkot/templates/account/password_change.html:8
 #: unkot/templates/account/password_change.html:14
 #: unkot/templates/account/password_reset_from_key.html:5
-#: unkot/templates/account/password_reset_from_key.html:8
+#: unkot/templates/account/password_reset_from_key.html:12
 #: unkot/templates/account/password_reset_from_key_done.html:4
 #: unkot/templates/account/password_reset_from_key_done.html:7
 msgid "Change Password"
 msgstr "Zmień hasło"
 
-#: unkot/templates/account/password_reset.html:7
-#: unkot/templates/account/password_reset.html:11
-#: unkot/templates/account/password_reset_done.html:6
-#: unkot/templates/account/password_reset_done.html:9
+#: unkot/templates/account/password_reset.html:6
+#: unkot/templates/account/password_reset.html:9
+#: unkot/templates/account/password_reset_done.html:5
+#: unkot/templates/account/password_reset_done.html:8
 msgid "Password Reset"
 msgstr "Ustawienie nowego hasła"
 
-#: unkot/templates/account/password_reset.html:16
+#: unkot/templates/account/password_reset.html:14
 msgid ""
 "Forgotten your password? Enter your e-mail address below, and we'll send you "
 "an e-mail allowing you to reset it."
@@ -318,15 +386,17 @@ msgstr ""
 "Proszę podać adres e-mail. Wyślemy na niego wiadomość umożliwiającą "
 "ustawienie nowego hasła."
 
-#: unkot/templates/account/password_reset.html:21
+#: unkot/templates/account/password_reset.html:23
+#, fuzzy
+#| msgid "Reset My Password"
 msgid "Reset My Password"
 msgstr "Ustaw nowe hasło"
 
-#: unkot/templates/account/password_reset.html:24
+#: unkot/templates/account/password_reset.html:25
 msgid "Please contact us if you have any trouble resetting your password."
 msgstr "Prosimy o kontakt z nami w razie problemów z ustawieniem nowego hasła."
 
-#: unkot/templates/account/password_reset_done.html:15
+#: unkot/templates/account/password_reset_done.html:13
 msgid ""
 "We have sent you an e-mail. Please contact us if you do not receive it "
 "within a few minutes."
@@ -334,45 +404,51 @@ msgstr ""
 "Wysłaliśmy Państwu wiadomość e-mail. Proismy o kontakt, jeśli w ciągu kilku "
 "minut nie dotrze ona do Państwa."
 
-#: unkot/templates/account/password_reset_from_key.html:8
+#: unkot/templates/account/password_reset_from_key.html:10
 msgid "Bad Token"
 msgstr "Token nieprawidłowy"
 
-#: unkot/templates/account/password_reset_from_key.html:12
-#, python-format
+#: unkot/templates/account/password_reset_from_key.html:18
+#, fuzzy, python-format
+#| msgid ""
+#| "The password reset link was invalid, possibly because it has already been "
+#| "used.  Please request a <a href=\"%(passwd_reset_url)s\">new password "
+#| "reset</a>."
 msgid ""
 "The password reset link was invalid, possibly because it has already been "
-"used.  Please request a <a href=\"%(passwd_reset_url)s\">new password reset</"
-"a>."
+"used. Please request a\n"
+"    <a href=\"%(passwd_reset_url)s\">new password reset</a>."
 msgstr ""
 "Nieprawidłowe łącze do ustawienia nowego hasła, być może było już użyte. "
 "Proszę o <a href=\"%(passwd_reset_url)s\">ustawienie nowego hasła</a>."
 
-#: unkot/templates/account/password_reset_from_key.html:18
-msgid "change password"
+#: unkot/templates/account/password_reset_from_key.html:29
+#, fuzzy
+#| msgid "change password"
+msgid " change password"
 msgstr "zmień hasło"
 
-#: unkot/templates/account/password_reset_from_key.html:21
+#: unkot/templates/account/password_reset_from_key.html:32
 #: unkot/templates/account/password_reset_from_key_done.html:8
 msgid "Your password is now changed."
 msgstr "Hasło zostało zmienione."
 
-#: unkot/templates/account/password_set.html:6
-#: unkot/templates/account/password_set.html:9
-#: unkot/templates/account/password_set.html:14
+#: unkot/templates/account/password_set.html:5
+#: unkot/templates/account/password_set.html:8
+#: unkot/templates/account/password_set.html:17
 msgid "Set Password"
 msgstr "Ustaw hasło"
 
-#: unkot/templates/account/signup.html:6
+#: unkot/templates/account/signup.html:5
 msgid "Signup"
 msgstr "Zaloguj"
 
-#: unkot/templates/account/signup.html:9 unkot/templates/account/signup.html:19
-#: unkot/templates/base.html:75
+#: unkot/templates/account/signup.html:8 unkot/templates/account/signup.html:25
+#: unkot/templates/base.html:79
 msgid "Sign Up"
 msgstr "Załóż nowe konto"
 
-#: unkot/templates/account/signup.html:11
+#: unkot/templates/account/signup.html:10
 #, python-format
 msgid ""
 "Already have an account? Then please <a href=\"%(login_url)s\">sign in</a>."
@@ -380,99 +456,104 @@ msgstr ""
 "Proszę się <a href=\"%(login_url)s\">zalogować</a>, jeśli macie Państo już "
 "konto."
 
-#: unkot/templates/account/signup_closed.html:5
-#: unkot/templates/account/signup_closed.html:8
+#: unkot/templates/account/signup_closed.html:4
+#: unkot/templates/account/signup_closed.html:7
 msgid "Sign Up Closed"
-msgstr "Zakładanie nowych kont wyłączone"
+msgstr "Zakładanie nowych kont jest wyłączone"
 
-#: unkot/templates/account/signup_closed.html:10
+#: unkot/templates/account/signup_closed.html:8
 msgid "We are sorry, but the sign up is currently closed."
 msgstr "Niestety, zakładanie nowych kont jest obecnie wyłączone."
 
-#: unkot/templates/account/verification_sent.html:5
-#: unkot/templates/account/verification_sent.html:8
-#: unkot/templates/account/verified_email_required.html:5
-#: unkot/templates/account/verified_email_required.html:8
+#: unkot/templates/account/verification_sent.html:4
+#: unkot/templates/account/verification_sent.html:7
+#: unkot/templates/account/verified_email_required.html:4
+#: unkot/templates/account/verified_email_required.html:7
 msgid "Verify Your E-mail Address"
 msgstr "Proszę zweryfikować Państwa adres e-mail"
 
-#: unkot/templates/account/verification_sent.html:10
+#: unkot/templates/account/verification_sent.html:9
+#, fuzzy
+#| msgid ""
+#| "We have sent an e-mail to you for verification. Follow the link provided "
+#| "to finalize the signup process. Please contact us if you do not receive "
+#| "it within a few minutes."
 msgid ""
 "We have sent an e-mail to you for verification. Follow the link provided to "
-"finalize the signup process. Please contact us if you do not receive it "
-"within a few minutes."
+"finalize the signup\n"
+"    process. Please contact us if you do not receive it within a few minutes."
 msgstr ""
 "Wysłaliśmy Państwu wiadomość e-mail w celu weryfikacji podanego adresu e-"
 "mail. Prosimy użyć zawartego w wiadomości łącza w celu dokończenia "
 "zakładania konta. Prosimy o skontaktowanie się z nami, jeśli wiadomość nie "
 "dotrze do Państwa w ciągu kilku minut."
 
-#: unkot/templates/account/verified_email_required.html:12
+#: unkot/templates/account/verified_email_required.html:10
 msgid ""
-"This part of the site requires us to verify that\n"
-"you are who you claim to be. For this purpose, we require that you\n"
-"verify ownership of your e-mail address. "
+"This part of the site requires us to verify that you are who you claim to "
+"be. For this purpose, we require that you verify ownership of your e-mail "
+"address."
 msgstr ""
 "W tej części serwisu zobowiązani jesteśmy do werfikacji państwa tożsamości. "
 "W tym celu prosimy o potwierdzenie Państwa adresu e-mail."
 
-#: unkot/templates/account/verified_email_required.html:16
+#: unkot/templates/account/verified_email_required.html:17
 msgid ""
-"We have sent an e-mail to you for\n"
-"verification. Please click on the link inside this e-mail. Please\n"
-"contact us if you do not receive it within a few minutes."
+"We have sent an e-mail to you for verification. Please click on the link "
+"inside this e-mail. Please contact us if you do not receive it within a few "
+"minutes."
 msgstr ""
 "W celu sprawdzenia adresu e-mail wysłaliśmy Państwu wiadomość. Proszę "
 "kliknąć na łączu w przesłanej wiadomości. Prosimy o kontakt z nami, jeśli w "
 "ciągu kilku minut widomość nie dotrze do Państwa."
 
-#: unkot/templates/account/verified_email_required.html:20
+#: unkot/templates/account/verified_email_required.html:24
 #, python-format
 msgid ""
 "<strong>Note:</strong> you can still <a href=\"%(email_url)s\">change your e-"
 "mail address</a>."
 msgstr ""
-"<strong>Uwaga:</strong> wciąż  możecie Państwo <a href=\"%(email_url)s"
-"\">zmienić adres e-mail</a>."
+"<strong>Uwaga:</strong> wciąż  możecie Państwo <a "
+"href=\"%(email_url)s\">zmienić adres e-mail</a>."
 
-#: unkot/templates/base.html:54
+#: unkot/templates/base.html:57
 msgid "Home"
 msgstr "Start"
 
-#: unkot/templates/base.html:57
+#: unkot/templates/base.html:60
 msgid "ISAP"
 msgstr "ISAP"
 
-#: unkot/templates/base.html:60
+#: unkot/templates/base.html:63
 msgid "About"
 msgstr "O serwisie"
 
-#: unkot/templates/base.html:65
+#: unkot/templates/base.html:69
 msgid "My Profile"
-msgstr "Moje konto"
+msgstr "Państwa Profil"
 
-#: unkot/templates/base.html:128
+#: unkot/templates/base.html:141
 msgid "Terms of Service"
 msgstr "Regulamin"
 
-#: unkot/templates/base.html:131
+#: unkot/templates/base.html:144
 msgid "Privacy Policy"
 msgstr "Polityka prywatności"
 
-#: unkot/templates/base.html:134 unkot/templates/pages/contact.html:4
-#: unkot/templates/pages/contact.html:8
+#: unkot/templates/base.html:147 unkot/templates/pages/contact.html:4
+#: unkot/templates/pages/contact.html:7
 msgid "Contact"
 msgstr "Kontakt"
 
-#: unkot/templates/pages/about.html:4 unkot/templates/pages/about.html:8
+#: unkot/templates/pages/about.html:4 unkot/templates/pages/about.html:7
 msgid "About Us"
 msgstr "O serwisie"
 
-#: unkot/templates/pages/about.html:12
+#: unkot/templates/pages/about.html:9
 msgid "The only constant is the change."
 msgstr "Jedyną stałą rzeczą jest zmiana."
 
-#: unkot/templates/pages/about.html:17
+#: unkot/templates/pages/about.html:14
 msgid ""
 "Conducting bussiness in our legislative and market environment forces us to "
 "act on the changes quickly."
@@ -480,7 +561,7 @@ msgstr ""
 "Działając w otaczającej nas rzeczywistości prawnej i gospodarczejmusimy "
 "szybko reagować na zmiany w niej zachodzące."
 
-#: unkot/templates/pages/about.html:23
+#: unkot/templates/pages/about.html:20
 msgid ""
 "Those who are notified about the changes earlier are in a better position on "
 "the market."
@@ -488,7 +569,7 @@ msgstr ""
 "Te podmioty, które wcześniej otrzymują informacje o zachodzących zmianach "
 "zyskują przewagę na rynku."
 
-#: unkot/templates/pages/about.html:29
+#: unkot/templates/pages/about.html:26
 msgid ""
 "Our mission is to promptly notify our customers about ongoing changes and "
 "new market opportunities."
@@ -496,7 +577,7 @@ msgstr ""
 "Naszą misją jest dostarczanie odbiorcom naszych usług aktualnych informacji "
 "o zachodzących zmianach, o nowych możliwościach pojawiających się na rynku."
 
-#: unkot/templates/pages/about.html:37
+#: unkot/templates/pages/about.html:33
 #, python-format
 msgid ""
 "If your firm needs a bespoke solution or you have a suggestion about our "
@@ -506,19 +587,19 @@ msgstr ""
 "potrzeb lub macie Państwo sugestie dotyczące tego co już oferujemy, to "
 "zapraszamy do <a href=%(contact_url)s>kontaktu</a>."
 
-#: unkot/templates/pages/home.html:7
+#: unkot/templates/pages/home.html:5
 msgid "We provide"
 msgstr "Oferujemy"
 
-#: unkot/templates/pages/home.html:9
+#: unkot/templates/pages/home.html:6
 msgid "Polish law change monitoring"
 msgstr "monitoring zmian w polskim prawie"
 
-#: unkot/templates/pages/home.html:14
+#: unkot/templates/pages/home.html:9
 msgid "Search for relevant statues"
 msgstr "Wyszukaj interesujące akty prawne"
 
-#: unkot/templates/pages/home.html:17
+#: unkot/templates/pages/home.html:10
 msgid ""
 "Save a search query with a set of statues matching the search query at the "
 "moment"
@@ -526,7 +607,7 @@ msgstr ""
 "Zapisz wyszukiwanie wraz z wykazem aktów prawnych pasujących do wyszukiwania "
 "w danej chwili"
 
-#: unkot/templates/pages/home.html:20
+#: unkot/templates/pages/home.html:11
 msgid ""
 "Receive email notfications when new statues matching the search query are "
 "published"
@@ -534,15 +615,15 @@ msgstr ""
 "Otrzymuj powiadomienia przez e-mail, jeśli prawodawca opublikuje nowe akty "
 "prawne pasujące do wyszukiwania"
 
-#: unkot/templates/pages/home.html:25
+#: unkot/templates/pages/home.html:14
 msgid "Changes in the law can still be surprising, but your firm will have"
 msgstr "Zmiany prawa wciąż mogą zaskakiwać, ale Państwa firma będzie miała"
 
-#: unkot/templates/pages/home.html:26
+#: unkot/templates/pages/home.html:15
 msgid "<b>more time</b> to accomodate the change"
 msgstr "<b>więcej czasu</b> na reakcję na zmiany"
 
-#: unkot/templates/pages/home.html:30
+#: unkot/templates/pages/home.html:18
 msgid ""
 "We work on more services for firms to prosper in current harsh market "
 "conditions"
@@ -550,19 +631,19 @@ msgstr ""
 "Pracujemy nad rozwinięciem oferty zmierzając do ułatwieniafirmom poruszania "
 "się po obecnej, niełatwej, rzeczywistości gospodarczej"
 
-#: unkot/templates/pages/home.html:35
+#: unkot/templates/pages/home.html:24
 msgid "If you are interested in our offer, please"
 msgstr "Zainteresowanych naszymi produktami zapraszamy do"
 
-#: unkot/templates/pages/home.html:36
+#: unkot/templates/pages/home.html:25
 msgid "subscribe"
 msgstr "subskrypcji"
 
-#: unkot/templates/pages/home.html:37
+#: unkot/templates/pages/home.html:26
 msgid "to our newsletter"
 msgstr "naszego newslettera"
 
-#: unkot/templates/pages/home.html:40
+#: unkot/templates/pages/home.html:28
 msgid "We send up to a few emails per month"
 msgstr "Wysyłamy do kilku e-maili miesięcznie"
 
@@ -570,27 +651,27 @@ msgstr "Wysyłamy do kilku e-maili miesięcznie"
 msgid "User:"
 msgstr "Użytkownik:"
 
-#: unkot/templates/users/user_detail.html:24
+#: unkot/templates/users/user_detail.html:18
 msgid "About me"
 msgstr "O mnie"
 
-#: unkot/templates/users/user_detail.html:25
+#: unkot/templates/users/user_detail.html:21
 msgid "E-mail address"
 msgstr "Adres e-mail"
 
-#: unkot/templates/users/user_form.html:14
+#: unkot/templates/users/user_form.html:16
 msgid "Update"
 msgstr "Uaktualnij"
 
-#: unkot/users/admin.py:18
+#: unkot/users/admin.py:17
 msgid "Personal info"
 msgstr "Informacje osobiste"
 
-#: unkot/users/admin.py:20
+#: unkot/users/admin.py:19
 msgid "Permissions"
 msgstr "Uprawnienia"
 
-#: unkot/users/admin.py:31
+#: unkot/users/admin.py:30
 msgid "Important dates"
 msgstr "Ważne daty"
 
@@ -606,6 +687,6 @@ msgstr "Ta nazwa użytkownika została już zajęta."
 msgid "Name of User"
 msgstr "Nazwa użytkownika"
 
-#: unkot/users/tests/test_views.py:67 unkot/users/views.py:25
+#: unkot/users/tests/test_views.py:67 unkot/users/views.py:23
 msgid "Information successfully updated"
-msgstr "Informacje uaktualnione"
+msgstr "Informacje zostały uaktualnione"

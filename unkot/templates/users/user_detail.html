@@ -1,34 +1,29 @@
 {% extends "base.html" %}
 {% load static i18n %}
-
-{% block title %}{% translate "User:" %} {{ object.username }}{% endblock %}
-
+{% block title %}
+    {% translate "User:" %} {{ object.username }}
+{% endblock title %}
 {% block content %}
-<div class="container">
-
-  <div class="row">
-    <div class="col-sm-12">
-
-      <h2>{{ object.username }}</h2>
-      {% if object.name %}
-        <p>{{ object.name }}</p>
-      {% endif %}
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <h2>{{ object.username }}</h2>
+                {% if object.name %}<p>{{ object.name }}</p>{% endif %}
+            </div>
+        </div>
+        {% if object == request.user %}
+            <!-- Action buttons -->
+            <div class="row">
+                <div class="col-sm-12">
+                    <a class="btn btn-primary" href="{% url 'users:update' %}" role="button">{% translate "About me" %}</a>
+                    <a class="btn btn-primary"
+                       href="{% url 'account_email' %}"
+                       role="button">{% translate "E-mail address" %}
+                    </a>
+                    <!-- Your Stuff: Custom user template urls -->
+                </div>
+            </div>
+            <!-- End Action buttons -->
+        {% endif %}
     </div>
-  </div>
-
-{% if object == request.user %}
-<!-- Action buttons -->
-<div class="row">
-
-  <div class="col-sm-12">
-	  <a class="btn btn-primary" href="{% url 'users:update' %}" role="button">{% translate "About me" %}</a>
-	  <a class="btn btn-primary" href="{% url 'account_email' %}" role="button">{% translate "E-mail address" %}</a>
-    <!-- Your Stuff: Custom user template urls -->
-  </div>
-
-</div>
-<!-- End Action buttons -->
-{% endif %}
-
-</div>
 {% endblock content %}

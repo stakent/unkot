@@ -288,7 +288,7 @@ unkot/media/
 !.envs/.local/
 .envs/
 
-# cypress secrets file copied for each environment 
+# cypress secrets file copied for each environment
 # from apropriate .envs/cypress/* file
 cypress.env.json
 

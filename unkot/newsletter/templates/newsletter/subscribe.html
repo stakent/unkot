@@ -1,22 +1,18 @@
-{% extends 'base.html' %}
-
-{% block title %}Newsletter - subskrybcja{% endblock %}
-
-
+{% extends "base.html" %}
+{% block title %}
+    Newsletter - subskrybcja
+{% endblock title %}
 {% block content %}
-
-<h2>Subskrypcja newslettera</h2>
-
-<form action="{% url 'newsletter_subscribe' %}" method="post">
-  {% csrf_token %}
-  <div class="mb-3">
-    {{ form.as_p }}
-    <div class="form-text">
-      Wysyłamy do kilku e-maili miesięcznie, Państwa adres e-mail jest u nas bezpieczny.
-      Więcej na ten temat w <a href="{% url 'polityka-prywatnosci' %}">polityce prywatności</a>.
-    </div>
-  </div>
-  <input type="submit" class="btn btn-primary" value="Subskrybuj">
-</form>
-
-{% endblock %}
+    <h2>Subskrypcja newslettera</h2>
+    <form action="{% url 'newsletter_subscribe' %}" method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+            {{ form.as_p }}
+            <div class="form-text">
+                Wysyłamy do kilku e-maili miesięcznie, Państwa adres e-mail jest u nas bezpieczny.
+                Więcej na ten temat w <a href="{% url 'polityka-prywatnosci' %}">polityce prywatności</a>.
+            </div>
+        </div>
+        <input type="submit" class="btn btn-primary" value="Subskrybuj">
+    </form>
+{% endblock content %}

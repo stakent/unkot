@@ -20,7 +20,7 @@ describe('Register as new user', () => {
     cy.get('#sign-up-link').click()
     cy.url().should('include', '/accounts/signup/')
   })
-  
+
   it('fill out and submit registration form', () => {
     cy.visit('/accounts/signup/')
 
