@@ -31,9 +31,17 @@ Receive email notifications when changes of the laws relevant for you are publis
 
         . env-local.sh
 
+## i18n
+
+### Create or refresh messages translations file django.po
+
+        ./manage.py makemessages --all --ignore 'venv/*'
 
 
-The rest is pretty standard or described in Cookiecutter Django documentation.
+### Compile messages translations to use by gettext
+
+        ./manage.py compilemessages --ignore 'venv/*'
+---
 
 ## Cookiecutter Django readme
 
