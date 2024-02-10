@@ -1,6 +1,8 @@
 import hashlib
 import io
 from datetime import date, datetime
+from pathlib import Path
+from zoneinfo import ZoneInfo
 
 from django.conf import settings
 from django.contrib.postgres.fields import ArrayField
@@ -11,8 +13,12 @@ from django.db import models
 from django.template.loader import render_to_string
 from django.urls import reverse
 from django.utils import timezone
+from structlog import get_logger
 
+from unkot.isap.serializers import ActInfo
 from unkot.users.models import User
+
+log = get_logger()
 
 NO_DATE_PROVIDED = date(1, 1, 1)
 NO_DATETIME_PROVIDED = datetime(1, 1, 1, 0, 0, tzinfo=timezone.utc)
@@ -57,8 +63,9 @@ class DeedText(models.Model):
         return f'{ self.deed.title} { self.seq }'
 
 
-def save_deed_text(address, change_date, text):
+def save_deed_text(address, change_date: datetime, text):
     """Save deed text in chunks and update search vectors."""
+    change_date_tz = change_date.replace(tzinfo=ZoneInfo("Europe/Warsaw"))
     max_size = 500_000  # approx. size of the deed text part in db
     lines = text.splitlines(keepends=True)
     part = io.StringIO()
@@ -70,7 +77,7 @@ def save_deed_text(address, change_date, text):
         if curr_size > max_size:
             dt, _ = DeedText.objects.get_or_create(deed_id=address, seq=seq)
             dt.title = Deed.objects.get(address=address).title
-            dt.change_date = change_date
+            dt.change_date = change_date_tz
             dt.text = part.getvalue()
             dt.save()
             dt.search_vector = SearchVector("text", config="polish")
@@ -78,14 +85,13 @@ def save_deed_text(address, change_date, text):
             part = io.StringIO()
             seq = seq + 1
             curr_size = 0
-    if curr_size > 0:
-        dt, _ = DeedText.objects.get_or_create(deed_id=address, seq=seq)
-        dt.title = Deed.objects.get(address=address).title
-        dt.change_date = change_date
-        dt.text = part.getvalue()
-        dt.save()
-        dt.search_vector = SearchVector("text", config="polish")
-        dt.save()
+    dt, _ = DeedText.objects.get_or_create(deed_id=address, seq=seq)
+    dt.title = Deed.objects.get(address=address).title
+    dt.change_date = change_date_tz
+    dt.text = part.getvalue()
+    dt.save()
+    dt.search_vector = SearchVector("text", config="polish")
+    dt.save()
     return
 
 
@@ -97,14 +103,19 @@ def load_deed_text(address: str) -> str:
     return text.getvalue()
 
 
-def get_deed_pdf_dir(address: str) -> str:
-    # WDU20220000013
-    # 01234567890123
-    return f"{ settings.ISAP_PDF_DIR }{ address[3:7] }/"
-
-
-def get_deed_text_dir(address: str) -> str:
-    return f"{ settings.ISAP_TEXT_DIR }{ address[3:7] }/"
+def get_deed_file(act_info: ActInfo, kind: str) -> Path:
+    # DU20230000001
+    # 0123456789012
+    if kind == "pdf":
+        return Path(
+            f"{ settings.ISAP_PDF_DIR }{ act_info.year }/{ act_info.address }.pdf"
+        )
+    elif kind == "txt":
+        return Path(
+            f"{ settings.ISAP_TXT_DIR }{ act_info.year }/{ act_info.address }.txt"
+        )
+    else:
+        raise ValueError(f"unsupported file kind: '{kind}")
 
 
 class SearchIsap(models.Model):
@@ -160,7 +171,7 @@ class SearchIsapResult(models.Model):
     def save(self, *args, **kwargs):
         '''On save, update result hash'''
         self.result_md5 = self.get_result_md5(self.result)
-        return super(SearchIsapResult, self).save(*args, **kwargs)
+        return super().save(*args, **kwargs)
 
 
 def save_search_result(

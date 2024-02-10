@@ -18,7 +18,7 @@ class DeedTextTestCase(SimpleTestCase):
         with tempfile.TemporaryDirectory() as tmp_dir:
             out_txt_path = os.path.join(tmp_dir, out_txt_name)
             pdf_to_text(test_pdf_fn, out_txt_path)
-            with open(out_txt_path, "r") as f:
+            with open(out_txt_path) as f:
                 text = f.read()
         # print(f'==== text: { text }', flush=True)
 

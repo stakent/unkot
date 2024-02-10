@@ -41,10 +41,6 @@ Receive email notifications when changes of the laws relevant for you are publis
 ### Compile messages translations to use by gettext
 
         ./manage.py compilemessages --ignore 'venv/*'
-
-
-The rest is pretty standard or described in Cookiecutter Django documentation.
-
 ---
 
 ## Cookiecutter Django readme

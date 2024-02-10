@@ -1,13 +1,12 @@
 "filter_deeds "
 from datetime import datetime
-from typing import Optional, List
 
 from django.contrib.postgres.search import SearchQuery
 
 from unkot.isap.models import DeedText
 
 
-def filter_deeds(filter_terms: str, now: datetime) -> List[Optional[str]]:
+def filter_deeds(filter_terms: str, now: datetime) -> list[str | None]:
     """Filter deeds using provided filter terms.
 
     Parameters:
