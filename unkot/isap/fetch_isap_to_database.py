@@ -2,6 +2,7 @@
 import os.path
 import sys
 from datetime import datetime
+from enum import Enum
 from zoneinfo import ZoneInfo
 
 import requests
@@ -14,6 +15,15 @@ from unkot.isap.serializers import ActInfo, ActsInYear
 
 # Get an instance of a logger
 log = get_logger()
+
+
+class PublisherSymbol(Enum):
+    ALL = 'ALL'
+    DU = 'DU'
+    MP = 'MP'
+
+    def __str__(self):
+        return self.value
 
 
 def fetch_isap_deed_pdf(session: requests.Session, act_info: ActInfo) -> None:
@@ -125,18 +135,15 @@ def fetch_isap_year_deeds(
 
 
 def fetch_isap_to_database(
-    publisher: str, year1: int, year2: int, new_only: bool = False
+    publisher: PublisherSymbol, year1: int, year2: int, new_only: bool = False
 ) -> int:
     """Fetch deed from ISAP, extract text and store in database.
 
     Parameters:
     publisher (str): symbol of the publisher:
         - 'ALL' for all konwn publishers
-        - 'WDU' Dziennik Ustaw, od 1918, ~87000 deeds
-        - 'WMP' Monitor Polski, od 1930, ~60000 deeds
-        - 'LDU' Dziennik Ustaw, 1939-1990, ~1500 deeds
-        - 'LMP' Monitor Polski, 1939-1940, 265 deeds
-        - 'LDW' Dziennik Ustaw (Warszawski), 1944, 18 deeds
+        - 'DU' Dziennik Ustaw, od 1918, ~87000 deeds
+        - 'MP' Monitor Polski, od 1930, ~60000 deeds
     year1 (int): oldest year of time range
     year2 (int): newest year of time range
     new_only (bool): fetch new deeds
@@ -147,8 +154,8 @@ def fetch_isap_to_database(
         raise ValueError('parameter "year1" has to be smaller or equal "year2"')
 
     n_deeds_fetched = 0
-    if publisher == "ALL":
-        publishers = ["WDU", "WMP"]
+    if publisher == PublisherSymbol.ALL:
+        publishers = [PublisherSymbol.DU, PublisherSymbol.MP]
     else:
         publishers = [
             publisher,
