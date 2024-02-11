@@ -10,9 +10,9 @@
         <ul class="list-unstyled">
             <li>
                 {% translate "Publication" %}:
-                {% if deed.publisher == 'WMP' %}
+                {% if deed.publisher == 'MP' %}
                     Monitor Polski
-                {% elif deed.publisher == 'WDU' %}
+                {% elif deed.publisher == 'DU' %}
                     Dziennik Ustaw
                 {% endif %}
             </li>
@@ -28,7 +28,7 @@
             <li>{% translate "Announcement date" %}: {{ deed.announcement_date|date:"Y-m-d" }}</li>
             <li>{{ deed.change_date|date:"Y-m-d H:i" }}</li>
             <li>{{ deed.eli }}</li>
-            <a href="https://isap.sejm.gov.pl/api/isap/deeds/{{ deed.publisher }}/{{ deed.year }}/{{ deed.pos }}/text.pdf">
+            <a href="http://api.sejm.gov.pl/eli/acts/{{ deed.publisher }}/{{ deed.year }}/{{ deed.pos }}/text.pdf">
                 {% translate "Statue text published by ISAP as pdf file" %}
             </a>
         </ul>
