@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-05 20:09+0100\n"
+"POT-Creation-Date: 2024-02-11 15:08+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -134,7 +134,7 @@ msgstr "Status"
 msgid "Change date"
 msgstr "Zmiana"
 
-#: unkot/isap/templates/isap/deeds_list.html:92
+#: unkot/isap/templates/isap/deeds_list.html:95
 #: unkot/isap/templates/isap/saved_searches_list.html:44
 msgid "No statues to display."
 msgstr "Brak dokumentów do wyswietlenia."
