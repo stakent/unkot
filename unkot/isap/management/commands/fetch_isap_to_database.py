@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand
 
-from ...fetch_isap_to_database import fetch_isap_to_database
+from ...fetch_isap_to_database import PublisherSymbol, fetch_isap_to_database
 
 
 class Command(BaseCommand):
@@ -9,13 +9,14 @@ class Command(BaseCommand):
     def add_arguments(self, parser):
         parser.add_argument(
             "publisher",
-            type=str,
-            help="Publisher symbol: ALL, WDU, WMP, LDU, LMP, LDW. ALL means WDU and WMP",
+            type=PublisherSymbol,
+            choices=list(PublisherSymbol),
+            help="Publisher symbol: ALL, DU, MP. ALL means DU and MP",
         )
         parser.add_argument("year1", type=int, help="First year of time range")
         parser.add_argument("year2", type=int, help="Last year of time range")
         parser.add_argument(
-            "--new_only",
+            "--new-only",
             action="store_true",
             help="Fetch only new deeds",
         )
