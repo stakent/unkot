@@ -66,13 +66,14 @@ def replace_null_by_NO_DATE_PROVIDED(field):
     return value
 
 
-def fetch_isap_year_deeds(session, publisher, year: int, new_only: bool) -> int:
+def fetch_isap_year_deeds(
+    session: requests.Session, publisher: str, year: int, new_only: bool
+) -> int:
     """Fetch data from ISAP publisher's year index.
     If new_only==True then fetch:
         - new deeds
         - text of existing deeds without text
     """
-    # bad http://isap.sejm.gov.pl/api/isap/acts/DU/2024
     # http://api.sejm.gov.pl/eli/acts/{publisher}/{year}
     url = "http://api.sejm.gov.pl/eli"
     url = url + f"/acts/{ publisher }/{ year }"
@@ -123,7 +124,9 @@ def fetch_isap_year_deeds(session, publisher, year: int, new_only: bool) -> int:
     return n_deeds_fetched
 
 
-def fetch_isap_to_database(publisher: str, year1, year2, new_only=False) -> int:
+def fetch_isap_to_database(
+    publisher: str, year1: int, year2: int, new_only: bool = False
+) -> int:
     """Fetch deed from ISAP, extract text and store in database.
 
     Parameters:
