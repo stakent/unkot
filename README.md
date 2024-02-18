@@ -13,11 +13,11 @@ Receive email notifications when changes of the laws relevant for you are publis
 
 2. Install target Python version ex:
 
-        pyenv install 3.10.13
+        pyenv install 3.11.7
 
 3. Acivate taget Python version ex:
 
-        pyenv shell 3.10.13
+        pyenv shell 3.11.7
 
 4. Create and activate virtualenv:
 
