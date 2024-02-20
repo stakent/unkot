@@ -27,7 +27,7 @@ ssh $STAGING_SSH "\
 
 rsync -r .envs ${STAGING_SSH}:${STAGING_REPO}
 
-cp .envs/cypress/staging.json cypress.env.json 
+cp .envs/cypress/staging.json cypress.env.json
 
 ssh $STAGING_SSH "\
 	cd $STAGING_REPO; \

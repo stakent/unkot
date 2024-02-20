@@ -19,7 +19,7 @@ if [  `ps a | grep MailHog | wc -l` == 1 ]; then
 	./MailHog_linux_amd64 &
 fi
 
-# django tests 
+# django tests
 dropdb --if-exists test_unkot_dev
 ./manage.py test --no-input --keepdb
 
