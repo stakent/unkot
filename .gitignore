@@ -61,6 +61,8 @@ coverage.xml
 
 # Django stuff:
 staticfiles/
+config/settings/maintenance_mode_state.txt
+
 
 # Sphinx documentation
 docs/_build/
