@@ -70,6 +70,7 @@ DJANGO_APPS = [
     "django.forms",
 ]
 THIRD_PARTY_APPS = [
+    "maintenance_mode",
     "crispy_forms",
     "crispy_bootstrap5",
     "allauth",
@@ -141,6 +142,7 @@ MIDDLEWARE = [
     "django.middleware.common.BrokenLinkEmailsMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "allauth.account.middleware.AccountMiddleware",
+    "maintenance_mode.middleware.MaintenanceModeMiddleware",
 ]
 
 # STATIC
@@ -187,6 +189,7 @@ TEMPLATES = [
                 "django.template.context_processors.tz",
                 "django.contrib.messages.context_processors.messages",
                 "unkot.users.context_processors.allauth_settings",
+                "maintenance_mode.context_processors.maintenance_mode",
             ],
             'debug': True,
         },
