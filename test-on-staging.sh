@@ -31,7 +31,7 @@ cp .envs/cypress/staging.json cypress.env.json
 
 ssh $STAGING_SSH "\
 	cd $STAGING_REPO; \
-	docker-compose -f local.yml up --force-recreate --build -d \
+	docker compose -f local.yml up -d \
 "
 
 CYPRESS_baseUrl=http://192.168.0.200:8001 ./node_modules/.bin/cypress run
