@@ -1,6 +1,7 @@
 """
 Base settings to build other settings files upon.
 """
+
 import re
 from pathlib import Path
 
@@ -26,8 +27,8 @@ DEBUG = env.bool("DJANGO_DEBUG", False)
 # In Windows, this must be set to your system time zone.
 TIME_ZONE = "Europe/Warsaw"
 LANGUAGES = [
-    ('pl', 'Polski'),
-    ('en', 'English'),
+    ("pl", "Polski"),
+    ("en", "English"),
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#language-code
 LANGUAGE_CODE = "pl"
@@ -191,7 +192,7 @@ TEMPLATES = [
                 "unkot.users.context_processors.allauth_settings",
                 "maintenance_mode.context_processors.maintenance_mode",
             ],
-            'debug': True,
+            "debug": True,
         },
     }
 ]
@@ -312,5 +313,5 @@ ISAP_PDF_DIR = ISAP_DATA_DIR + "pdf/"
 ISAP_TXT_DIR = ISAP_DATA_DIR + "txt/"
 
 IGNORABLE_404_URLS = [
-    re.compile(r'^/favicon\.ico$'),
+    re.compile(r"^/favicon\.ico$"),
 ]

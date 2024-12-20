@@ -6,7 +6,6 @@
   "directories": {
     "doc": "docs"
   },
-  "dependencies": {},
   "devDependencies": {
     "cypress": "^9.7.0"
   },
