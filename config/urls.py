@@ -29,7 +29,7 @@ urlpatterns = [
     path(settings.ADMIN_URL, admin.site.urls),
     # User management
     path("users/", include("unkot.users.urls", namespace="users")),
-    path("accounts/", include("allauth.urls")),
+    # Account registration disabled
     # Your stuff: custom urls includes go here
     path("isap/", include("unkot.isap.urls")),
     path("newsletter/", include("unkot.newsletter.urls")),
