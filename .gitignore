@@ -296,3 +296,4 @@ cypress.env.json
 
 cypress/screenshots/
 cypress/videos/
+MailHog_linux_amd64
