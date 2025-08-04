@@ -22,7 +22,7 @@ PRODUCTION_REPO='/root/project/unkot/prod'
 
 git checkout main
 
-git merge staging
+# git merge staging
 
 git tag ${TAG}
 
@@ -37,3 +37,5 @@ ssh $PRODUCTION_SSH "\
 	git checkout -f production; \
 	docker compose -f production.yml up --force-recreate --build -d \
 "
+
+git checkout main
