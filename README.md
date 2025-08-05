@@ -1,119 +1,141 @@
-# unkot
+# Unkot - Polish Law Monitoring Research
 
-Polish unkot.pl and eventually english unkot.com.
-
-Polish law change monitoring service.
-
-Receive email notifications when changes of the laws relevant for you are published.
-
-
-## Local development using pyenv and virtualenv
-
-1. Install [pyenv](https://github.com/pyenv/pyenv)
-
-2. Install target Python version ex:
-
-        pyenv install 3.11.7
-
-3. Acivate taget Python version ex:
-
-        pyenv shell 3.11.7
-
-4. Create and activate virtualenv:
-
-        python -m venv venv ; . venv/bin/activate
-
-5. Install local development dependencies:
-
-        pip install -r requirements/local.txt
-
-6. Set the local development environment varibales:
-
-        . env-local.sh
-
-## i18n
-
-### Create or refresh messages translations file django.po
-
-        ./manage.py makemessages --all --ignore 'venv/*'
-
-
-### Compile messages translations to use by gettext
-
-        ./manage.py compilemessages --ignore 'venv/*'
----
-
-## Cookiecutter Django readme
-
-below:
+> **Personal Project**: Exploring automated legal change detection for Polish legislation. A long-term personal learning initiative in web application development and legal text processing.
 
 [![Built with Cookiecutter Django](https://img.shields.io/badge/built%20with-Cookiecutter%20Django-ff69b4.svg?logo=cookiecutter)](https://github.com/cookiecutter/cookiecutter-django/)
 [![Black code style](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black)
 
-## Settings
+## About This Project
 
-Moved to [settings](http://cookiecutter-django.readthedocs.io/en/latest/settings.html).
+This is a personal exploration of automated legal monitoring systems, developed over several years during my free time. The project investigates practical approaches to tracking Polish legislative changes and notification systems.
 
-## Basic Commands
+**Learning Focus**: Full-stack web development, legal document processing, automated monitoring systems, and Django best practices.
 
-### Setting Up Your Users
+## Technical Exploration
 
--   To create a **normal user account**, just go to Sign Up and fill out the form. Once you submit it, you'll see a "Verify Your E-mail Address" page. Go to your console to see a simulated email verification message. Copy the link into your browser. Now the user's email should be verified and ready to go.
+The project serves as a learning platform for:
 
--   To create an **superuser account**, use this command:
+- **Django Development**: Advanced patterns, Celery integration, i18n support
+- **Legal Document Processing**: Parsing and tracking legislative changes
+- **Notification Systems**: Email alerts and subscription management
+- **Production Patterns**: Docker deployment, monitoring, testing strategies
 
-        $ python manage.py createsuperuser
+## Development Setup
 
-For convenience, you can keep your normal user logged in on Chrome and your superuser logged in on Firefox (or similar), so that you can see how the site behaves for both kinds of users.
+### Prerequisites
 
-### Type checks
+- Python 3.11+
+- PostgreSQL
+- Redis (for Celery)
+- Docker (optional)
 
-Running type checks with mypy:
+### Local Development
 
-    $ mypy unkot
+1. **Set up Python environment**:
+   ```bash
+   pyenv install 3.11.7
+   pyenv shell 3.11.7
+   python -m venv venv
+   source venv/bin/activate
+   ```
 
-### Test coverage
+2. **Install dependencies**:
+   ```bash
+   pip install -r requirements/local.txt
+   ```
 
-To run the tests, check your test coverage, and generate an HTML coverage report:
+3. **Configure environment**:
+   ```bash
+   source env-local.sh
+   ```
 
-    $ coverage run -m pytest
-    $ coverage html
-    $ open htmlcov/index.html
+4. **Run development server**:
+   ```bash
+   python manage.py runserver
+   ```
 
-#### Running tests with pytest
+### Celery Background Tasks
 
-    $ pytest
-
-### Live reloading and Sass CSS compilation
-
-Moved to [Live reloading and SASS compilation](http://cookiecutter-django.readthedocs.io/en/latest/live-reloading-and-sass-compilation.html).
-
-### Celery
-
-This app comes with Celery.
-
-To run a celery worker in a terminal:
-
-``` bash
-cd unkot
+Run Celery worker for background processing:
+```bash
 celery -A config.celery_app worker --beat --loglevel=info
 ```
 
-Please note: For Celery's import magic to work, it is important *where* the celery commands are run. If you are in the same folder with *manage.py*, you should be right.
+### Internationalization
 
-### Email Server
+```bash
+# Update translations
+./manage.py makemessages --all --ignore 'venv/*'
 
-In development, it is often nice to be able to see emails that are being sent from your application. For that reason local SMTP server [MailHog](https://github.com/mailhog/MailHog) with a web interface is available as docker container.
+# Compile translations
+./manage.py compilemessages --ignore 'venv/*'
+```
 
-Container mailhog will start automatically when you will run all docker containers.
-Please check [cookiecutter-django Docker documentation](http://cookiecutter-django.readthedocs.io/en/latest/deployment-with-docker.html) for more details how to start all containers.
+## Testing
 
-With MailHog running, to view messages that are sent by your application, open your browser and go to `http://127.0.0.1:8025`
+```bash
+# Run tests with coverage
+coverage run -m pytest
+coverage html
+open htmlcov/index.html
 
-## Deployment
+# Type checking
+mypy unkot
+```
 
-The following details how to deploy this application.
+## Key Features Explored
 
-### Docker
+- **Legal Document Parsing**: Automated extraction from Polish legal databases
+- **Change Detection**: Identifying modifications in legal texts
+- **User Subscriptions**: Personalized monitoring preferences
+- **Email Notifications**: Automated alerts for relevant changes
+- **Multi-language Support**: Polish and English interfaces
 
-See detailed [cookiecutter-django Docker documentation](http://cookiecutter-django.readthedocs.io/en/latest/deployment-with-docker.html).
+## Technology Stack
+
+- **Framework**: Django 4.x with Cookiecutter template
+- **Task Queue**: Celery with Redis backend
+- **Database**: PostgreSQL
+- **Development**: Docker, pytest, mypy
+- **Code Quality**: Black formatter, type hints
+
+## Personal Learning Outcomes
+
+Through this project, I've explored:
+
+- Full-stack Django application architecture
+- Asynchronous task processing at scale
+- Legal document parsing challenges
+- Production deployment patterns
+- User subscription and notification systems
+
+## Future Explorations
+
+Areas for continued personal research:
+
+- Machine learning for legal change prediction
+- Natural language processing for legal texts
+- Real-time streaming of legal updates
+- Advanced search and filtering capabilities
+
+## Docker Development
+
+For containerized development:
+```bash
+# See cookiecutter-django documentation for Docker setup
+docker-compose up
+```
+
+MailHog available at: `http://127.0.0.1:8025` for email testing
+
+## License
+
+This personal research project is private. Shared for demonstration purposes only.
+
+---
+
+*This is a personal project developed during my free time for learning and skill development. It represents my exploration of web application development and legal document processing challenges.*
+
+## Note
+
+This project was initiated as a learning exercise and portfolio demonstration. While functional, it serves primarily as a technical exploration rather than a production service.
